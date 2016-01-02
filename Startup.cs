@@ -37,7 +37,8 @@ namespace ASPNET5_Scrum_Tool
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            
+            /*
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -46,7 +47,11 @@ namespace ASPNET5_Scrum_Tool
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            */
+            
+             
+            app.UseDeveloperExceptionPage();
+            app.UseStatusCodePages();
             app.UseIISPlatformHandler();
 
             app.UseStaticFiles();
