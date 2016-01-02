@@ -5,6 +5,8 @@ cssmin = require 'gulp-cssmin'
 uglify = require 'gulp-uglify'
 project = require './project.json'
 sass = require 'gulp-sass'
+coffee = require 'gulp-coffee'
+gutil = 'gulp-util'
 
 paths = 
   webroot: "./wwwroot/"
@@ -16,9 +18,16 @@ paths =
   coffee: './coffee/**/*.coffee'
   
   
- gulp.task 'sass-css', ->
+gulp.task 'sass-css', ->
     return gulp.src paths.scss
            .pipe sass()
            .pipe gulp.dest paths.webroot + 'css/'
            
  
+
+gulp.task 'coffee-js', ->
+    return gulp.src paths.coffee
+          .pipe(coffee({bare: true}).on 'error', (gutil) -> gutil.log )
+           .pipe gulp.dest paths.webroot + 'js/'
+           
+           
