@@ -14,8 +14,8 @@ paths =
   minJs: './wwwroot/js/**/*.min.js'
   css: './wwwroot/css/**/*.css'
   minCss: 'css/**/*.min.css'
-  scss: './scss/**/*.scss'
-  coffee: './coffee/**/*.coffee'
+  scss: './assets/scss/**/*.scss'
+  coffee: './assets/coffee/**/*.coffee'
   
   
 gulp.task 'sass-css', ->
