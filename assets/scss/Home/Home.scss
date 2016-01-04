@@ -1,1 +1,21 @@
-@import 'CurvedGreenButton.css'
+@import 'CurvedGreenButton.css';
+
+// My Own
+#InitalButton{
+    position: relative; 
+    margin-top: 10%;
+}
+ #titleScreen {
+    margin-top: 10%; 
+    text-align: center;
+    font-size: 30px;
+    color: #ff6666;
+    h1 {
+        font-size: 100px;
+    }
+ }
+ 
+.navbar, .navbar-inverse, .navbar-fixed-top
+{
+    background-color: #66ccff;
+}

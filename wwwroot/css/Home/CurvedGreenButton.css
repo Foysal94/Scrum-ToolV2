@@ -1,9 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Nunito:300);
 @import url(http://fonts.googleapis.com/css?family=Sansita+One);
-#InitalButton {
-  position: relative;
-  margin-top: 10%; }
-
 #rollOverText {
   text-align: center; }
 
