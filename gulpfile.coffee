@@ -6,7 +6,8 @@ uglify = require 'gulp-uglify'
 project = require './project.json'
 sass = require 'gulp-sass'
 coffee = require 'gulp-coffee'
-gutil = 'gulp-util'
+gutil = require 'gulp-util' 
+rename = require 'gulp-rename'
 
 paths = 
   webroot: "./wwwroot/"
@@ -33,3 +34,10 @@ gulp.task 'coffee-js', ->
 gulp.task 'watch', ['sass-css', 'coffee-js'], ->
     gulp.watch paths.scss, ['sass-css']
     gulp.watch paths.coffee, ['coffee-js']
+    
+ gulp.task 'min:css', ['sass-css'], ->
+   return gulp.src [paths.webroot + "css/NavBar_Buttons.css", '!' + paths.webroot + 'css/**/*.min.css']
+          .pipe cssmin()
+          .pipe rename {suffix: '.min'}
+          .pipe gulp.dest paths.webroot + 'css/'
+          

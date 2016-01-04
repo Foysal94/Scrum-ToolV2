@@ -8,6 +8,7 @@
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+             <link rel='stylesheet' href='~/css/NavBar_Buttons.css'>
         </environment>
         
         <environment names="Staging,Production">
@@ -15,6 +16,7 @@
                   asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
                   asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+            <link rel='stylesheet' href='~/css/NavBar_Buttons.min.css'>
         </environment>
         
         @RenderSection("css", false)
@@ -36,9 +38,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                         @Component.Invoke("NavBar_Buttons")
+                        <!--
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><a asp-controller="Home" asp-action="About">About</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                        -->
                     </ul>
                 </div>
             </div>
