@@ -19,31 +19,24 @@ paths =
   coffee: './assets/coffee/**/*.coffee'
   
   
-gulp.task 'sass-css', ->
+gulp.task 'sass-min-css', ->
     return gulp.src paths.scss
            .pipe sass()
+           .pipe cssmin()
+           .pipe rename {suffix: '.min'}
            .pipe gulp.dest paths.webroot + 'css/'
            
  
 
-gulp.task 'coffee-js', ->
+gulp.task 'coffee-min-js', ->
     return gulp.src paths.coffee
           .pipe(coffee({bare: true}).on 'error', (gutil) -> gutil.log )
-           .pipe gulp.dest paths.webroot + 'js/'
-           
-    
- gulp.task 'min:css', ['sass-css'], ->
-   return gulp.src [paths.css, '!' + paths.webroot + 'css/**/*.min.css']
-          .pipe cssmin()
+          .pipe uglify()
           .pipe rename {suffix: '.min'}
-          .pipe gulp.dest paths.webroot + 'css/'
-          
- gulp.task 'min:js', ['coffee-js'], ->
-    return gulp.src [paths.js, '!' + paths.webroot + 'js/**/*.min.js']
-           .pipe uglify()
-           .pipe rename {suffix: '.min'}
-           .pipe gulp.dest paths.webroot + 'js/'
+          .pipe gulp.dest paths.webroot + 'js/'
+           
+         
  
- gulp.task 'watch', ['min:css', 'min:js'], ->
-    gulp.watch paths.scss, ['min:css']
-    gulp.watch paths.coffee, ['min:js']
+ gulp.task 'watch', ['sass-min-css', 'coffee-min-js'], ->
+    gulp.watch paths.scss, ['sass-min-css']
+    gulp.watch paths.coffee, ['coffee-min-js']
