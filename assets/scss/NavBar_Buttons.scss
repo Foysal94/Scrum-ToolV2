@@ -1,39 +1,30 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
+#navbar-Buttons {
+    margin-left: 750px !important;
+    margin-top: 10px !important;
+    //top:0px !important;
+    
+    padding-right: 15px;
+    padding-left: 15px;
+    
+    width:100%;
+    
+   
+   
+}
+
 body {
 	font-family: 'Lato', sans-serif;
 	background: #353535;
 	color: #FFF;
 }
-.jumbotron h1 {
-	color: #353535;
-}
-footer {
-  margin-bottom: 0 !important;
-  margin-top: 80px;
-}
-footer p {
-  margin: 0;
-  padding: 0;
-}
-span.icon {
-	margin: 0 5px;
-	color: #D64541;
-}
-h2 {
-	color: #BDC3C7;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.mrng-60-top {
-	margin-top: 60px;
-}
+
 /* Global Button Styles */
 a.animated-button:link, a.animated-button:visited {
 	position: relative;
 	display: block;
-	margin: 30px auto 0;
 	padding: 14px 15px;
 	color: #fff;
 	font-size:14px;
@@ -55,7 +46,6 @@ a.animated-button:link:after, a.animated-button:visited:after {
 	position: absolute;
 	height: 0%;
 	left: 50%;
-	top: 50%;
 	width: 150%;
 	z-index: -1;
 	-webkit-transition: all 0.75s ease 0s;
@@ -73,7 +63,6 @@ a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
 a.animated-button:link, a.animated-button:visited {
 	position: relative;
 	display: block;
-	margin: 30px auto 0;
 	padding: 14px 15px;
 	color: #fff;
 	font-size:14px;
