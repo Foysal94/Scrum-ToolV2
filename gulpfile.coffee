@@ -8,6 +8,7 @@ sass = require 'gulp-sass'
 coffee = require 'gulp-coffee'
 gutil = require 'gulp-util' 
 rename = require 'gulp-rename'
+less_to_scss = require 'gulp-less-to-scss'
 
 paths = 
   webroot: "./wwwroot/"
@@ -35,8 +36,12 @@ gulp.task 'coffee-min-js', ->
           .pipe rename {suffix: '.min'}
           .pipe gulp.dest paths.webroot + 'js/'
            
-         
  
  gulp.task 'watch', ['sass-min-css', 'coffee-min-js'], ->
     gulp.watch paths.scss, ['sass-min-css']
     gulp.watch paths.coffee, ['coffee-min-js']
+    
+ gulp.task 'less-scss', ->
+    return gulp.src './**/*.less'
+           .pipe less_to_scss()
+           .pipe gulp.dest './'
