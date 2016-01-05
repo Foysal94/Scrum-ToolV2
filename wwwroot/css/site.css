@@ -1,7 +1,8 @@
 body {
   padding-top: 50px;
   padding-bottom: 20px;
-  background: #353535; }
+  background: #353535;
+  color: white; }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
