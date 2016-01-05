@@ -59,6 +59,9 @@ body {
 * {
   box-sizing: border-box; }
 
+#boardFormSubmit {
+  text-decoration: none; }
+
 .button {
   display: inline-block;
   font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
@@ -185,5 +188,5 @@ body {
   background: #353535;
   margin-top: 30px; }
 
-#submitBoardName {
+#boardFormSubmit {
   margin-top: 35px; }
