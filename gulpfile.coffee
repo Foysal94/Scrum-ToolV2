@@ -4,6 +4,7 @@ concat = require 'gulp-concat'
 cssmin = require 'gulp-cssmin'
 uglify = require 'gulp-uglify'
 project = require './project.json'
+
 sass = require 'gulp-sass'
 coffee = require 'gulp-coffee'
 gutil = require 'gulp-util' 
@@ -21,7 +22,7 @@ paths =
   
   
 gulp.task 'sass-css', ->
-    return gulp.src paths.scss
+    return gulp.src [paths.scss, '!' + './assets/scss/**/_*.scss']
            .pipe sass()
            .pipe gulp.dest paths.webroot + 'css/'
 
