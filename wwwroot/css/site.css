@@ -1,6 +1,7 @@
 body {
   padding-top: 50px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  background: #353535; }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -24,6 +25,13 @@ input, select, textarea {
     z-index: 10 !important; } }
 
 .navbar, .navbar-inverse, .navbar-fixed-top {
-  background: #353535;
-  color: red;
   height: 80px; }
+
+.navbar-brand {
+  position: absolute;
+  left: 1px;
+  bottom: 60px; }
+  .navbar-brand h1 {
+    margin-left: 30px;
+    font-size: 70px;
+    color: #D24D57; }

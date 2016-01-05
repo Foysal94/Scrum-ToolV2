@@ -2,15 +2,10 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 #navbar-Buttons {
   margin-left: 750px !important;
-  margin-top: 10px !important;
+  margin-top: 18px !important;
   padding-right: 15px;
   padding-left: 15px;
   width: 100%; }
-
-body {
-  font-family: 'Lato', sans-serif;
-  background: #353535;
-  color: #FFF; }
 
 /* Global Button Styles */
 a.animated-button:link, a.animated-button:visited {

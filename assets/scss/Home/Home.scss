@@ -5,25 +5,33 @@
 #InitalButton{
     position: relative; 
     margin-top: 10%;
+    
 }
 
 #titleScreen {
-    margin-top: 10%; 
+
     text-align: center;
     font-size: 30px;
     color: #ff6666;
     
     h1 {
         font-size: 100px;
+        margin-bottom: 50px;
     }
     
  }
  
- #boardName {
+#boardName {
 
   border-bottom-color: #ff6666;
   border-bottom-width:3px;
   border-style:none none dashed;
   background: #353535;
+  margin-top:30px;
+  
+ }
+ 
+ #submitBoardName {
+     margin-top:35px;
  }
  
