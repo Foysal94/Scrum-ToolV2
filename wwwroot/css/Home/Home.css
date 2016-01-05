@@ -1,0 +1,19 @@
+@import url(CurvedGreenButton.min.css);
+@import url(RedSumbitButton.min.css);
+#InitalButton {
+  position: relative;
+  margin-top: 10%; }
+
+#titleScreen {
+  margin-top: 10%;
+  text-align: center;
+  font-size: 30px;
+  color: #ff6666; }
+  #titleScreen h1 {
+    font-size: 100px; }
+
+#boardName {
+  border-bottom-color: #ff6666;
+  border-bottom-width: 3px;
+  border-style: none none dashed;
+  background: #353535; }
