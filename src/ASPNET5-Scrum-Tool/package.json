@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/Foysal94/ASPNET5-Scrum-Tool#README",
   "devDependencies": {
-    "coffee-script": "^1.10.0"
+    "coffee-script": "^1.10.0",
+    "gulp-concat": "^2.6.0"
   }
 }
