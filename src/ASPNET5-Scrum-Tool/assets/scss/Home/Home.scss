@@ -1,0 +1,37 @@
+@import 'CurvedGreenButton';
+@import 'RedSumbitButton';
+
+// My Own
+#InitalButton{
+    position: relative; 
+    margin-top: 10%;
+    
+}
+
+#titleScreen {
+
+    text-align: center;
+    font-size: 30px;
+    color: #ff6666;
+    
+    h1 {
+        font-size: 100px;
+        margin-bottom: 50px;
+    }
+    
+ }
+ 
+#boardName {
+
+  border-bottom-color: #ff6666;
+  border-bottom-width:3px;
+  border-style:none none dashed;
+  background: #353535;
+  margin-top:30px;
+  
+ }
+ 
+ #boardFormSubmit {
+     margin-top:35px;
+ }
+ 
