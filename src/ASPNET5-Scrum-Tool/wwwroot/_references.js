@@ -2,7 +2,7 @@
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/board.min.js" />
 /// <reference path="js/Home (1).min.js" />
-/// <reference path="js/home .js" />
+/// <reference path="js/Home .min.js" />
 /// <reference path="js/home.min.js" />
 /// <reference path="js/site.min.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
