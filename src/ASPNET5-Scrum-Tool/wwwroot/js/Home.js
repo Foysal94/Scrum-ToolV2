@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var FormBoardSumbit, OnWelcomeButtonClick;
+=======
+var OnWelcomeButtonClick;
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682
 
 OnWelcomeButtonClick = function() {
   return $('#curved-green-button').on('click', function() {
@@ -8,6 +12,7 @@ OnWelcomeButtonClick = function() {
   });
 };
 
+<<<<<<< HEAD
 FormBoardSumbit = function() {
   return $('#boardFormSubmit').on('click', function(event) {
     var boardName;
@@ -20,3 +25,8 @@ FormBoardSumbit = function() {
 };
 
 $(document).ready(FormBoardSumbit());
+=======
+$(document).ready(function() {
+  return OnWelcomeButtonClick();
+});
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682

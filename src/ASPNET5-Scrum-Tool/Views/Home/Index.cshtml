@@ -3,11 +3,19 @@
 }
 
 @section  css {
+<<<<<<< HEAD
     <link rel="stylesheet" href="~/css/Home/Home.css" />
 }
 
 @section scripts {
     <script src='~/js/Home.js'> </script>
+=======
+    <link rel="stylesheet" href="~/css/Home/Home.min.css" />
+}
+
+@section scripts {
+    <script src='~/js/Home.min.js'> </script>
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682
 }
 
 
@@ -30,6 +38,7 @@
     <h1> ScrumTool </h1>
     <br>
     <form id='boardForm'>
+<<<<<<< HEAD
         <label> What is your board name? </label>
         <br>
         <br>
@@ -40,5 +49,17 @@
         
        <a asp-controller="Board" asp-action="Index" id='boardFormSubmit' class="button  arrow">Continue</a>
         
+=======
+        <label > What is your board name? </label>
+        <br>
+        <br>
+        <input  type='text' name='boardName' id='boardName'>
+        <br>
+        <br>
+       
+       
+        <a asp-controller="#" asp-action="#" id='boardFormSubmit' class="button  arrow" >Continue</a>
+       
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682
     </form>
 </div>

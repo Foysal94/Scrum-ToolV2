@@ -9,7 +9,10 @@
     "gulp-cssmin": "0.1.7",
     "gulp-less-to-scss": "0.0.4",
     "gulp-rename": "^1.2.2",
+<<<<<<< HEAD
     "gulp-sass": "^2.2.0",
+=======
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682
     "gulp-uglify": "1.2.0",
     "rimraf": "2.2.8"
   }

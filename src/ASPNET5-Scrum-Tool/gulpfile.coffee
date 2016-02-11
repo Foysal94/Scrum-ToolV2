@@ -1,7 +1,15 @@
 gulp = require 'gulp'
+<<<<<<< HEAD
 
 cssmin = require 'gulp-cssmin'
 jsmin = require 'gulp-uglify'
+=======
+rimraf = require 'rimraf'
+concat = require 'gulp-concat'
+cssmin = require 'gulp-cssmin'
+uglify = require 'gulp-uglify'
+project = require './project.json'
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682
 
 sass = require 'gulp-sass'
 coffee = require 'gulp-coffee'
@@ -39,7 +47,11 @@ gulp.task 'coffee-js', ->
           
  gulp.task 'min:js', ['coffee-js'], ->
     return gulp.src [paths.js, '!' + paths.webroot + 'js/**/*.min.js']
+<<<<<<< HEAD
            .pipe jsmin()
+=======
+           .pipe uglify()
+>>>>>>> 80e0797f1f6c68d1e9e129fc830cd262303c3682
            .pipe rename {suffix: '.min'}
            .pipe gulp.dest paths.webroot + 'js/'
  
