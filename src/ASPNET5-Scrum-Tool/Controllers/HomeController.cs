@@ -13,6 +13,13 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult GoToBoardPage()
+        {
+            string boardName = "";
+            return RedirectToAction("Index", "Board", boardName);
+        }
+
         public IActionResult Error()
         {
             return View();
