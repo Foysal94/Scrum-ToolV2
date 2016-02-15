@@ -9,7 +9,7 @@ OnWelcomeButtonClick = function() {
 };
 
 FormBoardSumbit = function() {
-  return $('#boardFormSubmit').on('click', function(event) {
+  return $('.boardFormSubmit').on('click', function(event) {
     var boardName;
     boardName = $.trim($('#boardName').val());
     if (boardName.length < 1) {

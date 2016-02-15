@@ -59,10 +59,10 @@ body {
 * {
   box-sizing: border-box; }
 
-#boardFormSubmit {
+.boardFormSubmit {
   text-decoration: none; }
 
-.button {
+.boardFormSubmit {
   display: inline-block;
   font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -73,7 +73,7 @@ body {
   border: none;
   color: white;
   transition: .2s; }
-  .button:before, .button:after {
+  .boardFormSubmit:before, .boardFormSubmit:after {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -86,15 +86,15 @@ body {
     font-size: 1.2em;
     text-align: center;
     transition: .2s; }
-  .button:before {
+  .boardFormSubmit:before {
     background: fadeout(#000, 90%); }
-  .button:hover {
+  .boardFormSubmit:hover {
     background: #0079a5; }
-  .button:active, .button:focus {
+  .boardFormSubmit:active, .boardFormSubmit:focus {
     background: #002e3f;
     outline: none; }
 
-.button {
+.boardFormSubmit {
   min-width: 15em; }
 
 .arrow {

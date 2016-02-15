@@ -11,9 +11,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
     {
         Logger<BoardController> logger;
 
-        public IActionResult Index(string pBoardName)
+        [Route("{boardName}")]
+        public IActionResult Show(string boardName)
         {
-            ViewData["Title"] = pBoardName;
+            ViewData["Title"] = boardName;
             return View();
         }
 
