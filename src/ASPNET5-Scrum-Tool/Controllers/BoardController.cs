@@ -7,14 +7,16 @@ using Microsoft.Extensions.Logging;
 
 namespace ASPNET5_Scrum_Tool.Controllers
 {
+    [Route("[controller]")]
     public class BoardController : Controller
     {
         Logger<BoardController> logger;
 
-        [Route("{boardName}")]
-        public IActionResult Show(string boardName)
+        
+        [Route("{BoardName}")]
+        public IActionResult Show(string BoardName)
         {
-            ViewData["Title"] = boardName;
+            ViewData["Title"] = BoardName;
             return View();
         }
 
