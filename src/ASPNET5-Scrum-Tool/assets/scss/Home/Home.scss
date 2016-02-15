@@ -1,6 +1,7 @@
-@import 'CurvedGreenButton';
 @import 'RedSumbitButton';
+@import '../Shared/base';
 
+// Home.css CSS
 // My Own
 #InitalButton{
     position: relative; 
@@ -26,7 +27,7 @@
   border-bottom-color: #ff6666;
   border-bottom-width:3px;
   border-style:none none dashed;
-  background: #353535;
+  background: $background-color;
   margin-top:30px;
   
  }

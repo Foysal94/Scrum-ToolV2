@@ -1,11 +1,14 @@
 //@import url("http://fonts.googleapis.com/css?family=Coming+Soon");
 
 @import 'NavBar_Buttons.scss';
+@import 'base';
 
+
+// Site CSS
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: #353535;
+    background: $background-color;
     //font-family: "Coming Soon"
     color: white;
 }

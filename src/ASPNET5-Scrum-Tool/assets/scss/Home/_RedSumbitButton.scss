@@ -9,17 +9,7 @@ $regular-text: #333;
 $button-tint: fadeout(#000, 90%);
 $background: #303036;
 
-body {
-	background: $background;
-	text-align: center;
-	text-rendering: auto;
-	font-size: 17px;
-	line-height: 1.6em;
-	height: 100vh;
-	overflow: hidden;
-	padding: 18%;
-	padding-top: 25vh; 
-}
+// Red Sumbit Button CSS
 
 * {
 	box-sizing: border-box;
