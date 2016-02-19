@@ -1,2 +1,26 @@
 @import '../Shared/base';
 
+.row {
+    margin-top: 4%;
+    width: 100%;
+}
+
+.BoardColumn {
+  /*border-right: 3px solid #f00*/
+  float:left;
+  width: 20%;
+  min-height: 25%;
+}
+
+.panel-heading {
+    text-align: center;
+}
+
+.panel-body {
+    color: red;
+}
+
+.AddTask {
+    cursor: pointer;
+}
+
