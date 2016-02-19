@@ -9,7 +9,7 @@
   /*border-right: 3px solid #f00*/
   float:left;
   width: 20%;
-  min-height: 25%
+  min-height: 25%;
 }
 
 .panel-heading {
@@ -18,5 +18,9 @@
 
 .panel-body {
     color: red;
+}
+
+.AddTask {
+    cursor: pointer;
 }
 

@@ -2,8 +2,10 @@
 
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import 'base';
 
 // NavBar_Buttons CSS
+
 // My Own
 #navbar-Buttons {
     margin-left: 750px !important;
@@ -15,6 +17,30 @@
     
     width:100%;
 }
+
+
+.navbar, .navbar-inverse, .navbar-fixed-top
+{
+   
+    height: 80px;
+}
+
+.navbar-brand {
+    position: absolute;
+    
+    left:1px;
+    bottom:60px;
+   
+    h1 {
+         margin-left:30px;
+            font-size:70px;
+            color: $logo-color;
+            
+    }
+
+}
+
+
 
 /* Global Button Styles */
 a.animated-button:link, a.animated-button:visited {

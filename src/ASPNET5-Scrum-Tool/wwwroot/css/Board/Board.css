@@ -13,3 +13,6 @@
 
 .panel-body {
   color: red; }
+
+.AddTask {
+  cursor: pointer; }
