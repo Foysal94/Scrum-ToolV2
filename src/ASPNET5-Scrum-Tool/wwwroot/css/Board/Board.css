@@ -5,14 +5,27 @@
 .BoardColumn {
   /*border-right: 3px solid #f00*/
   float: left;
-  width: 20%;
-  min-height: 25%; }
+  width: 20%; }
 
-.panel-heading {
-  text-align: center; }
-
-.panel-body {
-  color: red; }
-
-.AddTask {
+.panel-default .panel-heading, .panel-default .Task {
   cursor: pointer; }
+
+.panel-default .panel-heading {
+  text-align: center;
+  background-color: #D24D57; }
+
+.panel-default .panel-body {
+  background-color: #808080;
+  min-height: 30%; }
+  .panel-default .panel-body .Task:hover, .panel-default .panel-body .Task:visited, .panel-default .panel-body .Task:link {
+    text-decoration: none;
+    color: #000000;
+    background-color: #a3c2c2; }
+
+.Task {
+  color: #000000;
+  display: block;
+  margin: 20px 0;
+  border: 3px solid #D24D57;
+  border-radius: 15px;
+  padding: 20px 8px; }
