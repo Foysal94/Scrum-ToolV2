@@ -1,0 +1,52 @@
+﻿
+$panel-body-color: #808080;
+$task-font-color: #000000;
+
+.panel-default {
+
+   .panel-heading, .Task, .AddTask {
+       cursor: pointer;
+   }
+    
+  .panel-heading {
+    text-align: center;
+    background-color: $logo-color;
+    }
+    
+  .panel-body {
+      background-color: $panel-body-color;
+      min-height: 30%;
+
+      .Task:hover, .Task:visited, .Task:link {
+            text-decoration: none;
+            color: $task-font-color;
+
+           
+            
+      }
+
+      .AddTask:hover, .AddTask:visited, .AddTask:link {
+           text-decoration: none;
+      }
+
+
+  }
+    
+}
+
+ .AddTask, .Task {
+     display: block;
+    margin: 20px 0;
+    border: 3px solid $logo-color;
+    border-radius: 15px;
+    padding: 20px 8px;
+    color: $task-font-color;
+
+ 
+    
+ }
+
+.AddTask:hover, .Task:hover {
+    background-color: #a3c2c2 !important;
+
+}

@@ -1,5 +1,5 @@
 .row {
-  margin-top: 4%;
+  margin-top: 1%;
   width: 100%; }
 
 .BoardColumn {
@@ -7,7 +7,7 @@
   float: left;
   width: 20%; }
 
-.panel-default .panel-heading, .panel-default .Task {
+.panel-default .panel-heading, .panel-default .Task, .panel-default .AddTask {
   cursor: pointer; }
 
 .panel-default .panel-heading {
@@ -19,13 +19,17 @@
   min-height: 30%; }
   .panel-default .panel-body .Task:hover, .panel-default .panel-body .Task:visited, .panel-default .panel-body .Task:link {
     text-decoration: none;
-    color: #000000;
-    background-color: #a3c2c2; }
+    color: #000000; }
+  .panel-default .panel-body .AddTask:hover, .panel-default .panel-body .AddTask:visited, .panel-default .panel-body .AddTask:link {
+    text-decoration: none; }
 
-.Task {
-  color: #000000;
+.AddTask, .Task {
   display: block;
   margin: 20px 0;
   border: 3px solid #D24D57;
   border-radius: 15px;
-  padding: 20px 8px; }
+  padding: 20px 8px;
+  color: #000000; }
+
+.AddTask:hover, .Task:hover {
+  background-color: #a3c2c2 !important; }
