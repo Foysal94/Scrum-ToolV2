@@ -1,26 +1,66 @@
-var AjaxTest, ChangeHTML, GetBoardName;
+var BoardName, ColumnNameForm, PanelTitleClick, SumbitColumnForm;
 
-GetBoardName = function() {
-  var BoardName;
-  return BoardName = $('.BoardNameHeading').text();
-};
+BoardName = $('.BoardNameHeading'.text());
 
-AjaxTest = function() {
-  return $('.AddTask').on('click', function(event) {
-    var BoardName;
-    event.preventDefault();
-    BoardName = GetBoardName();
+
+/*
+AjaxTest = () ->
+   $('.AddTask').on 'click', (event) ->
+        event.preventDefault()
+        BoardName = GetBoardName()
+        $.ajax({
+            url: '/Board/' + BoardName,
+            type: 'GET',
+            dataType: 'HTML'
+            success: ChangeHTML
+        
+        })
+ */
+
+PanelTitleClick = function() {
+  return $('.panel-title').on('click', function() {
     return $.ajax({
       url: '/Board/' + BoardName,
-      type: 'GET',
+      type: 'POST',
       dataType: 'HTML',
-      success: ChangeHTML
+      success: ColumnNameForm
     });
   });
 };
 
-ChangeHTML = function() {
-  return $('.AddTask').text('Hello World');
+ColumnNameForm = function() {
+  var Form;
+  $('.panel-title'.remove());
+  Form = "<form class='ColumnTitleForm' asp-controller='Board' asp-action='ChangeColumnName' method='POST'> <input asp-for='ColumnName' class='NewColumnName'> <input type='submit' value='Continue' class='ColumnTitleSumbit'> </form>";
+  return $('.panel-heading'.append(Form));
 };
 
-$(document).ready(AjaxTest());
+SumbitColumnForm = function() {
+  return $('.ColumnTitleSumbit').on('click', function(event) {
+    event.preventDefault();
+    return $.ajax({
+      url: '/Board/ChangeColumnName',
+      type: 'POST',
+      dataType: 'text',
+      success: function() {
+        if (data.status === "Success") {
+          alert("Done");
+          return $('.ColumnTitleForm'.submit());
+        } else {
+          return alert("Error occurs on the Database level!");
+        }
+      },
+      error: function() {
+        return alert("An error has occured when changing column name");
+      }
+    });
+  });
+};
+
+
+/*
+ChangeHTML = () -> 
+    $('.AddTask').text 'Hello World'
+ */
+
+$(document).ready(PanelTitleClick());

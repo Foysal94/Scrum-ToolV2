@@ -1,4 +1,4 @@
-﻿
+﻿@import '../Shared/base';
 $panel-body-color: #808080;
 $task-font-color: #000000;
 
@@ -9,8 +9,10 @@ $task-font-color: #000000;
    }
     
   .panel-heading {
-    text-align: center;
-    background-color: $logo-color;
+         background-color: $logo-color;
+        .panel-title {
+            text-align: center;
+        }
     }
     
   .panel-body {

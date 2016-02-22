@@ -25,18 +25,3 @@
 
 .AddTask:hover, .Task:hover {
   background-color: #a3c2c2 !important; }
-
-.row {
-  margin-top: 1%;
-  width: 100%; }
-
-.BoardColumn {
-  /*border-right: 3px solid #f00*/
-  float: left;
-  width: 20%; }
-
-.ColumnTitleSumbit {
-  display: block; }
-
-.NewColumnName {
-  width: 100%; }

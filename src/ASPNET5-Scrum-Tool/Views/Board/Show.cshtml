@@ -1,9 +1,7 @@
-@{
-    
-}
+@model BoardModel
 
 @section  css {
-
+     
     <link rel="stylesheet" href="~/css/Board/Board.css" />
 }
 
@@ -14,32 +12,21 @@
  <!--
 <h1>The Board Name is @ViewData["Title"] </h1>
 -->   
-<h1 class="BoardNameHeading">@ViewData["Title"] </h1>
+<h1 class="BoardNameHeading">@ViewData["BoardName"] </h1>
 <div class="row">
-    <div class="col-md-11" id="MainColumn">
-        
-        <div class="panel panel-default BoardColumn">
-            <div class="panel-heading">
-                <h3 class="panel-title">Panel title</h3>
-             </div>
-             
-            <div class="panel-body">
-             
-               <a class='Task'>Something</a>
-               <a class='Task'>Something</a>
-               <a class="AddTask"> Add a task.... </a>
 
-            </div> <!-- Panel Body End -->
-            
-        </div> <!--Pannel Div end -->
-        
+    <div class="col-md-11" id="MainColumn">
+        @foreach (var column in Model.ColumnList)
+        {
+            @Component.Invoke("Panel_Lists",column )
+        }
     </div> <!-- Main Column End Div -->
-    
+
     <div class="col-md-1" id="MenuColumn">
         <h1> Hello World </h1>
-        
+
     </div> <!-- MenuColumn End -->
-    
+
 </div>
 
 <!--

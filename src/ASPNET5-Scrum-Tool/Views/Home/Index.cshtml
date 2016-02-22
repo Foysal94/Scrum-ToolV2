@@ -1,5 +1,5 @@
 
-@model ASPNET5_Scrum_Tool.Models.BoardModel
+@model BoardModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -33,7 +33,7 @@
 <div id='titleScreen'>
     <h1> ScrumTool </h1>
     <br>
-    <form id='boardForm' asp-controller="Home" asp-action="SumbitBoardForm" method="get">
+    <form id='boardForm' asp-controller="Home" asp-action="SumbitBoardForm" method="GET">
 
         <label> What is your board name? </label>
         <br>

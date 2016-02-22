@@ -1,5 +1,5 @@
 @import '../Shared/base';
-@import 'Panels.scss'
+@import 'Panels.scss';
 
 
 .row {
@@ -13,4 +13,15 @@
   width: 20%;
   
 }
+
+.ColumnTitleSumbit {
+    display:block;
+
+}
+
+.NewColumnName {
+    width:100%;
+}
+
+
 

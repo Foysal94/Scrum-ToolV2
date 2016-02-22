@@ -7,12 +7,19 @@ using Microsoft.AspNet.Mvc;
 
 namespace ASPNET5_Scrum_Tool.Models
 {
-    public class BoardModel
+
+    public class ColumnModel
     {
-        private string m_BoardName;
+        private string m_name;
+        private int m_columnNumber;
 
-        [Required]
-        public string BoardName { get { return m_BoardName; } set { m_BoardName = value; } }
+        public int ColumnNumber { get { return m_columnNumber; } }
+        public string ColumnName { get { return m_name;} set { m_name = value; } }
 
+        public ColumnModel(string p_Name, int p_ColumnNumber)
+        {
+            m_name = p_Name;
+            m_columnNumber = p_ColumnNumber;
+        }
     }
 }
