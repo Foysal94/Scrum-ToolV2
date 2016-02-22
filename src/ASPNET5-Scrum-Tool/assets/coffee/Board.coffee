@@ -1,21 +1,33 @@
 BoardName = $('.BoardNameHeading').text()
 ColumnNameForm = "<form class='ColumnTitleForm' asp-controller='Board' asp-action='ChangeColumnName' method='POST'> 
+                     <input class='PreviousColumnName' type='hidden'  style='display: none;' />
                      <input asp-for='ColumnName' class='NewColumnName'>
                      <input type='submit' value='Continue' class='ColumnTitleSumbit'>
                  </form>"
 
 PanelTitleClick = () ->
     $('.panel-heading').on 'click', () ->
-          column = $(this).parent()    
-          columnID = $(column).attr 'id'
-
+          selectedColumn = $(this).parent()    
+          selectedColumnID = $(selectedColumn).attr 'id'
+          initalColumnName =  $(this).find('.panel-title').text()
           $.ajax
-            url: '/Board/' + BoardName,
+            url: '/Board/Show',
             type: 'GET',
             dataType: 'HTML'
             success: () ->
-                   column.find('.panel-title').remove()     
-                   column.find('.panel-heading').append ColumnNameForm  
+                        DoesFormExist = $('#MainColumn').find '.ColumnTitleForm'
+                        if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
+                             panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
+                             oldBoardName = $('.PreviousColumnName').val()
+                             DoesFormExist.remove()
+                             panelHeading.append "<h3 class='panel-title'></h3>"
+                             panelHeading.find('.panel-title').text(oldBoardName)
+
+                        selectedColumn.find('.panel-title').remove()     
+                        selectedColumn.find('.panel-heading').append ColumnNameForm 
+                        $('.PreviousColumnName').val(initalColumnName)
+                        $('.NewColumnName').val(initalColumnName)
+                   
 
 SumbitColumnForm = () ->
     $('.ColumnTitleSumbit').on 'click', (event) ->
