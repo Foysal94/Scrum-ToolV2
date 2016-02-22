@@ -30,11 +30,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return View(m_Board);
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult ChangeColumnName(string name)
         {

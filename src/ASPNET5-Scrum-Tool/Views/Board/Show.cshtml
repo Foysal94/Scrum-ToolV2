@@ -1,17 +1,12 @@
 @model BoardModel
 
 @section  css {
-     
     <link rel="stylesheet" href="~/css/Board/Board.css" />
 }
-
 
 @section scripts {
     <script src='~/js/Board.js'> </script>
 }
- <!--
-<h1>The Board Name is @ViewData["Title"] </h1>
--->   
 <h1 class="BoardNameHeading">@ViewData["BoardName"] </h1>
 <div class="row">
 
@@ -28,23 +23,3 @@
     </div> <!-- MenuColumn End -->
 
 </div>
-
-<!--
-<table>
-    <tr>
-        <td id="MainColumn">
-            <div class="TaskList">
-              
-        </td>
-        
-        
-        
-        <!--
-        <td id="MenuColumn">
-        <td>
-           
-            
-    </tr>
-
-</table>
--->

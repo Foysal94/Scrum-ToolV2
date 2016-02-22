@@ -1,8 +1,8 @@
 ﻿@model ColumnModel
 
-@{ int columnNumber = (int)ViewData["ColumnNumber"];}
+@{ int columnNumber = (int)ViewData["ColumnID"];}
 
-<div class="panel panel-default BoardColumn" id="Column1">
+<div class="panel panel-default BoardColumn" id="@Model.ColumnNumber">
     <div class="panel-heading">
         <h3 class="panel-title">@Model.ColumnName</h3>
     </div>

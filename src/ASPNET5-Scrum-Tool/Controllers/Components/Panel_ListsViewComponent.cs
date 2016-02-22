@@ -6,11 +6,13 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 {
     public class Panel_ListsViewComponent : ViewComponent
     {
-        
+        private int m_ColumnID = 0;
 
         public IViewComponentResult Invoke(ColumnModel model)
         {
-            ViewData["ColumnNumber"] = model.ColumnNumber;
+            m_ColumnID++;
+            
+            ViewData["ColumnID"] = m_ColumnID;
             return View(model);
         }
 

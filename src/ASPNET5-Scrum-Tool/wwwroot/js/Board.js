@@ -1,38 +1,24 @@
 var BoardName, ColumnNameForm, PanelTitleClick, SumbitColumnForm;
 
-BoardName = $('.BoardNameHeading'.text());
+BoardName = $('.BoardNameHeading').text();
 
-
-/*
-AjaxTest = () ->
-   $('.AddTask').on 'click', (event) ->
-        event.preventDefault()
-        BoardName = GetBoardName()
-        $.ajax({
-            url: '/Board/' + BoardName,
-            type: 'GET',
-            dataType: 'HTML'
-            success: ChangeHTML
-        
-        })
- */
+ColumnNameForm = "<form class='ColumnTitleForm' asp-controller='Board' asp-action='ChangeColumnName' method='POST'> <input asp-for='ColumnName' class='NewColumnName'> <input type='submit' value='Continue' class='ColumnTitleSumbit'> </form>";
 
 PanelTitleClick = function() {
-  return $('.panel-title').on('click', function() {
+  return $('.panel-heading').on('click', function() {
+    var column, columnID;
+    column = $(this).parent();
+    columnID = $(column).attr('id');
     return $.ajax({
       url: '/Board/' + BoardName,
-      type: 'POST',
+      type: 'GET',
       dataType: 'HTML',
-      success: ColumnNameForm
+      success: function() {
+        column.find('.panel-title').remove();
+        return column.find('.panel-heading').append(ColumnNameForm);
+      }
     });
   });
-};
-
-ColumnNameForm = function() {
-  var Form;
-  $('.panel-title'.remove());
-  Form = "<form class='ColumnTitleForm' asp-controller='Board' asp-action='ChangeColumnName' method='POST'> <input asp-for='ColumnName' class='NewColumnName'> <input type='submit' value='Continue' class='ColumnTitleSumbit'> </form>";
-  return $('.panel-heading'.append(Form));
 };
 
 SumbitColumnForm = function() {
