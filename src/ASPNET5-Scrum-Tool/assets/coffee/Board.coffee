@@ -1,25 +1,31 @@
 BoardName = $('.BoardNameHeading').text()
-ColumnNameForm = "<form class='ColumnTitleForm' asp-controller='Board' asp-action='ChangeColumnName' method='POST'> 
+ColumnNameForm = "
                      <input class='PreviousColumnName' type='hidden'  style='display: none;' />
-                     <input asp-for='ColumnName' class='NewColumnName'>
+                     <input name='ColumnName' class='NewColumnName'>
                      <input type='submit' value='Continue' class='ColumnTitleSumbit'>
-                 </form>"
+                "
 
 PanelTitleClick = () ->
     $('.panel-heading').on 'click', () ->
+          PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called
+          if  PreventFormReload.length != 0
+            return 
+
           selectedColumn = $(this).parent()    
           selectedColumnID = $(selectedColumn).attr 'id'
           initalColumnName =  $(this).find('.panel-title').text()
+
           $.ajax
             url: '/Board/Show',
             type: 'GET',
             dataType: 'HTML'
             success: () ->
-                        DoesFormExist = $('#MainColumn').find '.ColumnTitleForm'
+                        DoesFormExist = $('#MainColumn').find '.NewColumnName'
                         if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                              panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
                              oldBoardName = $('.PreviousColumnName').val()
                              DoesFormExist.remove()
+                             $('.ColumnTitleSumbit').remove()
                              panelHeading.append "<h3 class='panel-title'></h3>"
                              panelHeading.find('.panel-title').text(oldBoardName)
 
@@ -30,24 +36,33 @@ PanelTitleClick = () ->
                    
 
 SumbitColumnForm = () ->
-    $('.ColumnTitleSumbit').on 'click', (event) ->
+    $('.panel-heading').on 'click', 'input.ColumnTitleSumbit', (event) ->
         event.preventDefault();
+
+        columnName = $('.NewColumnName').val().trim()
+        columnNumber = $(this).parent().parent().attr 'id'
+ 
+        newColumnData = { 
+            'ColumnName': columnName,
+            'ColumnNumber': columnNumber
+        }   
+        
+        object = JSON.stringify(newColumnData)   
 
         $.ajax
             url: '/Board/ChangeColumnName',
             type: 'POST'
-            dataType: 'text',
-            success: () -> 
-                if data.status == "Success" 
-                    alert "Done";
-                    $ '.ColumnTitleForm'.submit(); 
+            dataType: 'html',
+            contentType: 'application/json; charset=UTF-8'
+            data: object,
+            success: (data) -> 
+                   
+                     alert "Hit the Success part";
+                     alert data
 
-                else 
-                    alert "Error occurs on the Database level!" ;
-                
-            
-            error: () -> 
-                alert("An error has occured when changing column name");
+            error: (xhr, err) ->
+                alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+                alert("responseText: " + xhr.responseText);
             
          
 
@@ -62,4 +77,5 @@ ChangeHTML = () ->
 
 $(document).ready(
     PanelTitleClick()
+    SumbitColumnForm()
 )

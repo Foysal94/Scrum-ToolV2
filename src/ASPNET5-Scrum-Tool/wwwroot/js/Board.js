@@ -2,11 +2,15 @@ var BoardName, ColumnNameForm, PanelTitleClick, SumbitColumnForm;
 
 BoardName = $('.BoardNameHeading').text();
 
-ColumnNameForm = "<form class='ColumnTitleForm' asp-controller='Board' asp-action='ChangeColumnName' method='POST'> <input class='PreviousColumnName' type='hidden'  style='display: none;' /> <input asp-for='ColumnName' class='NewColumnName'> <input type='submit' value='Continue' class='ColumnTitleSumbit'> </form>";
+ColumnNameForm = "<input class='PreviousColumnName' type='hidden'  style='display: none;' /> <input name='ColumnName' class='NewColumnName'> <input type='submit' value='Continue' class='ColumnTitleSumbit'>";
 
 PanelTitleClick = function() {
   return $('.panel-heading').on('click', function() {
-    var initalColumnName, selectedColumn, selectedColumnID;
+    var PreventFormReload, initalColumnName, selectedColumn, selectedColumnID;
+    PreventFormReload = $(this).find('.NewColumnName');
+    if (PreventFormReload.length !== 0) {
+      return;
+    }
     selectedColumn = $(this).parent();
     selectedColumnID = $(selectedColumn).attr('id');
     initalColumnName = $(this).find('.panel-title').text();
@@ -16,11 +20,12 @@ PanelTitleClick = function() {
       dataType: 'HTML',
       success: function() {
         var DoesFormExist, oldBoardName, panelHeading;
-        DoesFormExist = $('#MainColumn').find('.ColumnTitleForm');
+        DoesFormExist = $('#MainColumn').find('.NewColumnName');
         if (DoesFormExist.length !== 0) {
           panelHeading = DoesFormExist.parent();
           oldBoardName = $('.PreviousColumnName').val();
           DoesFormExist.remove();
+          $('.ColumnTitleSumbit').remove();
           panelHeading.append("<h3 class='panel-title'></h3>");
           panelHeading.find('.panel-title').text(oldBoardName);
         }
@@ -34,22 +39,29 @@ PanelTitleClick = function() {
 };
 
 SumbitColumnForm = function() {
-  return $('.ColumnTitleSumbit').on('click', function(event) {
+  return $('.panel-heading').on('click', 'input.ColumnTitleSumbit', function(event) {
+    var columnName, columnNumber, newColumnData, object;
     event.preventDefault();
+    columnName = $('.NewColumnName').val().trim();
+    columnNumber = $(this).parent().parent().attr('id');
+    newColumnData = {
+      'ColumnName': columnName,
+      'ColumnNumber': columnNumber
+    };
+    object = JSON.stringify(newColumnData);
     return $.ajax({
       url: '/Board/ChangeColumnName',
       type: 'POST',
-      dataType: 'text',
-      success: function() {
-        if (data.status === "Success") {
-          alert("Done");
-          return $('.ColumnTitleForm'.submit());
-        } else {
-          return alert("Error occurs on the Database level!");
-        }
+      dataType: 'html',
+      contentType: 'application/json; charset=UTF-8',
+      data: object,
+      success: function(data) {
+        alert("Hit the Success part");
+        return alert(data);
       },
-      error: function() {
-        return alert("An error has occured when changing column name");
+      error: function(xhr, err) {
+        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+        return alert("responseText: " + xhr.responseText);
       }
     });
   });
@@ -61,4 +73,4 @@ ChangeHTML = () ->
     $('.AddTask').text 'Hello World'
  */
 
-$(document).ready(PanelTitleClick());
+$(document).ready(PanelTitleClick(), SumbitColumnForm());
