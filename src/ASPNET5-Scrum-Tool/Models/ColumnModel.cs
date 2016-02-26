@@ -21,5 +21,7 @@ namespace ASPNET5_Scrum_Tool.Models
             m_name = p_Name;
             m_columnNumber = p_ColumnNumber;
         }
+
+        public ColumnModel() { }
     }
 }

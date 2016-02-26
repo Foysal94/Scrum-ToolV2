@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ASPNET5_Scrum_Tool.Models;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace ASPNET5_Scrum_Tool.Controllers
 {
@@ -31,10 +32,21 @@ namespace ASPNET5_Scrum_Tool.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangeColumnName(string name)
+        public JsonResult ChangeColumnName(ColumnModel model)
         {
-            
-            return View("Show");
+           // ColumnModel column = JsonConvert.DeserializeObject<ColumnModel>(newColumnData);
+            // Update column name in the board model, the board model stores a list of columns
+            m_Board.ColumnList[model.ColumnNumber].ColumnName = model.ColumnName;
+
+            //var json = JsonConvert.SerializeObject(m_Board.ColumnList[column.ColumnNumber]);
+
+            return Json(model.ColumnName);
+        }
+
+        [HttpPost]
+        public IActionResult AddColumn()
+        {
+            return ViewComponent("Panel_Lists");
         }
     }
 }

@@ -23,5 +23,17 @@
     width:100%;
 }
 
+#AddColumnButton {
+    font-size: 50px;
+    cursor:pointer;
+    color: $logo-color;
+    display:inline-block;
+    margin-top:10%;
+    &:hover, &:visited{
+        text-decoration:none;
+        color: $logo-color;
+    }
+}
+
 
 

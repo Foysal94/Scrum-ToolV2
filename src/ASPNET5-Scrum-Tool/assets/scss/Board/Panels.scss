@@ -4,15 +4,15 @@ $task-font-color: #000000;
 
 .panel-default {
 
+    margin-right:20px;
+
    .panel-heading, .Task, .AddTask {
        cursor: pointer;
    }
     
   .panel-heading {
          background-color: $logo-color;
-        .panel-title {
-            text-align: center;
-        }
+         text-align: center;
     }
     
   .panel-body {
@@ -22,9 +22,6 @@ $task-font-color: #000000;
       .Task:hover, .Task:visited, .Task:link {
             text-decoration: none;
             color: $task-font-color;
-
-           
-            
       }
 
       .AddTask:hover, .AddTask:visited, .AddTask:link {
@@ -38,14 +35,11 @@ $task-font-color: #000000;
 
  .AddTask, .Task {
      display: block;
-    margin: 20px 0;
+    margin-bottom:20px;
     border: 3px solid $logo-color;
     border-radius: 15px;
     padding: 20px 8px;
     color: $task-font-color;
-
- 
-    
  }
 
 .AddTask:hover, .Task:hover {
