@@ -32,6 +32,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         }
 
         [HttpPost]
+<<<<<<< HEAD
         public JsonResult ChangeColumnName(ColumnModel model)
         {
            // ColumnModel column = JsonConvert.DeserializeObject<ColumnModel>(newColumnData);
@@ -47,6 +48,14 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public IActionResult AddColumn()
         {
             return ViewComponent("Panel_Lists");
+=======
+        public Json ChangeColumnName(ColumnModel newColumnData)
+        {
+            string name = newColumnData.ColumnName;
+            int columnID = newColumnData.ColumnNumber;
+            m_Board.ColumnList[columnID].ColumnName = name;
+            return View("Show", m_Board);
+>>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
         }
     }
 }

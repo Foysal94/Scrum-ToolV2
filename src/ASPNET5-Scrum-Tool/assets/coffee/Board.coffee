@@ -41,6 +41,7 @@ SumbitColumnForm = () ->
 
         columnName = $('.NewColumnName').val().trim()
         columnNumber = $(this).parent().parent().attr 'id'
+<<<<<<< HEAD
 
         $.ajax
             url: '/Board/ChangeColumnName',
@@ -55,10 +56,32 @@ SumbitColumnForm = () ->
                      $(panelHeading).append(panelTitleHTML)
                      $(panelHeading).find('.panel-title').text(columnName)
                      
+=======
+ 
+        newColumnData = { 
+            'ColumnName': columnName,
+            'ColumnNumber': columnNumber
+        }   
+        
+        object = JSON.stringify(newColumnData)   
+
+        $.ajax
+            url: '/Board/ChangeColumnName',
+            type: 'POST'
+            dataType: 'html',
+            contentType: 'application/json; charset=UTF-8'
+            data: object,
+            success: (data) -> 
+                   
+                     alert "Hit the Success part";
+                     alert data
+
+>>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
             error: (xhr, err) ->
                 alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
                 alert("responseText: " + xhr.responseText);
             
+<<<<<<< HEAD
 AddColumn = () ->
     $('#AddColumnButton').on 'click', (event) ->
         event.preventDefault()
@@ -71,9 +94,24 @@ AddColumn = () ->
             error: () ->
                 alert "Hit the error part"
                   
+=======
+         
+
+
+
+
+###
+ChangeHTML = () -> 
+    $('.AddTask').text 'Hello World' 
+###
+
+>>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
 
 $(document).ready(
     PanelTitleClick()
     SumbitColumnForm()
+<<<<<<< HEAD
     AddColumn()
+=======
+>>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
 )
