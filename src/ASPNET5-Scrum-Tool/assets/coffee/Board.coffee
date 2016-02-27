@@ -23,13 +23,9 @@ PanelTitleClick = () ->
                         if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                              panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
                              oldBoardName = $('.PreviousColumnName').val()
-                             DoesFormExist.remove()
-                             $('.ColumnTitleSumbit').remove()
-                             panelHeading.append "<h3 class='panel-title'></h3>"
-                             panelHeading.find('.panel-title').text(oldBoardName)
+                             panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
 
-                        selectedColumn.find('.panel-title').remove()     
-                        selectedColumn.find('.panel-heading').append ColumnNameForm 
+                        selectedColumn.find('.panel-title').html(ColumnNameForm)   
                         $('.PreviousColumnName').val(initalColumnName)
                         $('.NewColumnName').val(initalColumnName)
                    
