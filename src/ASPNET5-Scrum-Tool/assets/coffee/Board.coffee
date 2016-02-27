@@ -4,6 +4,10 @@ ColumnNameForm = "
                      <input name='ColumnName' class='NewColumnName'>
                      <input type='submit' value='Continue' class='ColumnTitleSumbit'>
                 "
+TaskForm = "
+             <input name='TaskContent' class='TaskContent'>
+             <input type='submit' value='Continue' class='TaskFormSumbit'>
+           "
 
 PanelTitleClick = () ->
     $('#MainColumn').on 'click', 'div.panel-heading',() ->
@@ -49,7 +53,7 @@ SumbitColumnForm = () ->
                      $(panelHeading).html("<h3 class='panel-title'> <h3>").text(columnName)
                      
              error : (error) ->
-                 alert("no good "+JSON.stringify(error));
+                 alert "no good "+JSON.stringify(error);
        
 
 AddColumn = () ->
@@ -66,12 +70,35 @@ AddColumn = () ->
                 $('#AddColumnButton').before data
             error: () ->
                 alert "Hit the error part"
+                
+AddTaskForm = () ->
+    $('.AddTask').on 'click', (event) ->
+        event.preventDefault()
+        selectedColumn = $(this).parent()    
+        PreventFormReload = $(selectedColumn).find 'TaskContent'
+        if  PreventFormReload.length != 0
+            return 
+            
+        selectedColumnID = $(selectedColumn).attr 'id'
+        prevTask = $(this).prev()
+        
+        $.ajax
+            url: '/Board/Show/' + BoardName,
+            type: 'GET',
+            success: () ->
+                  DoesFormExist = $('#MainColumn').find '.TaskContent'
+                  if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
+                    column = DoesFormExist.parent()
+                    column.find('.TaskContent').replaceWith("<a class='AddTask'> Add a task.... </a>")
+                    column.find('TaskFormSumbit').remove();
+                  
+                 $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
                   
 
 $(document).ready(
     PanelTitleClick()
     SumbitColumnForm()
-
+    AddTaskForm()
     AddColumn()
 
 )

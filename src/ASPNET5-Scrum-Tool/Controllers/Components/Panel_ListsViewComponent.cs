@@ -14,6 +14,7 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
             
             ViewData["ColumnID"] = m_ColumnID;
             return View(model);
+            
         }
 
         /*

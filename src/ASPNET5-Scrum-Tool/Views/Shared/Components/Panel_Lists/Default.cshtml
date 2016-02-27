@@ -8,7 +8,10 @@
     </div>
 
      <div class="panel-body">
-        <!-- <a class='Task'>Something</a> -->
+        @foreach (var Task in Model.TasksList)
+        {
+            @Component.Invoke("Task", Task)
+        }
         <a class="AddTask"> Add a task.... </a>
 
      </div> 

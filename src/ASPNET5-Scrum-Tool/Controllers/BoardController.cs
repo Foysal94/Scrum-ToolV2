@@ -12,7 +12,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
     [Route("[controller]")]
     public class BoardController : Controller
     {
-        Logger<BoardController> logger;
+        //Logger<BoardController> logger;
         private BoardModel m_Board;
 
         public BoardController()
@@ -21,6 +21,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_Board.ColumnList = new List<ColumnModel>();
             m_Board.ColumnList.Add(new ColumnModel("Something1", 1));
             m_Board.ColumnList.Add(new ColumnModel("Something2", 2));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 1));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 2));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 3));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 4));
         }
         
         [Route("[Action]/{p_BoardName}")]
