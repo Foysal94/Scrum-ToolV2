@@ -1,7 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/Board.min.js" />
-/// <reference path="js/board.min[conflict].js" />
 /// <reference path="js/Home.min.js" />
 /// <reference path="js/site.min.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
