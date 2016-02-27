@@ -15,7 +15,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return View(Board);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult SumbitBoardForm(BoardModel model)
         {
             

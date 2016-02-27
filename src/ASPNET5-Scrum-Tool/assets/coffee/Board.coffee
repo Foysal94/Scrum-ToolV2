@@ -6,8 +6,8 @@ ColumnNameForm = "
                 "
 
 PanelTitleClick = () ->
-    $('.panel-heading').on 'click', () ->
-          PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called
+    $('#MainColumn').on 'click', 'div.panel-heading',() ->
+          PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called and keeps reloading the form. This code stops it.
           if  PreventFormReload.length != 0
             return 
 
@@ -16,9 +16,8 @@ PanelTitleClick = () ->
           initalColumnName =  $(this).find('.panel-title').text()
 
           $.ajax
-            url: '/Board/Show',
+            url: '/Board/Show/' + BoardName,
             type: 'GET',
-            dataType: 'HTML'
             success: () ->
                         DoesFormExist = $('#MainColumn').find '.NewColumnName'
                         if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
@@ -41,77 +40,42 @@ SumbitColumnForm = () ->
 
         columnName = $('.NewColumnName').val().trim()
         columnNumber = $(this).parent().parent().attr 'id'
-<<<<<<< HEAD
+
 
         $.ajax
             url: '/Board/ChangeColumnName',
             type: 'POST',
-            data: {ColumnName: columnName, ColumnNumber: columnNumber }
+            data: {ColumnName: columnName, ColumnNumber: columnNumber },
+            dataType: 'json',
             success: (data) ->              
-                     #alert "Hit the Success part"
                      #alert 'data is' + data
-                     panelTitleHTML = "<h3 class='panel-title'></h3>"
                      panelHeading = $('.panel-heading').find('.NewColumnName').parent()
-                     $(panelHeading).empty();
-                     $(panelHeading).append(panelTitleHTML)
-                     $(panelHeading).find('.panel-title').text(columnName)
+                     $(panelHeading).html("<h3 class='panel-title'> <h3>").text(columnName)
                      
-=======
- 
-        newColumnData = { 
-            'ColumnName': columnName,
-            'ColumnNumber': columnNumber
-        }   
-        
-        object = JSON.stringify(newColumnData)   
+             error : (error) ->
+                 alert("no good "+JSON.stringify(error));
+       
 
-        $.ajax
-            url: '/Board/ChangeColumnName',
-            type: 'POST'
-            dataType: 'html',
-            contentType: 'application/json; charset=UTF-8'
-            data: object,
-            success: (data) -> 
-                   
-                     alert "Hit the Success part";
-                     alert data
-
->>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
-            error: (xhr, err) ->
-                alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
-                alert("responseText: " + xhr.responseText);
-            
-<<<<<<< HEAD
 AddColumn = () ->
     $('#AddColumnButton').on 'click', (event) ->
         event.preventDefault()
+        newColumnDataID = $('#MainColumn').children().last().prev().attr('id')
+        newColumnName = 'Something' 
         $.ajax
             url:'/Board/AddColumn',
             type: 'POST',
+            data: {ColumnName: newColumnName, ColumnNumber: newColumnDataID },
             success: (data) ->
-                alert "Hit the success part"
-                alert data
+                #alert "Hit the success part"
+                $('#AddColumnButton').before data
             error: () ->
                 alert "Hit the error part"
                   
-=======
-         
-
-
-
-
-###
-ChangeHTML = () -> 
-    $('.AddTask').text 'Hello World' 
-###
-
->>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
 
 $(document).ready(
     PanelTitleClick()
     SumbitColumnForm()
-<<<<<<< HEAD
+
     AddColumn()
-=======
->>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
+
 )

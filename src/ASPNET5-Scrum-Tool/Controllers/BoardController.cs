@@ -23,7 +23,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_Board.ColumnList.Add(new ColumnModel("Something2", 2));
         }
         
-        [Route("{p_BoardName}")]
+        [Route("[Action]/{p_BoardName}")]
         public IActionResult Show(string p_BoardName)
         {
             m_Board.BoardName = p_BoardName;
@@ -31,31 +31,29 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return View(m_Board);
         }
 
+
+        [Route("[Action]")]
         [HttpPost]
-<<<<<<< HEAD
         public JsonResult ChangeColumnName(ColumnModel model)
         {
-           // ColumnModel column = JsonConvert.DeserializeObject<ColumnModel>(newColumnData);
+            //ColumnModel column = JsonConvert.DeserializeObject<ColumnModel>(newColumnData);
             // Update column name in the board model, the board model stores a list of columns
-            m_Board.ColumnList[model.ColumnNumber].ColumnName = model.ColumnName;
+            m_Board.ColumnList[model.ColumnNumber].ColumnName = model.ColumnName; 
 
-            //var json = JsonConvert.SerializeObject(m_Board.ColumnList[column.ColumnNumber]);
+           // var json = JsonConvert.SerializeObject( m_Board.ColumnList[model.ColumnNumber]);
 
             return Json(model.ColumnName);
         }
 
+        [Route("[Action]")]
         [HttpPost]
-        public IActionResult AddColumn()
+        public ViewComponentResult AddColumn(ColumnModel model)
         {
-            return ViewComponent("Panel_Lists");
-=======
-        public Json ChangeColumnName(ColumnModel newColumnData)
-        {
-            string name = newColumnData.ColumnName;
-            int columnID = newColumnData.ColumnNumber;
-            m_Board.ColumnList[columnID].ColumnName = name;
-            return View("Show", m_Board);
->>>>>>> c8c888e56b2a28245cec67001eaddd58941f837d
+            ColumnModel tempColumn = new ColumnModel(model.ColumnName,model.ColumnNumber);
+            m_Board.ColumnList.Add(tempColumn);
+            return ViewComponent("Panel_Lists", tempColumn);
         }
+
+        
     }
 }

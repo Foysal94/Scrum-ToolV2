@@ -1,0 +1,51 @@
+.panel-default {
+  margin-right: 20px; }
+  .panel-default .panel-heading, .panel-default .Task, .panel-default .AddTask {
+    cursor: pointer; }
+  .panel-default .panel-heading {
+    background-color: #D24D57;
+    text-align: center; }
+  .panel-default .panel-body {
+    background-color: #808080;
+    min-height: 30%; }
+    .panel-default .panel-body .Task:hover, .panel-default .panel-body .Task:visited, .panel-default .panel-body .Task:link {
+      text-decoration: none;
+      color: #000000; }
+    .panel-default .panel-body .AddTask:hover, .panel-default .panel-body .AddTask:visited, .panel-default .panel-body .AddTask:link {
+      text-decoration: none; }
+
+.AddTask, .Task {
+  display: block;
+  margin-bottom: 20px;
+  border: 3px solid #D24D57;
+  border-radius: 15px;
+  padding: 20px 8px;
+  color: #000000; }
+
+.AddTask:hover, .Task:hover {
+  background-color: #a3c2c2 !important; }
+
+.row {
+  margin-top: 1%;
+  width: 100%; }
+
+.BoardColumn {
+  /*border-right: 3px solid #f00*/
+  float: left;
+  width: 20%; }
+
+.ColumnTitleSumbit {
+  display: block; }
+
+.NewColumnName {
+  width: 100%; }
+
+#AddColumnButton {
+  font-size: 50px;
+  cursor: pointer;
+  color: #D24D57;
+  display: inline-block;
+  margin-top: 10%; }
+  #AddColumnButton:hover, #AddColumnButton:visited {
+    text-decoration: none;
+    color: #D24D57; }
