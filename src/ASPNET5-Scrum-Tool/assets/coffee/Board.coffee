@@ -2,11 +2,11 @@ BoardName = $('.BoardNameHeading').text()
 ColumnNameForm = "
                      <input class='PreviousColumnName' type='hidden'  style='display: none;' />
                      <input name='ColumnName' class='NewColumnName'>
-                     <input type='submit' value='Continue' class='ColumnTitleSumbit'>
+                     <input type='submit' value='Continue' class='ColumnTitleSubmit'>
                 "
 TaskForm = "
              <input name='TaskContent' class='TaskContent'>
-             <input type='submit' value='Continue' class='TaskFormSumbit'>
+             <input type='submit' value='Continue' class='TaskFormSubmit'>
            "
 
 PanelTitleClick = () ->
@@ -34,8 +34,8 @@ PanelTitleClick = () ->
                         $('.NewColumnName').val(initalColumnName)
                    
 
-SumbitColumnForm = () ->
-    $('.panel-heading').on 'click', 'input.ColumnTitleSumbit', (event) ->
+SubmitColumnForm = () ->
+    $('.panel-heading').on 'click', 'input.ColumnTitleSubmit', (event) ->
         event.preventDefault();
 
         columnName = $('.NewColumnName').val().trim()
@@ -64,7 +64,7 @@ AddColumn = () ->
         $.ajax
             url:'/Board/AddColumn',
             type: 'POST',
-            data: {ColumnName: newColumnName, ColumnNumber: newColumnDataID },
+            data: {ColumnName: newColumnName, ColumnID: newColumnDataID },
             success: (data) ->
                 #alert "Hit the success part"
                 $('#AddColumnButton').before data
@@ -72,9 +72,9 @@ AddColumn = () ->
                 alert "Hit the error part"
                 
 AddTaskForm = () ->
-    $('.AddTask').on 'click', (event) ->
+    $('#MainColumn').on 'click', '.AddTask', (event) ->
         event.preventDefault()
-        selectedColumn = $(this).parent()    
+        selectedColumn = $(this).parent().parent()    
         PreventFormReload = $(selectedColumn).find 'TaskContent'
         if  PreventFormReload.length != 0
             return 
@@ -90,15 +90,35 @@ AddTaskForm = () ->
                   if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                     column = DoesFormExist.parent()
                     column.find('.TaskContent').replaceWith("<a class='AddTask'> Add a task.... </a>")
-                    column.find('TaskFormSumbit').remove();
+                    column.find('.TaskFormSubmit').remove();
                   
-                 $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
+                  $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
+
+SubmitTaskForm = () ->
+     $('.panel-body').on 'click', '.TaskFormSubmit', (event) ->
+          event.preventDefault()
+          selectedColumn = $('.TaskContent').parent().parent()
+          taskContent = $('.TaskContent').val()
+          taskID = $('.TaskContent').prev().attr('id')
+          taskID == 0 if TaskID?
+          
+          $.ajax
+            url: '/Board/AddNewTask'
+            type: 'POST'
+            data: {ParentColumn: selectedColumn, TaskID : taskID, TaskContent: taskContent }
+            success: (data) ->
+                alert "Hit the success part"
+                $('#AddColumnButton').before data
+            error : (error) ->
+                 alert "no good "+JSON.stringify(error);
+    
                   
 
 $(document).ready(
     PanelTitleClick()
-    SumbitColumnForm()
+    SubmitColumnForm()
     AddTaskForm()
+    SubmitTaskForm()
     AddColumn()
 
 )

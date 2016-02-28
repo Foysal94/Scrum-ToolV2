@@ -11,17 +11,17 @@ namespace ASPNET5_Scrum_Tool.Models
     public class ColumnModel
     {
         private string m_name;
-        private int m_columnNumber;
+        private int m_ID;
         private List<TaskModel> m_TasksList;   
 
-        public int ColumnNumber { get { return m_columnNumber; } }
+        public int ColumnID { get { return m_ID; } set { m_ID = value; } }
         public string ColumnName { get { return m_name;} set { m_name = value; } }
         public List<TaskModel> TasksList { get {return m_TasksList;} set { m_TasksList = value; } }
 
         public ColumnModel(string p_Name, int p_ColumnNumber)
         {
             m_name = p_Name;
-            m_columnNumber = p_ColumnNumber;
+            m_ID= p_ColumnNumber;
             m_TasksList = new List<TaskModel>();
         }
 

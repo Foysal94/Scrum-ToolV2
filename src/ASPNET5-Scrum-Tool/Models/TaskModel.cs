@@ -15,13 +15,18 @@ namespace ASPNET5_Scrum_Tool.Models
         public ColumnModel ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
         public DateTime DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
-        public int ID { get {return m_ID;} set { m_ID = value; } }
+        public int TaskID { get {return m_ID;} set { m_ID = value; } }
 
-        public TaskModel(ColumnModel p_column, int p_ID)
+        public TaskModel(ColumnModel p_column , int p_ID, string p_TaskContent)
         {
             m_ParentColumn = p_column;
             m_ID = p_ID;
-            m_TaskContent ="sadasdasjkfaskbfasfgasbtgasbfgaskjbfkasnf sabfasjkngfajsd asjfaskfbsadasd  asbfaskdsabdkasd";
+            m_TaskContent = p_TaskContent;
+        }
+
+        public TaskModel()
+        {
+            
         }
 
     }
