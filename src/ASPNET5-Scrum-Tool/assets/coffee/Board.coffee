@@ -40,8 +40,7 @@ SubmitColumnForm = () ->
 
         columnName = $('.NewColumnName').val().trim()
         columnNumber = $(this).parent().parent().attr 'id'
-
-
+        
         $.ajax
             url: '/Board/ChangeColumnName',
             type: 'POST',
@@ -95,20 +94,20 @@ AddTaskForm = () ->
                   $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
 
 SubmitTaskForm = () ->
-     $('.panel-body').on 'click', '.TaskFormSubmit', (event) ->
+     $('#MainColumn').on 'click', '.TaskFormSubmit', (event) ->
           event.preventDefault()
-          selectedColumn = $('.TaskContent').parent().parent()
-          taskContent = $('.TaskContent').val()
+          selectedColumnID = $('.TaskContent').parent().parent().attr('id')
+          taskContent = $('.TaskContent').val().trim()
           taskID = $('.TaskContent').prev().attr('id')
           taskID == 0 if TaskID?
           
           $.ajax
             url: '/Board/AddNewTask'
             type: 'POST'
-            data: {ParentColumn: selectedColumn, TaskID : taskID, TaskContent: taskContent }
+            data: {ParentColumnID: selectedColumnID, TaskID : taskID, TaskContent: taskContent }
             success: (data) ->
-                alert "Hit the success part"
-                $('#AddColumnButton').before data
+                $('.TaskContent').replaceWith data
+                $('.TaskFormSubmit').replaceWith '<a class="AddTask"> Add a task.... </a>'
             error : (error) ->
                  alert "no good "+JSON.stringify(error);
     

@@ -21,10 +21,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_Board.ColumnList = new List<ColumnModel>();
             m_Board.ColumnList.Add(new ColumnModel("Something1", 1));
             m_Board.ColumnList.Add(new ColumnModel("Something2", 2));
-            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 1, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
-            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 2, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
-            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 3, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
-            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1], 4, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1].ColumnID, 1, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1].ColumnID, 2, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1].ColumnID, 3, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
+            m_Board.ColumnList[1].TasksList.Add(new TaskModel(m_Board.ColumnList[1].ColumnID, 4, "asdasdasdas vvxcvd vd fsdfdsfsdf sdhfhdfgdfg "));
         }
         
         [Route("[Action]/{p_BoardName}")]
@@ -60,12 +60,12 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public JsonResult AddNewTask(TaskModel model)
+        public ViewComponentResult AddNewTask(TaskModel model)
         {
-            TaskModel tempTask = new TaskModel(model.ParentColumn,model.TaskID + 1, model.TaskContent);
+            TaskModel tempTask = new TaskModel(model.ParentColumnID,model.TaskID + 1, model.TaskContent); // Adding one for a new task
             
-            m_Board.ColumnList[tempTask.ParentColumn.ColumnID].TasksList.Add(tempTask);
-            return Json(tempTask);
+            m_Board.ColumnList[model.ParentColumnID - 1].TasksList.Add(tempTask); // -1 or else it will be out of range. List starts from 0 but website columns start from 1
+            return ViewComponent("Task", tempTask);
         }
 
         

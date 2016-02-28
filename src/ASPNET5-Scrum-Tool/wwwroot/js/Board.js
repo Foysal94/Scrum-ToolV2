@@ -113,11 +113,11 @@ AddTaskForm = function() {
 };
 
 SubmitTaskForm = function() {
-  return $('.panel-body').on('click', '.TaskFormSubmit', function(event) {
-    var selectedColumn, taskContent, taskID;
+  return $('#MainColumn').on('click', '.TaskFormSubmit', function(event) {
+    var selectedColumnID, taskContent, taskID;
     event.preventDefault();
-    selectedColumn = $('.TaskContent').parent().parent();
-    taskContent = $('.TaskContent').val();
+    selectedColumnID = $('.TaskContent').parent().parent().attr('id');
+    taskContent = $('.TaskContent').val().trim();
     taskID = $('.TaskContent').prev().attr('id');
     if (typeof TaskID !== "undefined" && TaskID !== null) {
       taskID === 0;
@@ -126,13 +126,13 @@ SubmitTaskForm = function() {
       url: '/Board/AddNewTask',
       type: 'POST',
       data: {
-        ParentColumn: selectedColumn,
+        ParentColumnID: selectedColumnID,
         TaskID: taskID,
         TaskContent: taskContent
       },
       success: function(data) {
-        alert("Hit the success part");
-        return $('#AddColumnButton').before(data);
+        $('.TaskContent').replaceWith(data);
+        return $('.TaskFormSubmit').replaceWith('<a class="AddTask"> Add a task.... </a>');
       },
       error: function(error) {
         return alert("no good " + JSON.stringify(error));
