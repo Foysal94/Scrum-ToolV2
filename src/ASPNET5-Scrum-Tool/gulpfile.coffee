@@ -25,6 +25,8 @@ paths =
   minCss: 'css/**/*.min.css'
   scss: './assets/scss/**/*.scss'
   coffee: './assets/coffee/**/*.coffee'
+  assetImages: './assets/images/**/*.png'
+  rootImages: './wwwroot/images/'
   
   
 gulp.task 'sass-css', ->
@@ -32,12 +34,15 @@ gulp.task 'sass-css', ->
            .pipe sass()
            .pipe gulp.dest paths.webroot + 'css/'
 
+gulp.task 'copy', ->
+    return gulp.src paths.assetImages, base: 'src'
+           .pipe gulp.dest paths.weboot + 'images/'
 
 gulp.task 'coffee-js', ->
     return gulp.src paths.coffee
           .pipe coffee bare: true
           .pipe gulp.dest paths.webroot + 'js/'
-          .on 'error', (gutil) -> gutil.log )
+          .on 'error', gutil -> gutil.log 
     
  gulp.task 'min:css', ['sass-css'], ->
    return gulp.src [paths.css, '!' + paths.webroot + 'css/**/*.min.css']

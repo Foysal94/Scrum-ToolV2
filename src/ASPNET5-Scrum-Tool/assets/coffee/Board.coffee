@@ -9,6 +9,14 @@ TaskForm = "
              <input type='submit' value='Continue' class='TaskFormSubmit'>
            "
 
+ActiveTask = () ->
+    $('#MainColumn').on 'mouseenter', '.Task', (event) ->
+        $(this).addClass 'ActiveCard'
+        
+        $(this).append "<span><img src='images/EditTaskPen.png' "
+    $('#MainColumn').on 'mouseleave', '.Task', (event) ->
+        $(this).removeClass 'ActiveCard'
+
 PanelTitleClick = () ->
     $('#MainColumn').on 'click', 'div.panel-heading',() ->
           PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called and keeps reloading the form. This code stops it.
@@ -119,5 +127,6 @@ $(document).ready(
     AddTaskForm()
     SubmitTaskForm()
     AddColumn()
+    ActiveTask()
 
 )
