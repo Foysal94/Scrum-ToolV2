@@ -8,8 +8,6 @@ jsmin = require 'gulp-uglify'
 
 rimraf = require 'rimraf'
 concat = require 'gulp-concat'
-cssmin = require 'gulp-cssmin'
-uglify = require 'gulp-uglify'
 project = require './project.json'
 
 
@@ -37,9 +35,9 @@ gulp.task 'sass-css', ->
 
 gulp.task 'coffee-js', ->
     return gulp.src paths.coffee
-          .pipe(coffee({bare: true}).on 'error', (gutil) -> gutil.log )
-           .pipe gulp.dest paths.webroot + 'js/'
-           
+          .pipe coffee bare: true
+          .pipe gulp.dest paths.webroot + 'js/'
+          .on 'error', (gutil) -> gutil.log )
     
  gulp.task 'min:css', ['sass-css'], ->
    return gulp.src [paths.css, '!' + paths.webroot + 'css/**/*.min.css']

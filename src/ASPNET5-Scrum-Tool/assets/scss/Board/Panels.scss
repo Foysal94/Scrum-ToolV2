@@ -2,6 +2,14 @@
 $panel-body-color: #808080;
 $task-font-color: #000000;
 
+@mixin WrapLinkText {
+    white-space: pre-wrap; /* css-3 */    
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */    
+    white-space: -o-pre-wrap; /* Opera 7 */    
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+ }
+
 .panel-default {
 
     margin-right:20px;
@@ -19,11 +27,6 @@ $task-font-color: #000000;
       background-color: $panel-body-color;
       min-height: 30%;
 
-      .Task:hover, .Task:visited, .Task:link {
-            text-decoration: none;
-            color: $task-font-color;
-      }
-
       .AddTask:hover, .AddTask:visited, .AddTask:link {
            text-decoration: none;
       }
@@ -33,16 +36,22 @@ $task-font-color: #000000;
     
 }
 
- .AddTask, .Task {
-     display: block;
+ .Task {
+    display: block;
     margin-bottom:20px;
     border: 3px solid $logo-color;
     border-radius: 15px;
-    padding: 20px 8px;
+    padding: 8px 8px;
+    width: 100%;
     color: $task-font-color;
+    @include WrapLinkText();
+    &:hover, &:visited, &:link {
+            text-decoration: none;
+            color: $task-font-color;
+     }
+
+    &:hover {
+        background-color: #a3c2c2 !important;
+    }
+   
  }
-
-.AddTask:hover, .Task:hover {
-    background-color: #a3c2c2 !important;
-
-}
