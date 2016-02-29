@@ -45,13 +45,24 @@ $task-font-color: #000000;
     width: 100%;
     color: $task-font-color;
     @include WrapLinkText();
+    position:relative;
     &:hover, &:visited, &:link {
-            text-decoration: none;
-            color: $task-font-color;
+       text-decoration: none;
+       color: $task-font-color;
+       position:relative;
      }
 
     &:hover {
         background-color: #a3c2c2 !important;
+    }
+
+    .EditPen {
+        float:right;
+        position:absolute;
+        left:100%;
+        bottom:100%;
+        margin: 0 0 -48px -29px; //Change these numbers to move the pen about in the corner
+        
     }
    
  }

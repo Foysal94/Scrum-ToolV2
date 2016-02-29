@@ -12,10 +12,11 @@ TaskForm = "
 ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.Task', (event) ->
         $(this).addClass 'ActiveCard'
-        
-        $(this).append "<span><img src='images/EditTaskPen.png' "
+        $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "
     $('#MainColumn').on 'mouseleave', '.Task', (event) ->
         $(this).removeClass 'ActiveCard'
+        $('.EditPen').remove()
+
 
 PanelTitleClick = () ->
     $('#MainColumn').on 'click', 'div.panel-heading',() ->
@@ -24,22 +25,17 @@ PanelTitleClick = () ->
             return 
 
           selectedColumn = $(this).parent()    
-          selectedColumnID = $(selectedColumn).attr 'id'
           initalColumnName =  $(this).find('.panel-title').text()
+          
+          DoesFormExist = $('#MainColumn').find '.NewColumnName'
+          if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
+                   panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
+                   oldBoardName = $('.PreviousColumnName').val()
+                   panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
 
-          $.ajax
-            url: '/Board/Show/' + BoardName,
-            type: 'GET',
-            success: () ->
-                        DoesFormExist = $('#MainColumn').find '.NewColumnName'
-                        if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
-                             panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
-                             oldBoardName = $('.PreviousColumnName').val()
-                             panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
-
-                        selectedColumn.find('.panel-title').html(ColumnNameForm)   
-                        $('.PreviousColumnName').val(initalColumnName)
-                        $('.NewColumnName').val(initalColumnName)
+          selectedColumn.find('.panel-title').html(ColumnNameForm)   
+          $('.PreviousColumnName').val(initalColumnName)
+          $('.NewColumnName').val(initalColumnName)
                    
 
 SubmitColumnForm = () ->
@@ -89,17 +85,13 @@ AddTaskForm = () ->
         selectedColumnID = $(selectedColumn).attr 'id'
         prevTask = $(this).prev()
         
-        $.ajax
-            url: '/Board/Show/' + BoardName,
-            type: 'GET',
-            success: () ->
-                  DoesFormExist = $('#MainColumn').find '.TaskContent'
-                  if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
-                    column = DoesFormExist.parent()
-                    column.find('.TaskContent').replaceWith("<a class='AddTask'> Add a task.... </a>")
-                    column.find('.TaskFormSubmit').remove();
+        DoesFormExist = $('#MainColumn').find '.TaskContent'
+        if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
+                column = DoesFormExist.parent()
+                column.find('.TaskContent').replaceWith("<a class='AddTask'> Add a task.... </a>")
+                column.find('.TaskFormSubmit').remove();
                   
-                  $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
+        $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
 
 SubmitTaskForm = () ->
      $('#MainColumn').on 'click', '.TaskFormSubmit', (event) ->

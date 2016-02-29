@@ -40,9 +40,8 @@ gulp.task 'copy', ->
 
 gulp.task 'coffee-js', ->
     return gulp.src paths.coffee
-          .pipe coffee bare: true
+          .pipe(coffee({bare: true}).on 'error', (gutil) -> gutil.log )
           .pipe gulp.dest paths.webroot + 'js/'
-          .on 'error', gutil -> gutil.log 
     
  gulp.task 'min:css', ['sass-css'], ->
    return gulp.src [paths.css, '!' + paths.webroot + 'css/**/*.min.css']
