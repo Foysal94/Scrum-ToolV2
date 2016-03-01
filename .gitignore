@@ -7,7 +7,7 @@
 /src/ASPNET5-Scrum-Tool/wwwroot/js/*.js
 /src/ASPNET5-Scrum-Tool/wwwroot/css/**/*.css
 /src/ASPNET5-Scrum-Tool/node_modules/
-/src/ASPNET5-Scrum-Tool/wwwroot/**/
+/src/ASPNET5-Scrum-Tool/wwwroot/lib/
 # User-specific files
 *.suo
 *.user
