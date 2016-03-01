@@ -13,9 +13,15 @@ ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.Task', (event) ->
         $(this).addClass 'ActiveCard'
         $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "
+        $(this).draggable(
+                appendto: "BoardColumn"
+                cursor: "pointer"
+              )
     $('#MainColumn').on 'mouseleave', '.Task', (event) ->
         $(this).removeClass 'ActiveCard'
+        $(this).draggable "disable"
         $('.EditPen').remove()
+        
 
 
 PanelTitleClick = () ->
