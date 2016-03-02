@@ -1,4 +1,5 @@
 BoardName = $('.BoardNameHeading').text()
+
 ColumnNameForm = "
                      <input class='PreviousColumnName' type='hidden'  style='display: none;' />
                      <input name='ColumnName' class='NewColumnName'>
@@ -9,21 +10,48 @@ TaskForm = "
              <input type='submit' value='Continue' class='TaskFormSubmit'>
            "
 
+
+$('.BoardColumn').droppable
+                accept: (element) ->
+                          if element.hasClass('Task')
+                             true;
+                drop: (event, ui) ->
+                        column = $(this)
+                        selectedTask = $(ui.draggable)
+                        newColumnID = $(column).attr 'id'
+                        taskContent = $(selectedTask).text()
+                        taskID = $(selectedTask).attr 'id'
+                        currentColumnID = $(selectedTask).parent().parent().attr 'id'
+                        $.ajax 
+                            url: '/Board/MovedTask'
+                            type: 'POST'
+                            data: {ParentColumnID: currentColumnID, TaskID : taskID, TaskContent: taskContent, NewColumnID: newColumnID }
+                            success: (data) ->
+                                  $(selectedTask).remove()
+                                  $(column).find('.AddTask').before data
+                            error : (error) ->
+                                 alert "no good "+JSON.stringify(error);
+                        
+                        
+                        
+$('.Task').draggable
+            appendto: "BoardColumn"
+            cursor: "pointer"
+            delay: 300
+            snap: "BoardColumn"                                                                                                        
+                            
+
+
 ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.Task', (event) ->
         $(this).addClass 'ActiveCard'
-        $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "
-        $(this).draggable(
-                appendto: "BoardColumn"
-                cursor: "pointer"
-              )
+        $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "                
     $('#MainColumn').on 'mouseleave', '.Task', (event) ->
         $(this).removeClass 'ActiveCard'
-        $(this).draggable "disable"
+        #$(this).draggable "disable"
         $('.EditPen').remove()
         
-
-
+        
 PanelTitleClick = () ->
     $('#MainColumn').on 'click', 'div.panel-heading',() ->
           PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called and keeps reloading the form. This code stops it.
