@@ -14,7 +14,9 @@ namespace ASPNET5_Scrum_Tool.Models
         private int m_ID;
         private List<TaskModel> m_TasksList;   
 
+        [Key]
         public int ColumnID { get { return m_ID; } set { m_ID = value; } }
+
         public string ColumnName { get { return m_name;} set { m_name = value; } }
         public List<TaskModel> TasksList { get {return m_TasksList;} set { m_TasksList = value; } }
 

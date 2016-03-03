@@ -14,7 +14,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
     public class BoardController : Controller
     {
         //Logger<BoardController> logger;
-        private BoardModel m_Board;
+        public BoardModel m_Board;
 
         public BoardController()
         {

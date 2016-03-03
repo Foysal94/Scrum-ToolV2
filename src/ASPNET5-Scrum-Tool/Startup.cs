@@ -1,5 +1,3 @@
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +7,9 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using ASPNET5_Scrum_Tool.Models;
+using Microsoft.Data.Entity;
 
 namespace ASPNET5_Scrum_Tool
 {
@@ -30,6 +31,14 @@ namespace ASPNET5_Scrum_Tool
         {
             // Add framework services.
             services.AddMvc();
+            //var connection = @"Server=(localdb)\mssqllocaldb;Database=ScrumToolDB;Trusted_Connection=True;";
+
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<BoardDBContext>(options =>
+                {
+                    options.UseSqlServer(Configuration["Data:ConnectionString"]);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +57,6 @@ namespace ASPNET5_Scrum_Tool
                 app.UseExceptionHandler("/Home/Error");
             }
             */
-            
              
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
