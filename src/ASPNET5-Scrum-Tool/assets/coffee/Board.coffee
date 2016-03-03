@@ -10,42 +10,48 @@ TaskForm = "
              <input type='submit' value='Continue' class='TaskFormSubmit'>
            "
 
+TaskDragOptions = {
+                    appendto: "BoardColumn"
+                    cursor: "pointer"
+                    delay: 300
+                    snap: "BoardColumn"                                                                                                        
+                    revert:true
+                  }     
 
-$('.BoardColumn').droppable
-                accept: (element) ->
-                          if element.hasClass('Task')
-                             true;
-                drop: (event, ui) ->
-                        column = $(this)
-                        selectedTask = $(ui.draggable)
-                        newColumnID = $(column).attr 'id'
-                        taskContent = $(selectedTask).text()
-                        taskID = $(selectedTask).attr 'id'
-                        currentColumnID = $(selectedTask).parent().parent().attr 'id'
-                        $.ajax 
-                            url: '/Board/MovedTask'
-                            type: 'POST'
-                            data: {ParentColumnID: currentColumnID, TaskID : taskID, TaskContent: taskContent, NewColumnID: newColumnID }
-                            success: (data) ->
-                                  $(selectedTask).remove()
-                                  $(column).find('.AddTask').before data
-                            error : (error) ->
-                                 alert "no good "+JSON.stringify(error);
+BoardDropOptions = {
+                    accept: (element) ->
+                              if element.hasClass('Task')
+                                 columnID = $(this).attr 'id'
+                                 cardParentColumnID = $(element).parent().parent().attr 'id'
+                                 return false if columnID == cardParentColumnID
+                                 return true
+                              return false
+                    drop: (event, ui) ->
+                            column = $(this)
+                            selectedTask = $(ui.draggable)
+                            newColumnID = $(column).attr 'id'
+                            taskContent = $(selectedTask).text()
+                            taskID = $(selectedTask).attr 'id'
+                            currentColumnID = $(selectedTask).parent().parent().attr 'id'
+                            $.ajax 
+                                url: '/Board/MovedTask'
+                                type: 'POST'
+                                data: {ParentColumnID: currentColumnID, TaskID : taskID, TaskContent: taskContent, NewColumnID: newColumnID }
+                                success: (data) ->
+                                      $(selectedTask).remove()
+                                      $(column).find('.AddTask').before data
+                                error : (error) ->
+                                     alert "no good "+JSON.stringify(error);
                         
+                     }
                         
-                        
-$('.Task').draggable
-            appendto: "BoardColumn"
-            cursor: "pointer"
-            delay: 300
-            snap: "BoardColumn"                                                                                                        
-                            
-
+$('.Task').draggable TaskDragOptions      
+$('.BoardColumn').droppable BoardDropOptions
 
 ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.Task', (event) ->
         $(this).addClass 'ActiveCard'
-        $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "                
+        #$(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "                
     $('#MainColumn').on 'mouseleave', '.Task', (event) ->
         $(this).removeClass 'ActiveCard'
         #$(this).draggable "disable"
@@ -96,15 +102,15 @@ SubmitColumnForm = () ->
 AddColumn = () ->
     $('#AddColumnButton').on 'click', (event) ->
         event.preventDefault()
-        newColumnDataID = $('#MainColumn').children().last().prev().attr('id')
+        ColumnDataID = $('#MainColumn').children().last().prev().attr('id')
         newColumnName = 'Something' 
         $.ajax
             url:'/Board/AddColumn',
             type: 'POST',
-            data: {ColumnName: newColumnName, ColumnID: newColumnDataID },
+            data: {ColumnName: newColumnName, ColumnID: ColumnDataID },
             success: (data) ->
-                #alert "Hit the success part"
-                $('#AddColumnButton').before data
+                $('#AddColumnButton').before () ->
+                    $(data).droppable BoardDropOptions
             error: () ->
                 alert "Hit the error part"
                 
@@ -140,8 +146,9 @@ SubmitTaskForm = () ->
             type: 'POST'
             data: {ParentColumnID: selectedColumnID, TaskID : taskID, TaskContent: taskContent }
             success: (data) ->
-                $('.TaskContent').replaceWith data
-                $('.TaskFormSubmit').replaceWith '<a class="AddTask"> Add a task.... </a>'
+                $('.TaskContent').replaceWith () ->
+                    $(data).draggable TaskDragOptions
+                $('.TaskFormSubmit').remove()
             error : (error) ->
                  alert "no good "+JSON.stringify(error);
     
