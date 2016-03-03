@@ -16,12 +16,10 @@ $task-font-color: #000000;
 
    .panel-heading {
        cursor:pointer;
+       background-color: $logo-color;
+       text-align: center;
    }
     
-  .panel-heading {
-         background-color: $logo-color;
-         text-align: center;
-    }
     
   .panel-body {
       background-color: $panel-body-color;

@@ -63,8 +63,11 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddNewTask(TaskModel model)
         {
-            TaskModel tempTask = new TaskModel(model.ParentColumnID,model.TaskID + 1 , model.TaskContent); // Adding one for a new task
-            
+            TaskModel tempTask = new TaskModel(model.ParentColumnID,model.TaskID, model.TaskContent); // Adding one for a new task
+            if (tempTask.TaskID != 0)
+            {
+                tempTask.TaskID++;
+            }
             m_Board.ColumnList[model.ParentColumnID ].TasksList.Add(tempTask); // -1 or else it will be out of range. List starts from 0 but website columns start from 1
             return ViewComponent("Task", tempTask);
         }
@@ -76,7 +79,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             // Remove the task from its old column
             int oldColumnID = model.ParentColumnID;
             int newColumnID = int.Parse(NewColumnID);
-            m_Board.ColumnList[oldColumnID ].TasksList.RemoveAt(model.TaskID);
+            //Board.ColumnList[oldColumnID ].TasksList.RemoveAt(model.TaskID);
 
             // Update task parent column
             TaskModel tempTask = model;
