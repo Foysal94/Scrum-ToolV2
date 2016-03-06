@@ -20,7 +20,7 @@ namespace ASPNET5_Scrum_Tool.Models
         public int ID { get { return m_ID; } set { m_ID = value; } }
         public string Name { get { return m_name;} set { m_name = value; } }
         public List<TaskModel> TasksList { get {return m_TasksList;} set { m_TasksList = value; } }
-        public int ParentBoardID { get { return m_ParentBoardID; } set { m_ParentBoardID = value; } }
+        public int BoardID { get { return m_ParentBoardID; } set { m_ParentBoardID = value; } }
 
 
 

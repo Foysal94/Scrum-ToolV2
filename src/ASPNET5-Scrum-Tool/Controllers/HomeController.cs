@@ -19,7 +19,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public IActionResult SumbitBoardForm(BoardModel model)
         {
             
-            return RedirectToAction("Show", "Board", new { p_BoardName = model.BoardName} );
+            return RedirectToAction("Show", "Board", new { p_BoardName = model.Name} );
         }
 
         public IActionResult Error()

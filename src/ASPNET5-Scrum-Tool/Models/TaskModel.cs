@@ -13,7 +13,7 @@ namespace ASPNET5_Scrum_Tool.Models
         private string m_TaskContent;
         private int m_ID;
 
-        public int ParentColumnID { get {return m_ParentColumnID;} set { m_ParentColumnID = value; } }
+        public int ColumnID { get {return m_ParentColumnID;} set { m_ParentColumnID = value; } }
         public DateTime DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
 
