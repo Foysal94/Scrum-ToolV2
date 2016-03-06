@@ -31,13 +31,13 @@ namespace ASPNET5_Scrum_Tool
         {
             // Add framework services.
             services.AddMvc();
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=ScrumToolDB;Trusted_Connection=True;";
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=ScrumToolDB;Trusted_Connection=True;MultipleActiveResultSets=false";
 
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<BoardDBContext>(options =>
                 {
-                    options.UseSqlServer(Configuration["Data:ConnectionString"]);
+                    options.UseSqlServer(connection);
                 });
         }
 
