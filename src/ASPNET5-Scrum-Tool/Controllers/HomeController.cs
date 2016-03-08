@@ -36,7 +36,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
                 if (boardModel.Name == model.Name)
                 {
                     found = true;
-                    break;
+                    return RedirectToAction("Load", "Board", new { p_BoardName = model.Name });
                 }
             }
 

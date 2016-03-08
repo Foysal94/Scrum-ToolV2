@@ -19,10 +19,11 @@ namespace ASPNET5_Scrum_Tool.Models
 
         [Key]
         public int ID { get { return m_ID; } set { m_ID = value; } }
-
-        public string Name { get { return m_name;} set { m_name = value; } }
-        public List<Tasks> TasksList { get {return m_TasksList;} set { m_TasksList = value; } }
         public int BoardID { get { return m_BoardID; } set { m_BoardID = value; } }
+        public string Name { get { return m_name;} set { m_name = value; } }
+
+        public List<Tasks> TasksList { get {return m_TasksList;} set { m_TasksList = value; } }
+  
         public Boards ParentBoard { get {return m_board;} set { m_board = value; } }
 
 

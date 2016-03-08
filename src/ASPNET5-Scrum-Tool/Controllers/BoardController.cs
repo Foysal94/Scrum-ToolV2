@@ -15,10 +15,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
     {
         //Logger<BoardController> logger;
         public Boards m_Board;
-
-        public BoardController()
+        private ScrumToolDB m_context;
+        public BoardController(ScrumToolDB p_context)
         {
-
+            m_context = p_context;
         }
         
         [Route("[Action]/{p_BoardName}")]
