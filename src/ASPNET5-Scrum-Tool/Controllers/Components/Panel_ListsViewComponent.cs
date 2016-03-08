@@ -8,7 +8,7 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
     {
         private int m_ColumnID = 0;
 
-        public IViewComponentResult Invoke(ColumnModel model)
+        public IViewComponentResult Invoke(Columns model)
         {
             m_ColumnID++;
             

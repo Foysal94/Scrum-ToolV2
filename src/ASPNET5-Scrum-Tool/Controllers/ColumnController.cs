@@ -11,15 +11,23 @@ namespace ASPNET5_Scrum_Tool.Controllers
 {
     [Route("[Controller]")]
     public class ColumnController : Controller
-    {   
+    {
+        private ScrumToolDB m_context;
+
+        public ColumnController(ScrumToolDB p_context)
+        {
+            m_context = p_context;
+        }
+
         /*
         [Route("[Action]")]
         [HttpPost]
-        public JsonResult ChangeColumnName(ColumnModel model)
+        public JsonResult ChangeColumnName(ColumnModel model, string p_BoardName)
         {
             //ColumnModel column = JsonConvert.DeserializeObject<ColumnModel>(newColumnData);
+           // m_context.Boards.find
             // Update column name in the board model, the board model stores a list of columns
-            ColumnList[model.ColumnID].ColumnName = model.ColumnName;
+            m_context.BoardsColumnList[model.ID].ColumnName = model.Name;
 
             // var json = JsonConvert.SerializeObject( m_Board.ColumnList[model.ColumnNumber]);
 

@@ -35,7 +35,7 @@ namespace ASPNET5_Scrum_Tool
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<BoardDBContext>(options =>
+                .AddDbContext<ScrumToolDB>(options =>
                 {
                     options.UseSqlServer(connection);
                 });

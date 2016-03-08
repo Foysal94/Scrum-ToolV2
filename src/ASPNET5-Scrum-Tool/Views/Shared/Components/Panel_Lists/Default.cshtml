@@ -1,16 +1,16 @@
-﻿@model ColumnModel
+﻿@model Columns
 
 @{ int columnNumber = (int)ViewData["ColumnID"];}
 
-<div class="panel panel-default BoardColumn" id="@Model.ColumnID">
+<div class="panel panel-default BoardColumn" id="@Model.ID">
     <div class="panel-heading">
-        <h3 class="panel-title">@Model.ColumnName</h3>
+        <h3 class="panel-title">@Model.Name</h3>
     </div>
 
      <div class="panel-body">
-        @foreach (var Task in Model.TasksList)
+        @foreach (var t in Model.TasksList)
         {
-            @Component.Invoke("Task", Task)
+            @Component.Invoke("Task", t)
         }
         <a class="AddTask"> Add a task.... </a>
 

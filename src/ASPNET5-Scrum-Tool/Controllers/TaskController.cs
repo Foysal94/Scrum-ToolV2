@@ -15,5 +15,39 @@ namespace ASPNET5_Scrum_Tool.Controllers
         {
             return View();
         }
+
+        /*
+           [Route("[Action]")]
+        [HttpPost]
+        public ViewComponentResult AddNewTask(TaskModel model)
+        {
+            TaskModel tempTask = new TaskModel(model.ColumnID,model.ID, model.TaskContent); // Adding one for a new task
+            if (tempTask.ID != 0)
+            {
+                tempTask.ID++;
+            }
+            m_Board.ColumnList[model.ColumnID ].TasksList.Add(tempTask); // -1 or else it will be out of range. List starts from 0 but website columns start from 1
+            return ViewComponent("Task", tempTask);
+        }
+
+        [Route("[Action]")]
+        [HttpPost]
+        public ViewComponentResult MovedTask(TaskModel model, string NewColumnID)
+        {
+            // Remove the task from its old column
+            int oldColumnID = model.ColumnID;
+            int newColumnID = int.Parse(NewColumnID);
+            //Board.ColumnList[oldColumnID ].TasksList.RemoveAt(model.TaskID);
+
+            // Update task parent column
+            TaskModel tempTask = model;
+            tempTask.ColumnID = newColumnID;
+            m_Board.ColumnList[newColumnID ].TasksList.Add(tempTask);
+
+            return ViewComponent("Task", tempTask);
+
+
+        }
+        */
     }
 }

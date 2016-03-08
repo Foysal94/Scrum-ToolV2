@@ -1,6 +1,5 @@
 
-@model BoardModel
-
+@model Boards
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -14,22 +13,6 @@
     <script src='~/js/Home.js'> </script>
 }
 
-
-<!--
-<div id='InitalButton'>
-    <br>
-    <p id='rollOverText'>Come roll over me...
-    <br>
-    <sup id='rollArrow'>&darr;</sup></p>
-
-    <div id="button" align="center">
-    <button id='curved-green-button' data-action='submit'>
-        push the button
-    </button>
-    </div>
-</div>
--->
-
 <div id='titleScreen'>
     <h1> ScrumTool </h1>
     <br>
@@ -38,11 +21,9 @@
         <label> What is your board name? </label>
         <br>
         <br>
-        <input asp-for="BoardName" id='boardName'> 
+        <input asp-for="Name" id='boardName'> 
         <br>
-        <br>
-
-        
+        <br>   
        <input type="submit" value="Continue" class="boardFormSubmit arrow">
         
     </form>
