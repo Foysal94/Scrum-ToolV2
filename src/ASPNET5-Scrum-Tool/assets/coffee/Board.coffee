@@ -1,5 +1,5 @@
 BoardName = $('.BoardNameHeading').text()
-
+m_BoardID = $('.BoardNameHeading').attr 'id'
 ColumnNameForm = "
                      <input class='PreviousColumnName' type='hidden'  style='display: none;' />
                      <input name='ColumnName' class='NewColumnName'>
@@ -28,14 +28,13 @@ BoardDropOptions = {
                     drop: (event, ui) ->
                             column = $(this)
                             selectedTask = $(ui.draggable)
-                            newColumnID = $(column).attr 'id'
-                            taskContent = $(selectedTask).text()
+                            newColumnName = $(column).find('.panel-title').text()
                             taskID = $(selectedTask).attr 'id'
                             currentColumnID = $(selectedTask).parent().parent().attr 'id'
                             $.ajax 
-                                url: '/Board/MovedTask'
+                                url: '/Task/MovedTask'
                                 type: 'POST'
-                                data: {ParentColumnID: currentColumnID, TaskID : taskID, TaskContent: taskContent, NewColumnID: newColumnID }
+                                data: {p_ColumnName: newColumnName,  p_TaskID: taskID }
                                 success: (data) ->
                                       $(selectedTask).remove()
                                       $(column).find('.AddTask').before () ->
@@ -83,37 +82,38 @@ SubmitColumnForm = () ->
     $('#MainColumn').on 'click', 'input.ColumnTitleSubmit', (event) ->
         event.preventDefault();
 
-        columnName = $('.NewColumnName').val().trim()
-        columnID = $(this).parent().parent().attr 'id'
-        
+        newColumnName = $('.NewColumnName').val().trim()
+        oldColumnName =  $('.PreviousColumnName').val()
         $.ajax
-            url: '/Board/ChangeColumnName',
+            url: '/Column/ChangeColumnName',
             type: 'POST',
-            data: {Name: columnName, ID: columnID, p_BoardName: BoardName },
+            data: {p_OldColumnName : oldColumnName, p_NewColumnName : newColumnName,  p_BoardID: m_BoardID },
             dataType: 'json',
             success: (data) ->              
-                     #alert 'data is' + data
+                     alert 'data is' + data
                      panelHeading = $('.panel-heading').find('.NewColumnName').parent()
-                     $(panelHeading).html("<h3 class='panel-title'> <h3>").text(columnName)
+                     $(panelHeading).html("<h3 class='panel-title'> <h3>").text(newColumnName)
                      
              error : (error) ->
-                 alert "no good "+JSON.stringify(error);
+                 alert "SubmitColumnForm Method, error"
+                 alert JSON.stringify(error);
        
 
 AddColumn = () ->
     $('#AddColumnButton').on 'click', (event) ->
         event.preventDefault()
-        ColumnDataID = $('#MainColumn').children().last().prev().attr('id')
+        newColumnDataID = $('#MainColumn').children().last().prev().attr('id')
         newColumnName = 'Something' 
         $.ajax
-            url:'/Board/AddColumn',
+            url:'/Column/AddColumn',
             type: 'POST',
-            data: {ColumnName: newColumnName, ColumnID: ColumnDataID },
+            data: {Name: newColumnName, ID: newColumnDataID, BoardID: m_BoardID },
             success: (data) ->
                 $('#AddColumnButton').before () ->
                     $(data).droppable BoardDropOptions
             error: () ->
-                alert "Hit the error part"
+                 alert "AddColumn Method, error"
+                 alert JSON.stringify(error);
                 
 AddTaskForm = () ->
     $('#MainColumn').on 'click', '.AddTask', (event) ->
@@ -137,15 +137,15 @@ AddTaskForm = () ->
 SubmitTaskForm = () ->
      $('#MainColumn').on 'click', '.TaskFormSubmit', (event) ->
           event.preventDefault()
-          selectedColumnID = $('.TaskContent').parent().parent().attr('id')
+          selectedColumnName = $('.TaskContent').parent().parent().find('.panel-title').text();
           taskContent = $('.TaskContent').val().trim()
           taskID = $('.TaskContent').prev().attr('id')
           taskID = 0 if taskID == null or taskID == undefined
           
           $.ajax
-            url: '/Board/AddNewTask'
+            url: '/Task/AddNewTask'
             type: 'POST'
-            data: {ParentColumnID: selectedColumnID, TaskID : taskID, TaskContent: taskContent }
+            data: {ID : taskID, BoardID: m_BoardID, ColumnName: selectedColumnName, TaskContent: taskContent}
             success: (data) ->
                 $('.TaskContent').replaceWith () ->
                     $(data).draggable TaskDragOptions
