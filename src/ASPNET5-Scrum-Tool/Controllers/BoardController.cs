@@ -30,17 +30,19 @@ namespace ASPNET5_Scrum_Tool.Controllers
         }
 
         [Route("[Action]/{p_BoardName}")]
-        public IActionResult Load(string p_BoardName, Boards p_model)
+        public IActionResult Load(string p_BoardName)
         {
-            return View("Show", p_model);
+            Boards board = (Boards)TempData["board"];
+            return View("Show", board);
         }
 
         [Route("[Action]/{p_BoardName}")]
-        public IActionResult Create( string p_BoardName, Boards p_model)
+        public IActionResult Create( string p_BoardName)
         {
-            m_context.Boards.Add(p_model);
+            Boards board = (Boards)TempData["board"];
+            m_context.Boards.Add(board);
             m_context.SaveChanges();
-            return View("Show", p_model);
+            return View("Show", board);
         }
         
     }

@@ -35,14 +35,16 @@ namespace ASPNET5_Scrum_Tool.Controllers
             {
                 if (boardModel.Name == model.Name)
                 {
+                    TempData["board"] = boardModel;
                     found = true;
-                    return RedirectToAction("Load", "Board", new { p_BoardName = model.Name, p_model = model });
+                    return RedirectToAction("Load", "Board", new { p_BoardName = model.Name});
                 }
             }
-
-            return RedirectToAction("Create", "Board", new { p_BoardName = model.Name, p_model = model} );
+            model.ID = boards.Count + 1;
+            TempData["board"] = model;
+            return RedirectToAction("Create", "Board", new { p_BoardName = model.Name} );
         }
-
+        
 
     }
 }

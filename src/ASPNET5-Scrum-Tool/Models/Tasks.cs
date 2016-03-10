@@ -21,7 +21,7 @@ namespace ASPNET5_Scrum_Tool.Models
         public int BoardID { get { return m_BoardID; } set { m_BoardID = value; } }
 
         public string ColumnName { get {return m_ColumnName; } set { m_ColumnName = value; } }
-        public DateTime DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
+        //public DateTime? DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
 
         public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }

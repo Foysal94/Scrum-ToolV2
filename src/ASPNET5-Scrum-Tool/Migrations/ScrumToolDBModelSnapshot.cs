@@ -21,8 +21,6 @@ namespace ASPNET5ScrumTool.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreationDate");
-
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
@@ -51,8 +49,6 @@ namespace ASPNET5ScrumTool.Migrations
                     b.Property<int>("BoardID");
 
                     b.Property<string>("ColumnName");
-
-                    b.Property<DateTime>("DueDate");
 
                     b.Property<string>("TaskContent");
 
