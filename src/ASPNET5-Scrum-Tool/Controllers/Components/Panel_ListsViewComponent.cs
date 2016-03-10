@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using ASPNET5_Scrum_Tool.Models;
 
@@ -6,13 +7,26 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 {
     public class Panel_ListsViewComponent : ViewComponent
     {
-        private int m_ColumnID = 0;
+        private ScrumToolDB m_context;
+
+        public Panel_ListsViewComponent(ScrumToolDB p_context)
+        {
+            m_context = p_context;
+        }
 
         public IViewComponentResult Invoke(Columns model)
         {
-            m_ColumnID++;
+            var TaskList = m_context.Tasks.ToList();
+
+            foreach (Tasks t in TaskList)
+            {
+                if (t.ColumnName == model.Name && t.BoardID == model.BoardID)
+                {
+                    model.TasksList.Add(t);
+                    t.ParentColumn = model;
+                }
+            }
             
-            ViewData["ColumnID"] = m_ColumnID;
             return View(model);
             
         }

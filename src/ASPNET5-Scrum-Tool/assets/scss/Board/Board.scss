@@ -25,11 +25,11 @@
 }
 
 #AddColumnButton {
-    font-size: 50px;
+    font-size: 20px;
     cursor:pointer;
     color: $logo-color;
     display:inline-block;
-    margin-top:10%;
+    margin-top:2%;
     &:hover, &:visited{
         text-decoration:none;
         color: $logo-color;

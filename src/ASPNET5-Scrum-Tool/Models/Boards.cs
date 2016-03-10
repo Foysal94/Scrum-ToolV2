@@ -24,5 +24,20 @@ namespace ASPNET5_Scrum_Tool.Models
 
         public List<Columns> ColumnList { get { return m_ColumnList; } set { m_ColumnList = value; } }
 
+        public Boards(string p_Name )
+        {
+            m_BoardName = p_Name;
+            m_ColumnList = new List<Columns>();
+        }
+
+        public Boards(string p_Name, int p_ID)
+        {
+            m_BoardName = p_Name;
+            m_ID = p_ID;
+            m_ColumnList = new List<Columns>();
+        }
+
+        public Boards() { }
+
     }
 }

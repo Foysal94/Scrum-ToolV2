@@ -18,6 +18,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         private ScrumToolDB m_context;
         public BoardController(ScrumToolDB p_context)
         {
+            m_Board = null;
             m_context = p_context;
         }
         
@@ -29,20 +30,45 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return View(m_Board);
         }
 
-        [Route("[Action]/{p_BoardName}")]
-        public IActionResult Load(string p_BoardName)
+        [Route("[Action]/{p_BoardID}")]
+        public IActionResult Load(int p_BoardID)
         {
-            Boards board = (Boards)TempData["board"];
-            return View("Show", board);
+            var boardList = m_context.Boards.ToList();
+
+            foreach (Boards b in boardList)
+            {
+                if (b.ID == p_BoardID)
+                {
+                    m_Board = b;
+                    m_Board.ColumnList  = new List<Columns>();
+                    break;
+                }
+            }
+
+
+            var columnList = m_context.Columns.ToList();
+            foreach (Columns c in columnList)
+            {
+                if (c.BoardID == m_Board.ID)
+                {
+                    m_Board.ColumnList.Add(c);
+                    c.ParentBoard = m_Board;
+                }
+            }
+            
+            return View("Show", m_Board);
         }
 
-        [Route("[Action]/{p_BoardName}")]
-        public IActionResult Create( string p_BoardName)
+        [Route("[Action]")]
+        public IActionResult Create()
         {
-            Boards board = (Boards)TempData["board"];
-            m_context.Boards.Add(board);
+            string boardName = (string) TempData["BoardName"];
+            //int boardID = (int) TempData["BoardID"];
+            m_Board = new Boards(boardName);
+            
+            m_context.Boards.Add(m_Board);
             m_context.SaveChanges();
-            return View("Show", board);
+            return View("Show", m_Board);
         }
         
     }
