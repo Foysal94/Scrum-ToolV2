@@ -22,7 +22,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_context = p_context;
         }
 
-        
         [Route("[Action]")]
         [HttpPost]
         public void ChangeColumnName(string p_OldColumnName, string p_NewColumnName, int p_BoardID)
@@ -55,7 +54,22 @@ namespace ASPNET5_Scrum_Tool.Controllers
             tempColumn.TasksList = new List<Tasks>();
             return ViewComponent("Panel_Lists", tempColumn);
         }
-        
 
+        [Route("[Action]")]
+        [HttpPost]
+        public void Delete(int p_ColumnID)
+        {
+            var columnList = m_context.Columns.ToList();
+
+            foreach (Columns c in columnList)
+            {
+                if (c.ID == p_ColumnID)
+                {
+                    m_context.Columns.Remove(c);
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
     }
 }

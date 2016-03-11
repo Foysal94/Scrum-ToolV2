@@ -66,13 +66,19 @@ namespace ASPNET5_Scrum_Tool.Controllers
             }
             
             return View("Show", m_Board);
+            
         }
 
-        [Route("[Action]")]
-        public IActionResult Create()
+        [Route("[Action]/{p_BoardID}")]
+        public IActionResult Create(int p_BoardID)
         {
             string boardName = (string) TempData["BoardName"];
             //int boardID = (int) TempData["BoardID"];
+            var boards = m_context.Boards.ToList();
+            if (boards.Count == p_BoardID)
+            {
+                return RedirectToAction("Load", "Board", new { p_BoardID = boards.Count });
+            }
             m_Board = new Boards(boardName);
             
             m_context.Boards.Add(m_Board);

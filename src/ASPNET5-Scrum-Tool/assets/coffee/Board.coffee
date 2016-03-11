@@ -1,5 +1,7 @@
 BoardName = $('.BoardNameHeading').text()
 m_BoardID = $('.BoardNameHeading').attr 'id'
+
+
 ColumnNameForm = "<div class='ColumnNameForm'>
                      <input class='PreviousColumnName' type='hidden'  style='display: none;' />
                      <input name='ColumnName' class='NewColumnName'>
@@ -17,9 +19,7 @@ TaskForm = "
            "
 
 TaskDragOptions = {
-                    appendto: "BoardColumn"
-                    delay: 300
-                    snap: "BoardColumn"                                                                                                        
+                    delay: 300                                                                                                      
                     revert:true
                   }     
 
@@ -57,21 +57,27 @@ $('.BoardColumn').droppable BoardDropOptions
 ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.Task', (event) ->
         $(this).addClass 'ActiveCard'
-        #$(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "                
+        $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "                
     $('#MainColumn').on 'mouseleave', '.Task', (event) ->
         $(this).removeClass 'ActiveCard'
         #$(this).draggable "disable"
         $('.EditPen').remove()
         
+ActiveColumn = () ->
+       $('#MainColumn').on 'mouseenter', '.panel-title', (event) ->
+        $(this).addClass 'ActivePanel'           
+    $('#MainColumn').on 'mouseleave', '.panel-title', (event) ->
+        $(this).removeClass 'ActivePanel'
+        #$(this).draggable "disable"
         
 PanelTitleClick = () ->
-    $('#MainColumn').on 'click', 'div.panel-heading',() ->
+    $('#MainColumn').on 'click', '.panel-title',() ->
           PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called and keeps reloading the form. This code stops it.
           if  PreventFormReload.length != 0
             return 
 
           selectedColumn = $(this).parent()    
-          initalColumnName =  $(this).find('.panel-title').text()
+          initalColumnName =  $(this).text()
           
           DoesFormExist = $('#MainColumn').find '.AddColumnForm'
           $('.AddColumnForm').replaceWith '<a id="AddColumnButton">Add a List</a>'
@@ -93,9 +99,15 @@ SubmitColumNameChange = () ->
 
         newColumnName = $('.NewColumnName').val().trim()
         oldColumnName =  $('.PreviousColumnName').val().trim()
-        found = false;
-        
+       
+        found = false
+        $('.panel-title').each (index,element) ->
+             columnName = $(element).text()
+             if columnName == newColumnName
+                found = true
+                return false
 
+        return alert 'That ColumnName is already in use' if found == true;
         $.ajax
             url: '/Column/ChangeColumnName',
             type: 'POST',
@@ -109,7 +121,22 @@ SubmitColumNameChange = () ->
             error : (error) ->
                  alert "SubmitColumnForm Method, error"
                  alert JSON.stringify(error);
-       
+                 
+DeleteColumnLinkClick = () ->
+    $('#MainColumn').on 'click', '.DeleteColumnLink', (event) ->
+        event.preventDefault()
+        column = $(this).parent().parent().parent().parent().parent()
+        columnID = $(column).attr 'id'
+        $.ajax
+            url: '/Column/Delete',
+            type: 'POST',
+            data: {p_ColumnID: columnID},
+            success: (data) ->              
+                     $(column).remove()
+                     
+            error : (error) ->
+                 alert "DeleteColumn method, error"
+                 alert JSON.stringify(error);
 
 AddColumnButtonClick = () ->
     $('#MainColumn').on 'click', '#AddColumnButton', (event) ->
@@ -125,9 +152,14 @@ SubmitAddColumn = () ->
     $('#MainColumn').on 'click', '.AddColumnSubmit', (event) ->
          event.preventDefault()
          newColumnName = $('.NewColumnName').val().trim()
-         found = false;
-        
-        
+         found = false
+         $('.panel-title').each (index,element) ->
+             columnName = $(element).text()
+             if columnName == newColumnName
+                found = true
+                return false
+
+         return alert 'That ColumnName is already in use' if found == true;
          $.ajax
             url:'/Column/AddColumn',
             type: 'POST',
@@ -187,4 +219,6 @@ $(document).ready(
     AddColumnButtonClick()
     ActiveTask()
     SubmitAddColumn() 
+    ActiveColumn()
+    DeleteColumnLinkClick()
 )
