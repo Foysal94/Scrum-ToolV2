@@ -16,19 +16,7 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 
         public IViewComponentResult Invoke(Columns model)
         {
-            var TaskList = m_context.Tasks.ToList();
-
-            foreach (Tasks t in TaskList)
-            {
-                if (t.ColumnName == model.Name && t.BoardID == model.BoardID)
-                {
-                    model.TasksList.Add(t);
-                    t.ParentColumn = model;
-                }
-            }
-            
             return View(model);
-            
         }
 
         /*

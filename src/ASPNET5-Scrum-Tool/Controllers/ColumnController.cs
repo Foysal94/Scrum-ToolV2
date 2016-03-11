@@ -15,6 +15,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
     public class ColumnController : Controller
     {
         private ScrumToolDB m_context;
+        private int m_ColumnNameIncrement;
 
         public ColumnController(ScrumToolDB p_context)
         {
@@ -36,6 +37,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     //m_context.Columns.Update(c)
                     c.Name = p_NewColumnName;
                     m_context.SaveChanges();
+                    break;
                 }
             }
 
@@ -47,8 +49,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public ViewComponentResult AddColumn(Columns model)
         {
             Columns tempColumn = new Columns(model.Name, model.BoardID); // The model got passed the last column ID
+            
             m_context.Columns.Add(tempColumn);
             m_context.SaveChanges();
+            tempColumn.TasksList = new List<Tasks>();
             return ViewComponent("Panel_Lists", tempColumn);
         }
         

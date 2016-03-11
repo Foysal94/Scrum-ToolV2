@@ -11,16 +11,19 @@
 <div class="row">
 
     <div class="col-md-11" id="MainColumn">
-        @foreach (var column in Model.ColumnList)
+        @if (@Model.ColumnList.Count != 0)
         {
-            @Component.Invoke("Panel_Lists",column )
+            foreach (var column in Model.ColumnList)
+             {
+                 @Component.Invoke("Panel_Lists", column)
+             }
         }
-        <a id="AddColumnButton">Add a List</a>
-    </div> <!-- Main Column End Div -->
+            <a id="AddColumnButton">Add a List</a>
+        </div> <!-- Main Column End Div -->
 
-    <div class="col-md-1" id="MenuColumn">
-        <h1> Hello World </h1>
+        <div class="col-md-1" id="MenuColumn">
+            <h1> Hello World </h1>
 
-    </div> <!-- MenuColumn End -->
+        </div> <!-- MenuColumn End -->
 
-</div>
+    </div>

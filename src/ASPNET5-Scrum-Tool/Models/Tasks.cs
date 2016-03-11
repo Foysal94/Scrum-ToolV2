@@ -24,12 +24,12 @@ namespace ASPNET5_Scrum_Tool.Models
         //public DateTime? DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
 
-        public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
+        //public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
 
-        public Tasks(int p_ID, int p_BoardID, string p_ColumnName, string p_TaskContent)
+        public Tasks( int p_BoardID, string p_ColumnName, string p_TaskContent)
         {
             m_BoardID = p_BoardID;
-            m_ID = p_ID;
+            m_ColumnName = p_ColumnName;
             m_TaskContent = p_TaskContent;
         }
 

@@ -47,12 +47,21 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
 
             var columnList = m_context.Columns.ToList();
+            var taskList = m_context.Tasks.ToList();
             foreach (Columns c in columnList)
             {
                 if (c.BoardID == m_Board.ID)
                 {
+                    c.TasksList = new List<Tasks>();
+                    foreach (Tasks t in taskList)
+                    {
+                        if (t.ColumnName == c.Name)
+                        {
+                            c.TasksList.Add(t);
+                        }
+                    }
                     m_Board.ColumnList.Add(c);
-                    c.ParentBoard = m_Board;
+                    //c.ParentBoard = m_Board;
                 }
             }
             

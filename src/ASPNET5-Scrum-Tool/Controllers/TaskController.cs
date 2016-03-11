@@ -8,6 +8,7 @@ using ASPNET5_Scrum_Tool.Models;
 
 namespace ASPNET5_Scrum_Tool.Controllers
 {
+    [Route("[controller]")]
     public class TaskController : Controller
     {
         private ScrumToolDB m_context;
@@ -21,8 +22,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddNewTask(Tasks model)
         {
-            Tasks tempTask = new Tasks(model.ID + 1,model.BoardID, model.ColumnName, model.TaskContent); // Adding one to the ID because the model has the last task ID.
+            Tasks tempTask = new Tasks(model.BoardID, model.ColumnName, model.TaskContent); // Adding one to the ID because the model has the last task ID.
             m_context.Tasks.Add(tempTask);
+            m_context.SaveChanges();
 
             return ViewComponent("Task", tempTask);
         }

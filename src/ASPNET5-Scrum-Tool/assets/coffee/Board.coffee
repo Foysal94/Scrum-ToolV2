@@ -1,10 +1,16 @@
 BoardName = $('.BoardNameHeading').text()
 m_BoardID = $('.BoardNameHeading').attr 'id'
-ColumnNameForm = "
+ColumnNameForm = "<div class='ColumnNameForm'>
                      <input class='PreviousColumnName' type='hidden'  style='display: none;' />
                      <input name='ColumnName' class='NewColumnName'>
                      <input type='submit' value='Continue' class='ColumnTitleSubmit'>
-                "
+                 </div>"
+
+AddColumnForm = "<div class='AddColumnForm'>
+                     <input name='ColumnName' class='NewColumnName'>
+                     <input type='submit' value='Continue' class='AddColumnSubmit'>
+                 </div>"
+                                  
 TaskForm = "
              <input name='TaskContent' class='TaskContent'>
              <input type='submit' value='Continue' class='TaskFormSubmit'>
@@ -67,7 +73,10 @@ PanelTitleClick = () ->
           selectedColumn = $(this).parent()    
           initalColumnName =  $(this).find('.panel-title').text()
           
-          DoesFormExist = $('#MainColumn').find '.NewColumnName'
+          DoesFormExist = $('#MainColumn').find '.AddColumnForm'
+          $('.AddColumnForm').replaceWith '<a id="AddColumnButton">Add a List</a>'
+          
+          DoesFormExist = $('#MainColumn').find '.ColumnNameForm'
           if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                    panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
                    oldBoardName = $('.PreviousColumnName').val()
@@ -78,12 +87,15 @@ PanelTitleClick = () ->
           $('.NewColumnName').val(initalColumnName)
                    
 
-SubmitColumnForm = () ->
+SubmitColumNameChange = () ->
     $('#MainColumn').on 'click', 'input.ColumnTitleSubmit', (event) ->
         event.preventDefault();
 
         newColumnName = $('.NewColumnName').val().trim()
-        oldColumnName =  $('.PreviousColumnName').val()
+        oldColumnName =  $('.PreviousColumnName').val().trim()
+        found = false;
+        
+
         $.ajax
             url: '/Column/ChangeColumnName',
             type: 'POST',
@@ -94,27 +106,40 @@ SubmitColumnForm = () ->
                      panelHeading = $('.panel-heading').find('.NewColumnName').parent()
                      $(panelHeading).html("<h3 class='panel-title'> <h3>").text(newColumnName)
                      
-             error : (error) ->
+            error : (error) ->
                  alert "SubmitColumnForm Method, error"
                  alert JSON.stringify(error);
        
 
-AddColumn = () ->
-    $('#AddColumnButton').on 'click', (event) ->
+AddColumnButtonClick = () ->
+    $('#MainColumn').on 'click', '#AddColumnButton', (event) ->
         event.preventDefault()
+        $('#AddColumnButton').replaceWith AddColumnForm
+        DoesFormExist = $('#MainColumn').find '.ColumnNameForm'
+        if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
+               panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
+               oldBoardName = $('.PreviousColumnName').val()
+               panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
+
+SubmitAddColumn = () ->
+    $('#MainColumn').on 'click', '.AddColumnSubmit', (event) ->
+         event.preventDefault()
+         newColumnName = $('.NewColumnName').val().trim()
+         found = false;
         
-        newColumnName = 'Something' 
-        $.ajax
+        
+         $.ajax
             url:'/Column/AddColumn',
             type: 'POST',
             data: {Name: newColumnName, BoardID: m_BoardID },
-            dataType: 'json',
+            
             success: (data) ->
-                $('#AddColumnButton').before () ->
+                $('.AddColumnForm').after '<a id="AddColumnButton">Add a List</a>'
+                $('.AddColumnForm').replaceWith () ->
                     $(data).droppable BoardDropOptions
-            error: () ->
-                 alert "AddColumn Method, error"
-                 alert JSON.stringify(error);
+            error: (error) ->
+                 alert "SubmitAddColumn method error"
+                 alert  JSON.stringify(error);
                 
 AddTaskForm = () ->
     $('#MainColumn').on 'click', '.AddTask', (event) ->
@@ -140,17 +165,15 @@ SubmitTaskForm = () ->
           event.preventDefault()
           selectedColumnName = $('.TaskContent').parent().parent().find('.panel-title').text();
           taskContent = $('.TaskContent').val().trim()
-          taskID = $('.TaskContent').prev().attr('id')
-          taskID = 0 if taskID == null or taskID == undefined
           
           $.ajax
             url: '/Task/AddNewTask'
             type: 'POST'
-            data: {ID : taskID, BoardID: m_BoardID, ColumnName: selectedColumnName, TaskContent: taskContent}
+            data: { BoardID: m_BoardID, ColumnName: selectedColumnName, TaskContent: taskContent}
             success: (data) ->
                 $('.TaskContent').replaceWith () ->
                     $(data).draggable TaskDragOptions
-                $('.TaskFormSubmit').remove()
+                $('.TaskFormSubmit').replaceWith('<a class="AddTask"> Add a task.... </a>')
             error : (error) ->
                  alert "no good "+JSON.stringify(error);
     
@@ -158,10 +181,10 @@ SubmitTaskForm = () ->
 
 $(document).ready(
     PanelTitleClick()
-    SubmitColumnForm()
+    SubmitColumNameChange()
     AddTaskForm()
     SubmitTaskForm()
-    AddColumn()
+    AddColumnButtonClick()
     ActiveTask()
-
+    SubmitAddColumn() 
 )

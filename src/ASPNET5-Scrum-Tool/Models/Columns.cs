@@ -24,7 +24,7 @@ namespace ASPNET5_Scrum_Tool.Models
 
         public List<Tasks> TasksList { get {return m_TasksList;} set { m_TasksList = value; } }
   
-        public Boards ParentBoard { get {return m_board;} set { m_board = value; } }
+        //public Boards ParentBoard { get {return m_board;} set { m_board = value; } }
 
 
         public Columns(string p_Name, int p_BoardID)
