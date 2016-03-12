@@ -55,16 +55,16 @@ $('.Task').draggable TaskDragOptions
 $('.BoardColumn').droppable BoardDropOptions
 
 ActiveTask = () ->
-    $('#MainColumn').on 'mouseenter', '.Task', (event) ->
-        $(this).addClass 'ActiveCard'
-        $(this).append "<span class='EditPen' > <img src='~/images/EditTaskPen.png'></img> </span> "                
-    $('#MainColumn').on 'mouseleave', '.Task', (event) ->
-        $(this).removeClass 'ActiveCard'
-        #$(this).draggable "disable"
-        $('.EditPen').remove()
-        
+    $('#MainColumn').on 'mouseenter', '.TaskParentDiv', (event) ->
+        $(this).addClass 'ActiveTask'
+        $(this).find('.dropdown').removeClass 'Hidden'               
+    $('#MainColumn').on 'mouseleave', '.TaskParentDiv', (event) ->
+        $(this).removeClass 'ActiveTask'
+        $(this).find('.dropdown').addClass 'Hidden'
+   
+      
 ActiveColumn = () ->
-       $('#MainColumn').on 'mouseenter', '.panel-title', (event) ->
+    $('#MainColumn').on 'mouseenter', '.panel-title', (event) ->
         $(this).addClass 'ActivePanel'           
     $('#MainColumn').on 'mouseleave', '.panel-title', (event) ->
         $(this).removeClass 'ActivePanel'
@@ -137,6 +137,23 @@ DeleteColumnLinkClick = () ->
             error : (error) ->
                  alert "DeleteColumn method, error"
                  alert JSON.stringify(error);
+                 
+DeleteTaskLinkClick = () ->
+    $('#MainColumn').on 'click', '.DeleteTaskLink', (event) ->
+     event.preventDefault()
+     task = $('.ActiveTask').find '.Task'
+     taskID = $(task).attr 'id'
+     $.ajax
+         url: '/Task/Delete',
+         type: 'POST',
+         data: {p_TaskID: taskID},
+         success: (data) ->              
+                     $(task).parent().remove() #Get hold of parentDivTask and Remove that
+                     
+         error: (error) ->
+                   alert "DeleteTask method, error"
+                   alert JSON.stringify(error);
+            
 
 AddColumnButtonClick = () ->
     $('#MainColumn').on 'click', '#AddColumnButton', (event) ->
@@ -221,4 +238,5 @@ $(document).ready(
     SubmitAddColumn() 
     ActiveColumn()
     DeleteColumnLinkClick()
+    DeleteTaskLinkClick()
 )

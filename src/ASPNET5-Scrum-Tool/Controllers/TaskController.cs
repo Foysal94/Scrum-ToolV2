@@ -51,6 +51,22 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
 
         }
-        
+
+        [Route("[Action]")]
+        [HttpPost]
+        public void Delete(int p_TaskID)
+        {
+            var taskList = m_context.Tasks.ToList();
+
+            foreach (Tasks t in taskList)
+            {
+                if (t.ID == p_TaskID)
+                {
+                    m_context.Tasks.Remove(t);
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
     }
 }

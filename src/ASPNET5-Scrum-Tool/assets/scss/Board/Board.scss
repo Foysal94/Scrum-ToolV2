@@ -26,19 +26,33 @@
     }
 }
 
-.EditPen, .EditArrow {
+.EditArrow {
+
+}
+
+.EditTask {
+     margin: -50px 0 0 270px; //Change these numbers to move the pen about in the corner, top,right,bottom,left
+     position:absolute;
+     cursor:pointer;
+}
+
+
+.Hidden {
+    visibility:hidden;
+}
+
+.caret {
+    display:block;
     float:right;
-    position:absolute;
-    left:100%;
-    bottom:100%;
-    cursor:pointer;
+    border-left: 8.5px solid transparent;
+    border-right: 8.5px solid transparent;
+    border-top: 8.5px solid #000000;
+   
+
 }
 
-.EditPen {
-     margin: 0 0 -48px -29px; //Change these numbers to move the pen about in the corner
+.TaskCaret {
+    border-left: 8.5px solid transparent;
+    border-right: 8.5px solid transparent;
+    border-top: 8.5px solid #000000;
 }
-
-.dropdown-toggle{
- 
-}
-
