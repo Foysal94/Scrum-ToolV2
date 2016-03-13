@@ -25,5 +25,7 @@ namespace ASPNET5_Scrum_Tool.Models
         public DbSet<Columns> Columns { get; set; }
 
         public DbSet<Tasks> Tasks { get; set; }
+
+        public DbSet<Labels> Labels { get; set; } 
     }
 }

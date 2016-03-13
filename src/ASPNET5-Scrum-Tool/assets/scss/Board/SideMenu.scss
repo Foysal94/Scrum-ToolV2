@@ -20,27 +20,66 @@
     }
 }
 
+.ColourLabel {
+    text-align:center;
+    a{
+        color:black !important;
+    }
+}
+
+
 #BlueLabel {
     background-color:blue;
-    color: blue;
+    a {
+        color: blue;
+    }
 }
 
 #PurpleLabel {
     background-color:purple;
-    color: purple;
+    a {
+        color: purple;
+    }
 }
 
 #GreenLabel {
     background-color:green;
-    color: green;
+    a {
+       color: green;
+    }
 }
 
 #RedLabel {
     background-color:red;
-    color: red;
+    a {
+      color: red;
+    }
 }
 
 #YellowLabel {
     background-color:yellow;
-    color: yellow;
+    a {
+        color: yellow;
+    }
+}
+
+#OrangeLabel {
+    background-color:orange;
+    a {
+    color: orange;
+    }
+}
+
+#LightBlueLabel {
+    background-color:LightBlue;
+    a {
+        color: LightBlue;
+    }
+}
+
+#PinkLabel {
+    background-color:Pink;
+    a {
+        color: Pink;
+    }
 }

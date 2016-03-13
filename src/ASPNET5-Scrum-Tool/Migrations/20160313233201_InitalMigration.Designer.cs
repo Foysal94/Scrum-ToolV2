@@ -8,9 +8,10 @@ using ASPNET5_Scrum_Tool.Models;
 namespace ASPNET5ScrumTool.Migrations
 {
     [DbContext(typeof(ScrumToolDB))]
-    partial class ScrumToolDBModelSnapshot : ModelSnapshot
+    [Migration("20160313233201_InitalMigration")]
+    partial class InitalMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")

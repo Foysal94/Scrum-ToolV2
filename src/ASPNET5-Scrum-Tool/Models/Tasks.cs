@@ -14,6 +14,7 @@ namespace ASPNET5_Scrum_Tool.Models
         private int m_BoardID;
         private string m_ColumnName;
         private Columns m_ParentColumn;
+        private List<Models.Labels> m_LabelList; 
 
         [Key]
         public int ID { get {return m_ID;} set { m_ID = value; } }
@@ -21,16 +22,23 @@ namespace ASPNET5_Scrum_Tool.Models
         public int BoardID { get { return m_BoardID; } set { m_BoardID = value; } }
 
         public string ColumnName { get {return m_ColumnName; } set { m_ColumnName = value; } }
-        //public DateTime? DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
+        public DateTime DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
 
-        //public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
+        public List<Labels> LabelList { get { return m_LabelList; } set { m_LabelList = value; } }
 
-        public Tasks( int p_BoardID, string p_ColumnName, string p_TaskContent)
+
+
+
+        //public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
+       
+
+        public Tasks(int p_BoardID, string p_ColumnName, string p_TaskContent)
         {
             m_BoardID = p_BoardID;
             m_ColumnName = p_ColumnName;
             m_TaskContent = p_TaskContent;
+            m_DueDate = DateTime.Now.AddDays(1);
         }
 
         public Tasks()

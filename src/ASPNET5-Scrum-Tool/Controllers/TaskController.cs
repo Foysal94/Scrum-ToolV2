@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using ASPNET5_Scrum_Tool.Models;
@@ -72,6 +73,15 @@ namespace ASPNET5_Scrum_Tool.Controllers
         }
 
         [Route("[Action]")]
+        [HttpPost]
+        public void AddLabel(int p_TaskID, string p_LabelColour)
+        {
+            Labels tempLabel = new Labels(p_TaskID,p_LabelColour);
+            m_context.Labels.Add(tempLabel);
+            m_context.SaveChanges();
+        }
+
+        [Route("[Action]")]
         [HttpGet]
         public IActionResult Information(int p_TaskID)
         {
@@ -83,10 +93,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     m_Task = t;
                     break;
                 }
-            }
-       
-            
-
+            }     
             return PartialView("_Information", m_Task);
         }
 
