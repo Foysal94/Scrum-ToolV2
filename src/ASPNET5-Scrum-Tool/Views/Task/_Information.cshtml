@@ -1,0 +1,18 @@
+﻿@model Tasks
+
+@section  css {
+    <link rel="stylesheet" href="~/css/Task/Task.css" />
+}
+
+@section scripts {
+    <script src='~/js/Task.js'> </script>
+}
+<h2>
+    @Model.TaskContent
+    <p>in list @Model.ColumnName</p>
+</h2>
+
+<a>Edit Task Content....</a>
+
+<h3>Labels</h3>
+

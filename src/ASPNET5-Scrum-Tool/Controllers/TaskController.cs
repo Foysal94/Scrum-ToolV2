@@ -12,9 +12,11 @@ namespace ASPNET5_Scrum_Tool.Controllers
     public class TaskController : Controller
     {
         private ScrumToolDB m_context;
+        private Tasks m_Task;
         public TaskController(ScrumToolDB p_context)
         {
             m_context = p_context;
+            m_Task = null;
         }
 
 
@@ -22,11 +24,11 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddNewTask(Tasks model)
         {
-            Tasks tempTask = new Tasks(model.BoardID, model.ColumnName, model.TaskContent); // Adding one to the ID because the model has the last task ID.
-            m_context.Tasks.Add(tempTask);
+            m_Task = new Tasks(model.BoardID, model.ColumnName, model.TaskContent); // Adding one to the ID because the model has the last task ID.
+            m_context.Tasks.Add(m_Task);
             m_context.SaveChanges();
 
-            return ViewComponent("Task", tempTask);
+            return ViewComponent("Task", m_Task);
         }
 
         [Route("[Action]")]
@@ -34,20 +36,20 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public ViewComponentResult MovedTask(string p_ColumnName, int p_TaskID)
         {
             var tasks = m_context.Tasks.ToList();
-            Tasks tempTask = null;
+            
             foreach (Tasks t in tasks)
             {
                 if (t.ID == p_TaskID)
                 {
                     t.ColumnName = p_ColumnName;
-                    tempTask = t;
+                    m_Task = t;
                     m_context.SaveChanges();
                     
                     break;
                 }
             }
 
-            return ViewComponent("Task", tempTask);
+            return ViewComponent("Task", m_Task);
 
 
         }
@@ -68,5 +70,26 @@ namespace ASPNET5_Scrum_Tool.Controllers
                 }
             }
         }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult Information(int p_TaskID)
+        {
+            var taskList = m_context.Tasks.ToList();
+            foreach (Tasks t in taskList)
+            {
+                if (t.ID == p_TaskID)
+                {
+                    m_Task = t;
+                    break;
+                }
+            }
+       
+            
+
+            return PartialView("_Information", m_Task);
+        }
+
+
     }
 }

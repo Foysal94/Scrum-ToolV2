@@ -3,6 +3,7 @@
 /// <reference path="js/Board.min.js" />
 /// <reference path="js/Home.min.js" />
 /// <reference path="js/site.min.js" />
+/// <reference path="js/task.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/jquery-ui/jquery-ui.js" />

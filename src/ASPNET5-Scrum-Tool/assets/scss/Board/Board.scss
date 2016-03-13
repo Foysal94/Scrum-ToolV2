@@ -1,10 +1,13 @@
 @import '../Shared/base';
 @import 'Panels.scss';
 @import 'Forms.scss';
+@import 'SideMenu.scss';
 
 .row {
     margin-top: 1%;
     width: 100%;
+    height:100%;
+    border-top: 3px solid $logo-color;
 }
 
 .BoardColumn {
@@ -26,19 +29,10 @@
     }
 }
 
-.EditArrow {
-
-}
-
 .EditTask {
      margin: -50px 0 0 270px; //Change these numbers to move the pen about in the corner, top,right,bottom,left
      position:absolute;
      cursor:pointer;
-}
-
-
-.Hidden {
-    visibility:hidden;
 }
 
 .caret {
@@ -47,12 +41,10 @@
     border-left: 8.5px solid transparent;
     border-right: 8.5px solid transparent;
     border-top: 8.5px solid #000000;
-   
-
 }
 
-.TaskCaret {
-    border-left: 8.5px solid transparent;
-    border-right: 8.5px solid transparent;
-    border-top: 8.5px solid #000000;
+#MainColumn
+{
+    margin-top:15px;
 }
+

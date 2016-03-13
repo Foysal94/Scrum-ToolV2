@@ -21,7 +21,7 @@ TaskForm = "
 TaskDragOptions = {
                     delay: 300                                                                                                      
                     revert:true
-                  }     
+                  }                                         
 
 BoardDropOptions = {
                     accept: (element) ->
@@ -54,6 +54,11 @@ BoardDropOptions = {
 $('.Task').draggable TaskDragOptions      
 $('.BoardColumn').droppable BoardDropOptions
 
+$('.ColourLabel').draggable 
+                    revert:true;
+                    
+                    
+
 ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.TaskParentDiv', (event) ->
         $(this).addClass 'ActiveTask'
@@ -69,6 +74,27 @@ ActiveColumn = () ->
     $('#MainColumn').on 'mouseleave', '.panel-title', (event) ->
         $(this).removeClass 'ActivePanel'
         #$(this).draggable "disable"
+
+ActiveTaskClick = () ->
+    $('#MainColumn').on 'click', '.ActiveTask', (event) ->
+        event.preventDefault();
+        task = $(this).find '.Task'
+        taskID = $(task).attr 'id'
+        $.ajax
+            url: '/Task/Information/',
+            type: 'GET',
+            dataType: 'html'
+            data: {p_TaskID: taskID},
+            success: (data) ->              
+                     alert 'data is' + data
+                     $(data).dialog 
+                        height:500,
+                        width:500,
+                        modal:true,
+                        resizable:false,
+            error : (error) ->
+                 alert "ActiveTask Click method, error"
+                 alert JSON.stringify(error);
         
 PanelTitleClick = () ->
     $('#MainColumn').on 'click', '.panel-title',() ->
@@ -239,4 +265,5 @@ $(document).ready(
     ActiveColumn()
     DeleteColumnLinkClick()
     DeleteTaskLinkClick()
+    ActiveTaskClick()
 )
