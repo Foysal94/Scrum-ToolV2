@@ -1,27 +1,10 @@
 BoardName = $('.BoardNameHeading').text()
 m_BoardID = $('.BoardNameHeading').attr 'id'
-
-
-ColumnNameForm = "<div class='ColumnNameForm'>
-                     <input class='PreviousColumnName' type='hidden'  style='display: none;' />
-                     <input name='ColumnName' class='NewColumnName'>
-                     <input type='submit' value='Continue' class='ColumnTitleSubmit'>
-                 </div>"
-
-AddColumnForm = "<div class='AddColumnForm'>
-                     <input name='ColumnName' class='NewColumnName'>
-                     <input type='submit' value='Continue' class='AddColumnSubmit'>
-                 </div>"
-                                  
-TaskForm = "
-             <input name='TaskContent' class='TaskContent'>
-             <input type='submit' value='Continue' class='TaskFormSubmit'>
-           "
-
+  
 TaskDragOptions = {
                     delay: 300                                                                                                      
                     revert:true
-                    
+                    helper: 'clone'
                         
                   }
 
@@ -142,10 +125,11 @@ PanelTitleClick = () ->
                    panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
                    oldBoardName = $('.PreviousColumnName').val()
                    panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
-
-          selectedColumn.find('.panel-title').html(ColumnNameForm)   
-          $('.PreviousColumnName').val(initalColumnName)
-          $('.NewColumnName').val(initalColumnName)
+          
+          $.get '/Board/ColumnNameChangeForm', (data) -> 
+               selectedColumn.find('.panel-title').html(ColumnNameForm)
+               $('.PreviousColumnName').val(initalColumnName)
+               $('.NewColumnName').val(initalColumnName)
                    
 
 SubmitColumNameChange = () ->
@@ -213,7 +197,8 @@ DeleteTaskLinkClick = () ->
 AddColumnButtonClick = () ->
     $('#MainColumn').on 'click', '#AddColumnButton', (event) ->
         event.preventDefault()
-        $('#AddColumnButton').replaceWith AddColumnForm
+        $.get '/Board/AddColumnForm', (data) -> 
+              $('#AddColumnButton').replaceWith data
         DoesFormExist = $('#MainColumn').find '.ColumnNameForm'
         if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
@@ -261,8 +246,9 @@ AddTaskForm = () ->
                 column = DoesFormExist.parent()
                 column.find('.TaskContent').replaceWith("<a class='AddTask'> Add a task.... </a>")
                 column.find('.TaskFormSubmit').remove();
-                  
-        $(selectedColumn).find('.AddTask').replaceWith(TaskForm)
+                
+        $.get '/Board/AddTaskForm', (data) ->          
+            $(selectedColumn).find('.AddTask').replaceWith data
 
 SubmitTaskForm = () ->
      $('#MainColumn').on 'click', '.TaskFormSubmit', (event) ->

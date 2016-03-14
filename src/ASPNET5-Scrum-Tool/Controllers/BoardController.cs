@@ -95,6 +95,30 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_context.SaveChanges();
             return View("Show", m_Board);
         }
-        
+
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult ColumnNameChangeForm()
+        {
+           // ViewData["ColumnName"] = p_InitalColumnName;
+            return PartialView("_ColumnNameChangeForm");
+        }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult AddColumnForm()
+        {
+            // ViewData["ColumnName"] = p_InitalColumnName;
+            return PartialView("_AddColumnForm");
+        }
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult AddTaskForm()
+        {
+            // ViewData["ColumnName"] = p_InitalColumnName;
+            return PartialView("_AddTaskForm");
+        }
     }
 }
