@@ -21,6 +21,8 @@ TaskForm = "
 TaskDragOptions = {
                     delay: 300                                                                                                      
                     revert:true
+                    
+                        
                   }
 
 TaskDropOptions = { 
@@ -76,10 +78,13 @@ BoardDropOptions = {
                      }
                         
 $('.Task').draggable TaskDragOptions      
+
 $('.BoardColumn').droppable BoardDropOptions
 
 $('.ColourLabel').draggable 
                     revert:true;
+
+
                     
                     
 
