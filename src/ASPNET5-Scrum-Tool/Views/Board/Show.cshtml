@@ -1,11 +1,13 @@
 @model Boards
 
 @section  css {
-    <link rel="stylesheet" href="~/css/Board/Board.css" />
+    <link rel="stylesheet" href="~/css/Board/Board.css"/>
+    <link rel="stylesheet" href="~/css/Task/Task.css" />
 }
 
 @section scripts {
     <script src='~/js/Board.js'> </script>
+    <script src='~/js/Task.js'> </script>
 }
 <h1 class="BoardNameHeading" id="@Model.ID">@Model.Name </h1>
 <div class="row">

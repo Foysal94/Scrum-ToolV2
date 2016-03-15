@@ -102,12 +102,19 @@ ActiveTaskClick = () ->
             dataType: 'html'
             data: {p_TaskID: taskID},
             success: (data) ->              
-                     alert 'data is' + data
+                     #alert 'data is' + data
+                     dialog = data
                      $(data).dialog 
-                        height:500,
-                        width:500,
+                        height:700,
+                        width:900,
                         modal:true,
                         resizable:false,
+                        open: (event,ui) ->
+                            $('.ui-widget-overlay').bind 'click', (event,ui) ->         
+                                $(data).dialog('close');
+                      .siblings('.ui-dialog-titlebar').removeClass 'ui-widget-header'
+                      
+                      
             error : (error) ->
                  alert "ActiveTask Click method, error"
                  alert JSON.stringify(error);
