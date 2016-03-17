@@ -1,6 +1,27 @@
 ﻿ $background-color :  #353535;
  $logo-color : #D24D57;
  $panel-body-color: #808080;
+ $task-font-color: #000000;
+
+ @mixin WrapLinkText {
+    white-space: pre-wrap; /* css-3 */    
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */    
+    white-space: -o-pre-wrap; /* Opera 7 */    
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+ }
+
+ @mixin TaskCSS {
+    display: block;
+    margin-bottom:20px;
+    border: 3px solid $logo-color;
+    border-radius: 15px;
+    padding: 8px 8px;
+    width: 100%;
+    color: $task-font-color;
+    @include WrapLinkText();
+    position:relative;
+ }
 
  .Hidden {
     visibility:hidden;

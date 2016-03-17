@@ -2,6 +2,12 @@
 
 BoardName = $('.BoardNameHeading').text()
 m_BoardID = $('.BoardNameHeading').attr 'id'
+
+LoadLabels = () ->
+    $('.LabelListDiv').children('.TaskLabels').each () ->
+           button = $(this).find('.btn')
+           color = $(button).html()
+           $(button).css('background',color)
   
 TaskDragOptions = {
                     delay: 300                                                                                                      
@@ -112,9 +118,8 @@ ActiveTaskClick = () ->
                         open: (event,ui) ->
                             $('.ui-widget-overlay').bind 'click', (event,ui) ->         
                                 $(data).dialog('close');
-                      .siblings('.ui-dialog-titlebar').removeClass 'ui-widget-header'
-                      
-                      
+                      .siblings('.ui-dialog-titlebar').removeClass 'ui-widget-header'     
+                      LoadLabels()
             error : (error) ->
                  alert "ActiveTask Click method, error"
                  alert JSON.stringify(error);

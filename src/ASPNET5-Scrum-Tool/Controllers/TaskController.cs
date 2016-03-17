@@ -37,7 +37,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public ViewComponentResult MovedTask(string p_ColumnName, int p_TaskID)
         {
             var tasks = m_context.Tasks.ToList();
-            
+
             foreach (Tasks t in tasks)
             {
                 if (t.ID == p_TaskID)
@@ -45,7 +45,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     t.ColumnName = p_ColumnName;
                     m_Task = t;
                     m_context.SaveChanges();
-                    
+
                     break;
                 }
             }
@@ -76,7 +76,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public void AddLabel(int p_TaskID, string p_LabelColour)
         {
-            Labels tempLabel = new Labels(p_TaskID,p_LabelColour);
+            Labels tempLabel = new Labels(p_TaskID, p_LabelColour);
             m_context.Labels.Add(tempLabel);
             m_context.SaveChanges();
         }
@@ -86,18 +86,27 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public IActionResult Information(int p_TaskID)
         {
             var taskList = m_context.Tasks.ToList();
+            var labelList = m_context.Labels.ToList();
             foreach (Tasks t in taskList)
             {
                 if (t.ID == p_TaskID)
                 {
+                    t.LabelList = new List<Labels>();
+                    foreach (Labels label in labelList)
+                    {
+                        if (t.ID == label.TaskID)
+                        {
+                            t.LabelList.Add(label);
+                        }
+                    }
                     m_Task = t;
                     break;
                 }
-            }     
+            }
             return PartialView("_Information", m_Task);
         }
 
-       
+
 
 
     }

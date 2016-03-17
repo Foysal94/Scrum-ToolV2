@@ -1,13 +1,35 @@
 ﻿@model Tasks
 
 <div class="TaskWindow">
-    <h5 id='TaskContent'>
-        @Model.TaskContent
-        <a id='TaskColumnName'>in list @Model.ColumnName</a>
-    </h5>
+        <a class='TaskContent'>
+            @Model.TaskContent
+        </a>
 
-    <a>Edit Task Content....</a>
+
+    <a class="EditTaskContent">Edit Task Content....</a>
 
     <h3>Labels</h3>
+    <div class="LabelListDiv">
+        <ul>
+            @foreach (var label in Model.LabelList)
+            {
+                <li class="TaskLabels" id="@label.ID">
+                    <div class="dropdown">
+                        <button style="background: @label.Colour" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            @label.Colour
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#" class="DeleteTaskLabel">Delete</a></li>
+                        </ul>
+                    </div>
+                </li>
+            }
+        </ul>
+        <a class="TaskAddLabel">Add a label... </a>
+    </div>
+
+    <div class="TaskDateDiv">
+
+    </div>
 </div>
 

@@ -1,22 +1,32 @@
 ﻿@import '../Shared/base';
+@import 'Dialog.scss';
 
+ .TaskWindow {
+      margin-left:20px;
+ }
 
-.ui-dialog-title, .ui-dialog-titlebar {
-    background-color: $panel-body-color;
+ .TaskContent {
+     
+        border: 3px solid $logo-color ;
+        border-radius: 15px ;
+        padding-left:30px;
+        padding-right:80%;
+        font-size:20px;
+        width:100%;
 }
-#TaskWindow{
-	color:red;
+
+.EditTaskContent {
+    display:block;
 }
 
-.ui-dialog {
-    background-color: $panel-body-color;
+.EditTaskContent, .TaskContent, .TaskAddLabel{
+
+    &:hover, &:visited, &:link {
+        text-decoration:none;
+        cursor:pointer;
+    }
 }
 
-.ui-dialog,.ui-dialog,.ui-widget, .ui-widget-content, .ui-corner-all, 
-.ui-resizable  {
-    background: $panel-body-color;
-
-}​
-#TaskColumnName {
-    font-size:12px;
+.EditTaskContent, .TaskAddLabel {
+        margin-top:20px;
 }

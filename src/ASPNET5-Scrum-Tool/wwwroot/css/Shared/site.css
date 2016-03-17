@@ -160,3 +160,12 @@ input, select, textarea {
 @media (min-width: 768px) {
   .carousel-caption {
     z-index: 10 !important; } }
+
+/*
+.dropdown {
+    .btn {
+        background:red ;
+
+    }
+}
+*/
