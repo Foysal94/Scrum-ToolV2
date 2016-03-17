@@ -73,15 +73,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
         }
 
         [Route("[Action]")]
-        [HttpPost]
-        public void AddLabel(int p_TaskID, string p_LabelColour)
-        {
-            Labels tempLabel = new Labels(p_TaskID, p_LabelColour);
-            m_context.Labels.Add(tempLabel);
-            m_context.SaveChanges();
-        }
-
-        [Route("[Action]")]
         [HttpGet]
         public IActionResult Information(int p_TaskID)
         {

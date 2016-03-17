@@ -28,7 +28,7 @@ TaskDropOptions = {
                              colour = labelColour.slice(0,-5)
                              
                              $.ajax 
-                                url: '/Task/AddLabel'
+                                url: '/Label/Add'
                                 type: 'POST'
                                 data: {p_TaskID: taskID, p_LabelColour: colour }
                                 success: (data) ->

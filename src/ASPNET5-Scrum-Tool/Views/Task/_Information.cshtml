@@ -15,7 +15,7 @@
             {
                 <li class="TaskLabels" id="@label.ID">
                     <div class="dropdown">
-                        <button style="background: @label.Colour" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button style="background: @label.Colour" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             @label.Colour
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -25,7 +25,14 @@
                 </li>
             }
         </ul>
-        <a class="TaskAddLabel">Add a label... </a>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="TaskAddLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Add A label
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#" class="DeleteTaskLabel">Delete</a></li>
+            </ul>
+       </div>
     </div>
 
     <div class="TaskDateDiv">
