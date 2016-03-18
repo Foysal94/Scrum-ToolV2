@@ -6,18 +6,13 @@
     border-left: 3px solid $logo-color;
     height:100%;
 
-    ul {
-       padding: 0;
-       list-style-type: none;
-        li {
-            list-style-type:none;
-            width:100%;
-        }
-    }
-
     .btn {
         width:100%;
     }
+
+    @include ListStyleNone;
+
+   
 }
 
 .ColourLabel {

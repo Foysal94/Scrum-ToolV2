@@ -1,6 +1,6 @@
 ﻿@model Tasks
 
-<div class="TaskWindow">
+<div class="TaskWindow" id="@Model.ID">
         <a class='TaskContent'>
             @Model.TaskContent
         </a>
@@ -10,29 +10,30 @@
 
     <h3>Labels</h3>
     <div class="LabelListDiv">
-        <ul>
-            @foreach (var label in Model.LabelList)
-            {
-                <li class="TaskLabels" id="@label.ID">
-                    <div class="dropdown">
-                        <button style="background: @label.Colour" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            @label.Colour
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#" class="DeleteTaskLabel">Delete</a></li>
-                        </ul>
-                    </div>
-                </li>
-            }
-        </ul>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="TaskAddLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Add A label
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#" class="DeleteTaskLabel">Delete</a></li>
+
+            <ul>
+                @foreach (var label in Model.LabelList)
+                {
+                   @Component.Invoke("Label", label)
+                }
             </ul>
-       </div>
+
+    </div>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="TaskAddLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Add A label
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li class="TaskColourLabel" id="GreenLabel"><a href="#">Green</a></li>
+            <li class="TaskColourLabel" id="BlueLabel"><a href="#">Blue</a></li>
+            <li class="TaskColourLabel" id="PurpleLabel"><a href="#">Purple</a></li>
+            <li class="TaskColourLabel" id="RedLabel"><a href="#">Red</a></li>
+            <li class="TaskColourLabel" id="YellowLabel"><a href="#">Yellow</a></li>
+            <li class="TaskColourLabel" id="OrangeLabel"><a href="#">Orange</a></li>
+            <li class="TaskColourLabel" id="LightBlueLabel"><a href="#">Light Blue</a></li>
+            <li class="TaskColourLabel" id="PinkLabel"><a href="#">Pink</a></li>
+        </ul>
     </div>
 
     <div class="TaskDateDiv">

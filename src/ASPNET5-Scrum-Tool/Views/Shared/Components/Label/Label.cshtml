@@ -1,0 +1,13 @@
+﻿@model Labels
+
+<li class="LabelListItem" id="@Model.ID">
+    <div class="dropdown">
+        <button style="background: @Model.Colour" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            @Model.Colour
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#" class="DeleteTaskLabel">Delete</a></li>
+        </ul>
+    </div>
+
+</li>

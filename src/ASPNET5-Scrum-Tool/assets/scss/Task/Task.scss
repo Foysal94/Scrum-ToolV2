@@ -30,3 +30,8 @@
 .EditTaskContent, .TaskAddLabel {
         margin-top:20px;
 }
+
+.LabelListDiv {
+     @include ListStyleNone;
+
+}

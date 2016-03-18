@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
-using ASPNET5_Scrum_Tool.Models;
 using Microsoft.AspNet.Mvc;
+using ASPNET5_Scrum_Tool.Models;
 
 namespace ASPNET5_Scrum_Tool.Controllers
 {
     [Route("[Controller]")]
-    public class LabelController
+    public class LabelController : Controller
     {
         private ScrumToolDB m_context;
-        private Tasks m_Label;
+        private Labels m_Label;
         public LabelController(ScrumToolDB p_context)
         {
             m_context = p_context;
@@ -39,11 +40,20 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public void Add(int p_TaskID, string p_LabelColour)
         {
-            Labels tempLabel = new Labels(p_TaskID, p_LabelColour);
-            m_context.Labels.Add(tempLabel);
+            m_Label = new Labels(p_TaskID, p_LabelColour);
+            m_context.Labels.Add(m_Label);
             m_context.SaveChanges();
         }
 
+        [Route("[Action]")]
+        [HttpPost]
+        public ViewComponentResult TaskAddLabel(int p_TaskID, string p_LabelColour)
+        {
+            m_Label = new Labels(p_TaskID, p_LabelColour);
+            m_context.Labels.Add(m_Label);
+            m_context.SaveChanges();
+            return ViewComponent("Label", m_Label);
+        }
 
     }
 }

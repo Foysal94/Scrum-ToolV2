@@ -51,8 +51,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
             }
 
             return ViewComponent("Task", m_Task);
-
-
         }
 
         [Route("[Action]")]
