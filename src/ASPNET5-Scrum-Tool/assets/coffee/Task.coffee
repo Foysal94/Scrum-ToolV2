@@ -31,9 +31,67 @@ AddLabelClick = () ->
                          $('.LabelListDiv').find('ul').append data
               error: (error) ->
                      alert 'AddLabelClick Method'
-                     alert "no good "+JSON.stringify(error);
+                     alert "no good " + JSON.stringify(error);
+                     
+EditTaskClick = () ->
+    $('body').on 'click', '.EditTaskButton', (event) ->
+        event.preventDefault();
+        taskContent = $('.TaskContent').html()
+        $.ajax 
+            url: '/Task/EditTaskForm'
+            type: 'GET'
+            success: (data) ->
+                $('.TaskContent').remove()
+                $('.EditTaskButton').replaceWith data
+                $('.EditTaskContent').text taskContent
+            error: (error) ->
+                     alert 'EditTaskButtonClick Method'
+                     alert "no good " + JSON.stringify(error);
+                
+ EditTaskContent = () ->
+      $('body').on 'click', '.EditTaskSubmit', () ->  
+          taskID = $('.TaskWindow').attr 'id'
+          taskContent = $('.NewTaskContent').val().trim()
+          
+          $.ajax 
+              url: '/Task/UpdateContent'
+              type: 'POST'
+              data: { p_TaskID : taskID, p_NewTaskContent: taskContent }
+              success: () ->
+                    $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
+                    $('.TaskContent').text taskContent
+                    $('.TaskContent').after '<a class="EditTaskButton"></a>'
+                    $('.EditTaskButton').text 'Edit Task Content....'
+                   
+              
+              error: (error) ->
+                     alert 'EditTaskContent Method'
+                     alert "no good " + JSON.stringify(error);
+
+ EditTaskCancelClick = () -> 
+    $('body').on 'click', '.EditTaskCancel', () ->  
+        taskID = $('.TaskWindow').attr 'id'
+         
+        $.ajax 
+              url: '/Task/GetTaskContent'
+              type: 'POST'
+              data: { p_TaskID : taskID }
+              success: (data) ->
+                    $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
+                    $('.TaskContent').text data
+                    $('.TaskContent').after '<a class="EditTaskButton"></a>'
+                    $('.EditTaskButton').text 'Edit Task Content....'
+                   
+              
+              error: (error) ->
+                     alert 'EditTaskCancelClick Method'
+                     alert "no good " + JSON.stringify(error);
+                 
                   
 $(document).ready(
     DeleteLabelLink()
     AddLabelClick()
+    EditTaskClick()
+    EditTaskContent()
+    EditTaskCancelClick()
 )

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 
 namespace ASPNET5_Scrum_Tool.Models
 {
@@ -20,6 +21,11 @@ namespace ASPNET5_Scrum_Tool.Models
     
         }
         */
+
+        public ScrumToolDB(DbContextOptions options) : base(options)
+        {
+            
+        }
         public DbSet<Boards> Boards { get; set; }
 
         public DbSet<Columns> Columns { get; set; }

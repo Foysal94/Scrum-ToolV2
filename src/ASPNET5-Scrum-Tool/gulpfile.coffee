@@ -2,20 +2,16 @@
 
 gulp = require 'gulp'
 
-
 cssmin = require 'gulp-cssmin'
 jsmin = require 'gulp-uglify'
-
-rimraf = require 'rimraf'
-concat = require 'gulp-concat'
-project = require './project.json'
-
 
 sass = require 'gulp-sass'
 coffee = require 'gulp-coffee'
 gutil = require 'gulp-util' 
 rename = require 'gulp-rename'
 less_to_scss = require 'gulp-less-to-scss'
+
+project = require './project.json'
 
 paths = 
   webroot: "./wwwroot/"

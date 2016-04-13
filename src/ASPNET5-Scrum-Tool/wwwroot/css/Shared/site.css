@@ -161,11 +161,5 @@ input, select, textarea {
   .carousel-caption {
     z-index: 10 !important; } }
 
-/*
 .dropdown {
-    .btn {
-        background:red ;
-
-    }
-}
-*/
+  margin-top: 30px; }

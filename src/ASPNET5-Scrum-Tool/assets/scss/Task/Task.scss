@@ -7,19 +7,20 @@
 
  .TaskContent {
      
-        border: 3px solid $logo-color ;
-        border-radius: 15px ;
+       /* border: 3px solid $logo-color ;
+        border-radius: 15px ; */
+       white-space: pre-wrap;
         padding-left:30px;
         padding-right:80%;
         font-size:20px;
         width:100%;
 }
 
-.EditTaskContent {
+.EditTaskButton {
     display:block;
 }
 
-.EditTaskContent, .TaskContent, .TaskAddLabel{
+.EditTaskButton, .TaskContent, .TaskAddLabel{
 
     &:hover, &:visited, &:link {
         text-decoration:none;
@@ -27,11 +28,24 @@
     }
 }
 
-.EditTaskContent, .TaskAddLabel {
+.EditTaskButton, .TaskAddLabel {
         margin-top:20px;
 }
 
 .LabelListDiv {
      @include ListStyleNone;
+}
+
+.EditTaskForm {
+    input {
+        display:inline-block;
+    }
+}
+
+.NewTaskContent {
+  
+  margin:5px 0;
+  padding:3px;
+  resize: none; 
 
 }

@@ -14,6 +14,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
     {
         private ScrumToolDB m_context;
         private Tasks m_Task;
+
         public TaskController(ScrumToolDB p_context)
         {
             m_context = p_context;
@@ -30,6 +31,58 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_context.SaveChanges();
 
             return ViewComponent("Task", m_Task);
+        }
+
+
+        [Route("[Action]")]
+        [HttpPost]
+        public void Delete(int p_TaskID)
+        {
+            var taskList = m_context.Tasks.ToList();
+
+            foreach (Tasks t in taskList)
+            {
+                if (t.ID == p_TaskID)
+                {
+                    m_context.Tasks.Remove(t);
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
+
+        [Route("[Action]")]
+        [HttpPost]
+        public void UpdateContent(int p_TaskID, string p_NewTaskContent)
+        {
+            var tasks = m_context.Tasks.ToList();
+
+            foreach (Tasks t in tasks)
+            {
+                if (t.ID == p_TaskID)
+                {
+                    t.TaskContent = p_NewTaskContent;
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
+
+        [Route("[Action]")]
+        [HttpPost]
+        public string GetTaskContent(int p_TaskID)
+        {
+            var tasks = m_context.Tasks.ToList();
+
+            foreach (Tasks t in tasks)
+            {
+                if (t.ID == p_TaskID)
+                {
+                    return t.TaskContent;
+                }
+            }
+
+            return "Error, no content found";
         }
 
         [Route("[Action]")]
@@ -51,23 +104,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
             }
 
             return ViewComponent("Task", m_Task);
-        }
-
-        [Route("[Action]")]
-        [HttpPost]
-        public void Delete(int p_TaskID)
-        {
-            var taskList = m_context.Tasks.ToList();
-
-            foreach (Tasks t in taskList)
-            {
-                if (t.ID == p_TaskID)
-                {
-                    m_context.Tasks.Remove(t);
-                    m_context.SaveChanges();
-                    break;
-                }
-            }
         }
 
         [Route("[Action]")]
@@ -95,6 +131,13 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return PartialView("_Information", m_Task);
         }
 
+
+        [Route("[Action]")]
+        [HttpGet]
+        public IActionResult EditTaskForm(int p_TaskID)
+        {
+            return PartialView("_EditTaskForm");
+        }
 
 
 

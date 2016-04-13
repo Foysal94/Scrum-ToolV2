@@ -1,6 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
-/// <reference path="js/Board.min.js" />
+/// <reference path="js/board.js" />
 /// <reference path="js/Home.min.js" />
 /// <reference path="js/site.min.js" />
 /// <reference path="js/task.js" />
