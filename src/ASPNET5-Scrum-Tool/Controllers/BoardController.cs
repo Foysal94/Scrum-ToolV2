@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ASPNET5_Scrum_Tool.Models;
 using Microsoft.AspNet.Mvc;
@@ -88,7 +89,15 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [Route("[Action]/{p_BoardID}")]
         public IActionResult Create(int p_BoardID)
         {
-            string boardName = (string) TempData["BoardName"];
+            string boardName = "";
+            try
+            {
+                 boardName = (string) TempData["BoardName"];
+            }
+            catch (Exception e)
+            {
+                
+            }
             //int boardID = (int) TempData["BoardID"];
             var boards = m_context.Boards.ToList();
             if (boards.Count == p_BoardID)

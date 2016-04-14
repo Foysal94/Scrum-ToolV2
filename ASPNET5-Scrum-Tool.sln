@@ -16,7 +16,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ASPNET5-Scrum-Tool", "src\A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4FE7CCBB-BF0D-49F5-8CE7-96B0D89976C6}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Scrum-Tool.IntegrationTests", "Scrum-Tool.IntegrationTests\Scrum-Tool.IntegrationTests.xproj", "{F7415613-9D73-4CEF-98A3-244170FC5F37}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Scrum-Tool.UnitTests", "Scrum-Tool.IntegrationTests\Scrum-Tool.UnitTests.xproj", "{F7415613-9D73-4CEF-98A3-244170FC5F37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

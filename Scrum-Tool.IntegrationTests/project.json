@@ -15,7 +15,8 @@
     "Microsoft.AspNet.TestHost": "1.0.0-rc1-final",
     "EntityFramework.InMemory": "7.0.0-rc1-final",
     "GenFu": "1.0.4",
-    "FluentAssertions": "4.3.2"
+    "FluentAssertions": "4.3.2",
+     
   },
     "commands": {
       "test": "xunit.runner.dnx"

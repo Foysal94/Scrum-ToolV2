@@ -14,12 +14,12 @@ using Microsoft.Extensions.DependencyInjection;
 using GenFu = GenFu.GenFu;
 
 
-namespace Scrum_Tool.IntegrationTests
+namespace Scrum_Tool.UnitTests
 {
     public abstract class Setup
     {
-        private readonly TestServer m_Server;
-        private readonly HttpClient m_Client;
+        protected  TestServer m_Server;
+        protected  HttpClient m_Client;
         protected ScrumToolDB m_Context;
 
         private DbContextOptionsBuilder<ScrumToolDB> builder;
@@ -59,44 +59,17 @@ namespace Scrum_Tool.IntegrationTests
              //CreateColumns(dbContext);
             // CreateTasks(dbContext);
 
-            dbContext.Boards.Add(new Boards()
-            {
-                Name = "HelloWorld",
-                ColumnList = new List<Columns>()
-            });
+            dbContext.Boards.Add(new Boards("HelloWorld"));
 
-            dbContext.Columns.Add(new Columns()
-            {
-                Name = "Something1",
-                BoardID = 1
-            });
+            dbContext.Columns.Add(new Columns("Test1", 1));
 
-            dbContext.Columns.Add(new Columns()
-            {
-                Name = "Something2",
-                BoardID = 1
-            });
+            dbContext.Columns.Add(new Columns("Test2", 1));
 
-            dbContext.Tasks.Add(new Tasks()
-            {
-                ColumnName = "Something1",
-                BoardID = 1,
-                TaskContent = "Stuff to do1"
-            });
+            dbContext.Tasks.Add(new Tasks(1, "Test1", "SomethingToDo1"));
 
-            dbContext.Tasks.Add(new Tasks()
-            {
-                ColumnName = "Something1",
-                BoardID = 1,
-                TaskContent = "Stuff to do2"
-            });
+            dbContext.Tasks.Add(new Tasks(1, "Test1", "SomethingToDo2"));
 
-            dbContext.Tasks.Add(new Tasks()
-            {
-                ColumnName = "Something1",
-                BoardID = 1,
-                TaskContent = "Stuff to do3"
-            });
+            dbContext.Tasks.Add(new Tasks(1, "Test1", "SomethingToDo3"));
 
             dbContext.SaveChanges();
 
