@@ -28,15 +28,18 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public IActionResult SumbitBoardForm(Boards model)
         {
-            var query = from board in m_context.Boards where board.Name.Equals(model.Name) select board;
+            if (!ModelState.IsValid) //not valid
+            {
+                return RedirectToAction("Index");
+            }
+
+            //var query = from board in m_context.Boards where board.Name.Equals(model.Name) select board;
             var boards = m_context.Boards.ToList();
             foreach (var boardModel in boards)
             {
                 if (boardModel.Name == model.Name)
                 {
-                    TempData["BoardName"] = boardModel.Name;
-                    TempData["BoardID"] = boardModel.ID;
-                    return RedirectToAction("Load", "Board", new { p_BoardID = boardModel.ID});
+                    return RedirectToAction("Load", "Board", new { p_BoardID = boardModel.ID}); // Board Found
                 }
             }
             //model.ID = boards.Count + 1;

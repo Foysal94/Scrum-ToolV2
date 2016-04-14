@@ -25,6 +25,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [Route("[Action]/{p_BoardName}")]
         public IActionResult Index(string p_BoardName)
         {
+             
             m_Board.Name = p_BoardName;
             ViewData["BoardName"] = m_Board.Name;
             return View(m_Board);
@@ -43,6 +44,11 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     m_Board.ColumnList  = new List<Columns>();
                     break;
                 }
+            }
+
+            if (m_Board == null)
+            {
+                return HttpNotFound();
             }
 
 

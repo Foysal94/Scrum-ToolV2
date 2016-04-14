@@ -17,12 +17,8 @@ namespace Scrum_Tool.IntegrationTests
             m_ColumnsController = new ColumnController(m_Context);
         }
 
-
-        [Fact]
-        public void GetColumn_Something1() 
-        {
-            
-        }
+      
+  
     }
 
 }

@@ -16,7 +16,7 @@ using GenFu = GenFu.GenFu;
 
 namespace Scrum_Tool.IntegrationTests
 {
-    public class Setup
+    public abstract class Setup
     {
         private readonly TestServer m_Server;
         private readonly HttpClient m_Client;
@@ -25,6 +25,7 @@ namespace Scrum_Tool.IntegrationTests
         private DbContextOptionsBuilder<ScrumToolDB> builder;
 
         private readonly IServiceProvider m_ServiceProvider;
+        /*
         public Setup()
         {
             // Arrange
@@ -49,6 +50,7 @@ namespace Scrum_Tool.IntegrationTests
             CreateTestData(m_Context);
 
         }
+        */
 
         public void CreateTestData(ScrumToolDB dbContext)
         {
@@ -59,7 +61,8 @@ namespace Scrum_Tool.IntegrationTests
 
             dbContext.Boards.Add(new Boards()
             {
-                Name = "HelloWorld"
+                Name = "HelloWorld",
+                ColumnList = new List<Columns>()
             });
 
             dbContext.Columns.Add(new Columns()
