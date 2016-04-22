@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity.Migrations.Operations;
+﻿using System.Linq;
 using ASPNET5_Scrum_Tool.Controllers;
 using ASPNET5_Scrum_Tool.Models;
 using FluentAssertions;

@@ -144,7 +144,7 @@ PanelTitleClick = () ->
                    panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
           
           $.get '/Board/ColumnNameChangeForm', (data) -> 
-               selectedColumn.find('.panel-title').html(ColumnNameForm)
+               selectedColumn.find('.panel-title').html(data)
                $('.PreviousColumnName').val(initalColumnName)
                $('.NewColumnName').val(initalColumnName)
                    
@@ -155,7 +155,7 @@ SubmitColumNameChange = () ->
 
         newColumnName = $('.NewColumnName').val().trim()
         oldColumnName =  $('.PreviousColumnName').val().trim()
-       
+        return alert 'Please enter a name' if newColumnName == null or newColumnName == ""
         found = false
         $('.panel-title').each (index,element) ->
              columnName = $(element).text()
@@ -226,6 +226,7 @@ SubmitAddColumn = () ->
     $('#MainColumn').on 'click', '.AddColumnSubmit', (event) ->
          event.preventDefault()
          newColumnName = $('.NewColumnName').val().trim()
+         return alert 'Please enter a name' if newColumnName == null or newColumnName == ""
          found = false
          $('.panel-title').each (index,element) ->
              columnName = $(element).text()

@@ -6,14 +6,12 @@
  }
 
  .TaskContent {
-     
-       /* border: 3px solid $logo-color ;
-        border-radius: 15px ; */
-       white-space: pre-wrap;
-        padding-left:30px;
-        padding-right:80%;
-        font-size:20px;
+        font-size:22px;
         width:100%;
+        p {
+            font-size:12px;
+            display:inline;
+        }
 }
 
 .EditTaskButton {
@@ -43,9 +41,21 @@
 }
 
 .NewTaskContent {
-  
+  border:1px solid #999999;
+  width:100%;
   margin:5px 0;
   padding:3px;
-  resize: none; 
+}
 
+.TaskLabelList {
+    li {
+        div {
+            display:inline;
+            button {
+                display:inline;
+            }
+        }
+        
+    }
+  
 }

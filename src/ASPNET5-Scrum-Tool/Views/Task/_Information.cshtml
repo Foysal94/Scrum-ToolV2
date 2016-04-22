@@ -3,15 +3,13 @@
 <div class="TaskWindow" id="@Model.ID">
     <a class='TaskContent'>
          @Model.TaskContent
+        <p class="ListName"> in list @Model.ColumnName</p>
     </a>
 
-
-    <a class="EditTaskButton">Edit Task Content....</a>
-
-    <h3>Labels</h3>
+    <h4>Labels</h4>
     <div class="LabelListDiv">
 
-            <ul>
+            <ul class="TaskLabelList">
                 @foreach (var label in Model.LabelList)
                 {
                    @Component.Invoke("Label", label)
@@ -37,7 +35,11 @@
     </div>
 
     <div class="TaskDateDiv">
-
+        <h3 class="Date">
+            Date: @Model.DueDate.Date
+        </h3>
+        <label>New date</label>
+        <input type="button" value="ChangeDate" class="ChangeDateButton">
     </div>
 </div>
 

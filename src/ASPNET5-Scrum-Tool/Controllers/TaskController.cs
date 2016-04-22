@@ -133,6 +133,25 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
 
         [Route("[Action]")]
+        [HttpPost]
+        public void UpdateDate(int p_TaskID, string p_Date)
+        {
+            var tasks = m_context.Tasks.ToList();
+            DateTime dateTime = DateTime.Parse(p_Date);
+
+            foreach (Tasks t in tasks)
+            {
+                if (t.ID == p_TaskID)
+                {
+                    t.DueDate = dateTime.Date;
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
+
+
+        [Route("[Action]")]
         [HttpGet]
         public IActionResult EditTaskForm(int p_TaskID)
         {

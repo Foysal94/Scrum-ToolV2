@@ -1,4 +1,7 @@
-﻿DeleteLabelLink = () ->
+﻿
+
+
+DeleteLabelLink = () ->
      $('body').on 'click', '.DeleteTaskLabel', (event) ->
         event.preventDefault()
         labelParent_li = $(this).closest('.TaskLabels')
@@ -34,15 +37,14 @@ AddLabelClick = () ->
                      alert "no good " + JSON.stringify(error);
                      
 EditTaskClick = () ->
-    $('body').on 'click', '.EditTaskButton', (event) ->
+    $('body').on 'click', '.TaskContent', (event) ->
         event.preventDefault();
         taskContent = $('.TaskContent').html()
         $.ajax 
             url: '/Task/EditTaskForm'
             type: 'GET'
             success: (data) ->
-                $('.TaskContent').remove()
-                $('.EditTaskButton').replaceWith data
+                $('.TaskContent').replaceWith data
                 $('.EditTaskContent').text taskContent
             error: (error) ->
                      alert 'EditTaskButtonClick Method'
@@ -60,10 +62,6 @@ EditTaskClick = () ->
               success: () ->
                     $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
                     $('.TaskContent').text taskContent
-                    $('.TaskContent').after '<a class="EditTaskButton"></a>'
-                    $('.EditTaskButton').text 'Edit Task Content....'
-                   
-              
               error: (error) ->
                      alert 'EditTaskContent Method'
                      alert "no good " + JSON.stringify(error);
@@ -79,14 +77,31 @@ EditTaskClick = () ->
               success: (data) ->
                     $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
                     $('.TaskContent').text data
-                    $('.TaskContent').after '<a class="EditTaskButton"></a>'
-                    $('.EditTaskButton').text 'Edit Task Content....'
-                   
-              
               error: (error) ->
                      alert 'EditTaskCancelClick Method'
                      alert "no good " + JSON.stringify(error);
-                 
+                     
+ChangeDateButtonClick = () ->
+        $('body').on 'click', '.ChangeDateButton', () -> 
+            $.datepicker.formatDate( "dd-M-yy", new Date( 2016, 1 - 1, 26 ) );
+            $('.ChangeDateButton').datepicker(
+                minDate: new Date()
+                onSelect: (dateText, inst) ->      
+                        dateAsString = dateText
+                        dateAsObject = $(this).datepicker( 'getDate' )
+                        taskID = $('.TaskWindow').attr 'id'
+                        $.ajax 
+                          url: '/Task/UpdateDate'
+                          type: 'POST'
+                          data: { p_TaskID : taskID, p_Date:dateAsString}
+                          success: (data) ->
+                                $('.Date').html("Date: "+ dateAsString)
+                          error: (error) ->
+                                 alert 'EditTaskCancelClick Method'
+                                 alert "no good " + JSON.stringify(error);
+            )   
+           
+           
                   
 $(document).ready(
     DeleteLabelLink()
@@ -94,4 +109,5 @@ $(document).ready(
     EditTaskClick()
     EditTaskContent()
     EditTaskCancelClick()
+    ChangeDateButtonClick()
 )
