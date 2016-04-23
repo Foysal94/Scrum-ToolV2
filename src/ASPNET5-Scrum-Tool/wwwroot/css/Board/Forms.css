@@ -1,15 +1,24 @@
 .Hidden {
   visibility: hidden; }
 
-.NewColumnName, .TaskContent {
+.NewColumnName {
   width: 100%;
   color: #000000; }
 
-.NewColumnName {
-  width: 100%; }
+.BoardTaskContentInput {
+  width: 100%;
+  height: 15%;
+  color: #000000; }
 
 .FormButtons {
   margin-top: 10px; }
+  .FormButtons a:hover, .FormButtons a:visited, .FormButtons a:link {
+    text-decoration: none;
+    color: #fff;
+    position: relative; }
+  .FormButtons a:hover {
+    background-color: #a3c2c2 !important;
+    cursor: pointer; }
 
 .AddColumnSubmit {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
@@ -20,7 +29,7 @@
   -webkit-border-radius: 5px;
   border: 1px solid #286090;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
   background-color: #286090;
   text-shadow: 1px 1px #286090;
   padding: 10px 10px 10px; }
@@ -34,7 +43,7 @@
   -webkit-border-radius: 5px;
   border: 1px solid #286090;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
   background-color: #286090;
   text-shadow: 1px 1px #286090;
   display: inline-block;
@@ -49,7 +58,7 @@
   -webkit-border-radius: 5px;
   border: 1px solid #286090;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
   background-color: #286090;
   text-shadow: 1px 1px #286090;
   padding: 10px 10px 10px; }
@@ -63,7 +72,7 @@
   -webkit-border-radius: 5px;
   border: 1px solid #286090;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
   background-color: #286090;
   text-shadow: 1px 1px #286090;
   display: inline-block;
@@ -78,7 +87,7 @@
   -webkit-border-radius: 5px;
   border: 1px solid #286090;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
   background-color: #286090;
   text-shadow: 1px 1px #286090;
   padding: 10px 10px 10px; }
@@ -92,7 +101,36 @@
   -webkit-border-radius: 5px;
   border: 1px solid #286090;
   cursor: pointer;
-  color: #fff;
+  color: #fff !important;
+  background-color: #286090;
+  text-shadow: 1px 1px #286090;
+  display: inline-block;
+  padding: 10px 10px 10px; }
+
+.EditTaskSubmit {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #286090;
+  cursor: pointer;
+  color: #fff !important;
+  background-color: #286090;
+  text-shadow: 1px 1px #286090;
+  padding: 10px 10px 10px; }
+
+.EditTaskCancel {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #286090;
+  cursor: pointer;
+  color: #fff !important;
   background-color: #286090;
   text-shadow: 1px 1px #286090;
   display: inline-block;

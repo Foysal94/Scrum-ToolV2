@@ -55,6 +55,8 @@ namespace ASPNET5ScrumTool.Migrations
 
                     b.Property<int>("TaskID");
 
+                    b.Property<int?>("TasksID");
+
                     b.HasKey("ID");
                 });
 
@@ -95,6 +97,13 @@ namespace ASPNET5ScrumTool.Migrations
                     b.HasOne("ASPNET5_Scrum_Tool.Models.Boards")
                         .WithMany()
                         .HasForeignKey("BoardsID");
+                });
+
+            modelBuilder.Entity("ASPNET5_Scrum_Tool.Models.Comments", b =>
+                {
+                    b.HasOne("ASPNET5_Scrum_Tool.Models.Tasks")
+                        .WithMany()
+                        .HasForeignKey("TasksID");
                 });
 
             modelBuilder.Entity("ASPNET5_Scrum_Tool.Models.Labels", b =>

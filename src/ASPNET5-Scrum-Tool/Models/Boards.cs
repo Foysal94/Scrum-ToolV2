@@ -18,6 +18,7 @@ namespace ASPNET5_Scrum_Tool.Models
         [Key]
         public int ID { get {return m_ID;} set { m_ID = value; } }
 
+        [DataType(DataType.Date)]
         public DateTime CreationDate  { get { return m_CreationDate; } set { m_CreationDate = value; } }
 
         public string Name { get { return m_BoardName; } set { m_BoardName = value; } }

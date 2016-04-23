@@ -1,4 +1,11 @@
 ﻿
+ActiveComment = () ->
+    $('body').on 'mouseenter', '.Comment', (event) ->
+        $(this).addClass 'ActiveComment'
+        $(this).find('.dropdown').removeClass 'Hidden'     
+    $('body').on 'mouseleave', '.Comment', (event) ->
+        $(this).removeClass 'ActiveComment'
+        $(this).find('.dropdown').addClass 'Hidden'
 
 
 DeleteLabelLink = () ->
@@ -62,6 +69,7 @@ EditTaskClick = () ->
               success: () ->
                     $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
                     $('.TaskContent').text taskContent
+                    $('.ActiveTask').find('.Task').html taskContent
               error: (error) ->
                      alert 'EditTaskContent Method'
                      alert "no good " + JSON.stringify(error);
@@ -77,23 +85,23 @@ EditTaskClick = () ->
               success: (data) ->
                     $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
                     $('.TaskContent').text data
+                  
               error: (error) ->
                      alert 'EditTaskCancelClick Method'
                      alert "no good " + JSON.stringify(error);
                      
 AddCommentSubmitButton = () ->
-     $('body').on 'click', '.CommentFormSubmit', () ->       
+     $('body').on 'click', '.CommentFormSubmit', (event) ->       
             event.preventDefault();
             taskID = $('.TaskWindow').attr 'id'
-            name = $('.CommentNameInput').html()
-            content = $('.CommentTextArea').html()
-            
+            name = $('.CommentNameInput').val().trim()
+            content = $('.CommentTextArea').val().trim()
+            return alert 'Missing required Fields' if name == "" or content == ""
             $.ajax 
                 url: '/Comment/Create'
                 type: 'POST'
-                data { p_TaskID: taskID, p_Name: name, p_Content: content }
-                success: (data) ->
-                    
+                data: { p_TaskID: taskID, p_Name: name, p_Content: content }
+                success: (data) -> alert 'Success'
                 error: (error) ->
                      alert 'AddCommentSubmitButton Method'
                      alert "no good " + JSON.stringify(error)
@@ -108,14 +116,14 @@ ChangeDateButtonClick = () ->
                         dateAsObject = $(this).datepicker( 'getDate' )
                         taskID = $('.TaskWindow').attr 'id'
                         $.ajax 
-                          url: '/Task/UpdateDate'
-                          type: 'POST'
-                          data: { p_TaskID : taskID, p_Date:dateAsString}
-                          success: (data) ->
-                                $('.Date').html("Date: "+ dateAsString)
-                          error: (error) ->
-                                 alert 'EditTaskCancelClick Method'
-                                 alert "no good " + JSON.stringify(error);
+                            url: '/Task/UpdateDate'
+                            type: 'POST'
+                            data: { p_TaskID : taskID, p_Date:dateAsString}
+                            success: (data) ->
+                                       $('.Date').html("Date: "+ dateAsString)
+                            error: (error) ->
+                                       alert 'EditTaskCancelClick Method'
+                                       alert "no good " + JSON.stringify(error);
             )   
            
            
@@ -127,4 +135,6 @@ $(document).ready(
     EditTaskContent()
     EditTaskCancelClick()
     ChangeDateButtonClick()
+    AddCommentSubmitButton()
+    ActiveComment()
 )

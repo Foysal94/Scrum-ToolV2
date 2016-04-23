@@ -49,7 +49,7 @@ namespace ASPNET5ScrumTool.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BoardID = table.Column<int>(nullable: false),
-                    ColumnName = table.Column<string>(nullable: true),
+                    ColumnName = table.Column<string>(nullable: false),
                     ColumnsID = table.Column<int>(nullable: true),
                     DueDate = table.Column<DateTime>(nullable: false),
                     TaskContent = table.Column<string>(nullable: false)
@@ -61,6 +61,28 @@ namespace ASPNET5ScrumTool.Migrations
                         name: "FK_Tasks_Columns_ColumnsID",
                         column: x => x.ColumnsID,
                         principalTable: "Columns",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Content = table.Column<string>(nullable: false),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    TaskID = table.Column<int>(nullable: false),
+                    TasksID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Comments_Tasks_TasksID",
+                        column: x => x.TasksID,
+                        principalTable: "Tasks",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -88,6 +110,7 @@ namespace ASPNET5ScrumTool.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable("Comments");
             migrationBuilder.DropTable("Labels");
             migrationBuilder.DropTable("Tasks");
             migrationBuilder.DropTable("Columns");

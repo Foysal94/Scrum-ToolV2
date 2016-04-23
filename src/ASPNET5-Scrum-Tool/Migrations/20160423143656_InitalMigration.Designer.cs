@@ -8,7 +8,7 @@ using ASPNET5_Scrum_Tool.Models;
 namespace ASPNET5ScrumTool.Migrations
 {
     [DbContext(typeof(ScrumToolDB))]
-    [Migration("20160313233201_InitalMigration")]
+    [Migration("20160423143656_InitalMigration")]
     partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,24 @@ namespace ASPNET5ScrumTool.Migrations
                     b.Property<int?>("BoardsID");
 
                     b.Property<string>("Name");
+
+                    b.HasKey("ID");
+                });
+
+            modelBuilder.Entity("ASPNET5_Scrum_Tool.Models.Comments", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("TaskID");
+
+                    b.Property<int?>("TasksID");
 
                     b.HasKey("ID");
                 });
@@ -80,6 +98,13 @@ namespace ASPNET5ScrumTool.Migrations
                     b.HasOne("ASPNET5_Scrum_Tool.Models.Boards")
                         .WithMany()
                         .HasForeignKey("BoardsID");
+                });
+
+            modelBuilder.Entity("ASPNET5_Scrum_Tool.Models.Comments", b =>
+                {
+                    b.HasOne("ASPNET5_Scrum_Tool.Models.Tasks")
+                        .WithMany()
+                        .HasForeignKey("TasksID");
                 });
 
             modelBuilder.Entity("ASPNET5_Scrum_Tool.Models.Labels", b =>

@@ -9,22 +9,34 @@
     -webkit-border-radius: 5px;
      border: 1px solid $form-button-color;
      cursor: pointer;
-     color: #fff;
+     color: #fff !important;
      background-color:$form-button-color;
      text-shadow: 1px 1px $form-button-color;
 }
 
-.NewColumnName, .TaskContent {
-    width:100%;
-    color: #000000;
-}
-
 .NewColumnName {
     width:100%;
+    color: $task-font-color;
+}
+
+.BoardTaskContentInput {
+    width:100%;
+    height:15%;
+    color:  $task-font-color;
 }
 
 .FormButtons {
     margin-top:10px;
+    a:hover, a:visited, a:link {
+       text-decoration: none;
+       color: #fff;
+       position:relative;
+     }
+
+    a:hover {
+        background-color: #a3c2c2 !important;
+        cursor:pointer;
+    }
 }
 
  .AddColumnSubmit {
@@ -61,3 +73,15 @@
     padding: 10px 10px 10px ;
 }
 
+
+.EditTaskSubmit {
+    @include CustomButton;
+    padding: 10px 10px 10px ;
+}
+
+
+.EditTaskCancel {
+    @include CustomButton;
+    display:inline-block;
+    padding: 10px 10px 10px ;
+}

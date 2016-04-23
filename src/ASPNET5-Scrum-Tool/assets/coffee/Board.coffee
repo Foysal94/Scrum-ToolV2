@@ -87,7 +87,8 @@ ActiveTask = () ->
         $(this).addClass 'ActiveTask'
         $(this).find('.dropdown').removeClass 'Hidden'               
     $('#MainColumn').on 'mouseleave', '.TaskParentDiv', (event) ->
-        $(this).removeClass 'ActiveTask'
+        taskWindowOpen = $('body').find '.TaskWindow'
+        $(this).removeClass 'ActiveTask' if taskWindowOpen.length == 0
         $(this).find('.dropdown').addClass 'Hidden'
    
       
@@ -103,6 +104,7 @@ ActiveTaskClick = () ->
         event.preventDefault();
         task = $(this).find '.Task'
         taskID = $(task).attr 'id'
+       
         $.ajax
             url: '/Task/Information/',
             type: 'GET',
@@ -119,6 +121,9 @@ ActiveTaskClick = () ->
                         open: (event,ui) ->
                             $('.ui-widget-overlay').bind 'click', (event,ui) ->         
                                 $(data).dialog('close');
+                        close: (event, ui) ->
+                            $('.ActiveTask').removeClass 'ActiveTask'
+                        
                       .siblings('.ui-dialog-titlebar').removeClass 'ui-widget-header'     
                       LoadLabels()
             error : (error) ->
@@ -264,17 +269,17 @@ AddTaskForm = () ->
     $('#MainColumn').on 'click', '.AddTask', (event) ->
         event.preventDefault()
         selectedColumn = $(this).parent().parent()    
-        PreventFormReload = $(selectedColumn).find 'TaskContent'
+        PreventFormReload = $(selectedColumn).find '.AddTaskForm'
         if  PreventFormReload.length != 0
             return 
             
         selectedColumnID = $(selectedColumn).attr 'id'
         prevTask = $(this).prev()
         
-        DoesFormExist = $('#MainColumn').find '.TaskContent'
+        DoesFormExist = $('#MainColumn').find '.AddTaskForm'
         if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                 column = DoesFormExist.parent()
-                column.find('.TaskContent').replaceWith("<a class='AddTask'> Add a task.... </a>")
+                column.find('.AddTaskForm').replaceWith("<a class='AddTask'> Add a task.... </a>")
                 column.find('.TaskFormSubmit').remove();
                 
         $.get '/Board/AddTaskForm', (data) ->          
@@ -283,19 +288,21 @@ AddTaskForm = () ->
 SubmitTaskForm = () ->
      $('#MainColumn').on 'click', '.TaskFormSubmit', (event) ->
           event.preventDefault()
-          selectedColumnName = $('.TaskContent').parent().parent().find('.panel-title').text();
-          taskContent = $('.TaskContent').val().trim()
+          selectedColumnName = $('.AddTaskForm').parent().parent().find('.panel-title').text();
+          taskContent = $('.BoardTaskContentInput').val().trim()
           
           $.ajax
             url: '/Task/AddNewTask'
             type: 'POST'
             data: { BoardID: m_BoardID, ColumnName: selectedColumnName, TaskContent: taskContent}
             success: (data) ->
-                $('.TaskContent').replaceWith () ->
+                $('.AddTaskForm').after '<a class="AddTask"> Add a task.... </a>'
+                $('.AddTaskForm').replaceWith () ->
                     $(data).draggable TaskDragOptions
                     $(data).droppable TaskDropOptions
-                $('.TaskFormSubmit').replaceWith('<a class="AddTask"> Add a task.... </a>')
+                
             error : (error) ->
+                 alert 'SubmitTaskForm Error'
                  alert "no good "+JSON.stringify(error);
  
  CancelTaskForm = () ->

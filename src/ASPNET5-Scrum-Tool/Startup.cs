@@ -34,6 +34,7 @@ namespace ASPNET5_Scrum_Tool
 
             // Add framework services.
             services.AddMvc();
+           
             var connection = @"Server=(localdb)\mssqllocaldb;Database=ScrumToolDB;Trusted_Connection=True;MultipleActiveResultSets=false";
             var azureConnection =
                 @"Server=tcp:foysal94.database.windows.net,1433;Database=ScrumToolDB;
