@@ -1,8 +1,17 @@
-﻿
+﻿@import '../Shared/base';
 // CSS to change the form for when changing the panel name;
-.ColumnTitleSubmit, .TaskFormSubmit {
-    display:block;
-    color: #000000;
+ @mixin CustomButton {
+     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+     border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+     border: 1px solid $form-button-color;
+     cursor: pointer;
+     color: #fff;
+     background-color:$form-button-color;
+     text-shadow: 1px 1px $form-button-color;
 }
 
 .NewColumnName, .TaskContent {
@@ -10,11 +19,45 @@
     color: #000000;
 }
 
-.ColumnTitleSumbit {
-    display:block;
-
-}
-
 .NewColumnName {
     width:100%;
 }
+
+.FormButtons {
+    margin-top:10px;
+}
+
+ .AddColumnSubmit {
+    @include CustomButton;
+    padding: 10px 10px 10px ;
+}
+
+.AddColumnCancel {
+    @include CustomButton;
+    display:inline-block;
+    padding: 10px 10px 10px ;
+    
+}
+
+.ColumnTitleSubmit {
+    @include CustomButton;
+    padding: 10px 10px 10px ;
+}
+
+.ColumnTitleCancel {
+    @include CustomButton;
+    display:inline-block;
+    padding: 10px 10px 10px ;
+}
+
+.TaskFormSubmit {
+    @include CustomButton;
+    padding: 10px 10px 10px ;
+}
+
+.TaskFormCancel {
+    @include CustomButton;
+    display:inline-block;
+    padding: 10px 10px 10px ;
+}
+

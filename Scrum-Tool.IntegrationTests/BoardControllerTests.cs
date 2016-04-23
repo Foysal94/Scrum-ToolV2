@@ -35,8 +35,8 @@ namespace Scrum_Tool.IntegrationTests
         [Fact]
         public void ReturnLoadBoard()
         {
-            var response = m_Client.GetAsync("/Board/Load/1")
-            
+            var response = m_Client.GetAsync("/Board/Load/1");
+
         }
         
     }

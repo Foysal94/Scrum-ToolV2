@@ -48,7 +48,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public ViewComponentResult AddColumn(Columns model)
         {
             Columns tempColumn = new Columns(model.Name, model.BoardID); // The model got passed the last column ID
-            
+
             m_context.Columns.Add(tempColumn);
             m_context.SaveChanges();
             tempColumn.TasksList = new List<Tasks>();
@@ -72,6 +72,25 @@ namespace ASPNET5_Scrum_Tool.Controllers
             }
         }
 
+        [Route("[Action]")]
+        [HttpGet]
+        public string GetColumnHeader(int p_ColumnID)
+        {
+            var columnList = m_context.Columns.ToList();
+            string name = "";
+            int boardID = 0;
+            foreach (Columns c in columnList)
+            {
+                if (c.ID == p_ColumnID)
+                {
+                    name = c.Name;
+                    boardID = c.BoardID;
+                }
+            }
+
+
+            return "";
+        }
 
     }
 }

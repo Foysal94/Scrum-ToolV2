@@ -126,7 +126,7 @@ ActiveTaskClick = () ->
                  alert JSON.stringify(error);
         
 PanelTitleClick = () ->
-    $('#MainColumn').on 'click', '.panel-title',() ->
+    $('#MainColumn').on 'click', '.ActivePanel',() ->
           PreventFormReload = $(this).find '.NewColumnName' #Clicking on form field means this event handler is called and keeps reloading the form. This code stops it.
           if  PreventFormReload.length != 0
             return 
@@ -177,6 +177,13 @@ SubmitColumNameChange = () ->
             error : (error) ->
                  alert "SubmitColumnForm Method, error"
                  alert JSON.stringify(error);
+                 
+CancelColumnNameChange = () ->
+    $('#MainColumn').on 'click', '.ColumnTitleCancel', (event) ->
+        event.preventDefault();
+        oldColumnName =  $('.PreviousColumnName').val().trim()
+        column = $(this).parentsUntil '.panel-title'
+        $(column).html oldColumnName
                  
 DeleteColumnLinkClick = () ->
     $('#MainColumn').on 'click', '.DeleteColumnLink', (event) ->
@@ -247,6 +254,11 @@ SubmitAddColumn = () ->
             error: (error) ->
                  alert "SubmitAddColumn method error"
                  alert  JSON.stringify(error);
+ 
+ CancelColumnForm = () -> 
+    $('#MainColumn').on 'click', '.AddColumnCancel', (event) ->
+        event.preventDefault()
+        $('AddColumnForm').replaceWith "<a id='AddColumnButton'>Add a List</a>"
                 
 AddTaskForm = () ->
     $('#MainColumn').on 'click', '.AddTask', (event) ->
@@ -285,8 +297,11 @@ SubmitTaskForm = () ->
                 $('.TaskFormSubmit').replaceWith('<a class="AddTask"> Add a task.... </a>')
             error : (error) ->
                  alert "no good "+JSON.stringify(error);
-    
-                  
+ 
+ CancelTaskForm = () ->
+    $('#MainColumn').on 'click', '.TaskFormCancel', (event) ->
+        event.preventDefault()
+        $('.AddTaskForm').replaceWith "<a class='AddTask'> Add a task.... </a>"        
 
 $(document).ready(
     PanelTitleClick()
@@ -300,5 +315,8 @@ $(document).ready(
     DeleteColumnLinkClick()
     DeleteTaskLinkClick()
     ActiveTaskClick()
+    CancelTaskForm() 
+    CancelColumnNameChange() 
+    CancelColumnForm()
 )
 

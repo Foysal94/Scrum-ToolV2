@@ -2,7 +2,8 @@
 
 @section  css {
     <link rel="stylesheet" href="~/css/Board/Board.css"/>
-    <link rel="stylesheet" href="~/css/Task/Task.css" />
+    <link rel="stylesheet" href="~/css/Task/Task.css"/>
+    <link rel="stylesheet" href="~/css/CustomButtons/SaveButton.css" />
 }
 
 @section scripts {
@@ -20,7 +21,8 @@
                  @Component.Invoke("Panel_Lists", column)
              }
         }
-            <a id="AddColumnButton">Add a List</a>
+
+        <a id="AddColumnButton">Add a List</a>
     </div> <!-- Main Column End Div -->
 
     <div class="col-md-1" id="MenuColumn">
