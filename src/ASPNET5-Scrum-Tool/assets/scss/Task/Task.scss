@@ -57,5 +57,47 @@
         }
         
     }
-  
 }
+
+.CommentsDiv {
+
+    .CommentTextArea {
+        width:100%;
+        margin-bottom: 10px;
+    }
+    .ColumnFormSubmit {
+        display:block;
+
+    }
+}
+
+.Comment {
+
+    margin: 20px 0 5px 0;
+    border: 3px solid $logo-color;
+    border-radius: 15px;
+    padding: 8px 8px;
+    width: 100%;
+    color: $task-font-color;
+ 
+    .CommentName {
+
+        .CommentContent {
+            display:inline;
+            font-size:12px;
+         }
+  
+    }
+
+    .CommentDate {
+        font-size:12px;
+        float:right;
+        
+    }
+
+    
+
+}
+
+
+

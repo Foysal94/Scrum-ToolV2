@@ -14,7 +14,8 @@ namespace ASPNET5_Scrum_Tool.Models
         private int m_BoardID;
         private string m_ColumnName;
         private Columns m_ParentColumn;
-        private List<Models.Labels> m_LabelList; 
+        private List<Models.Labels> m_LabelList;
+        private List<Comments> m_CommentList;
 
         [Key]
         public int ID { get {return m_ID;} set { m_ID = value; } }
@@ -29,6 +30,7 @@ namespace ASPNET5_Scrum_Tool.Models
 
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
         public List<Labels> LabelList { get { return m_LabelList; } set { m_LabelList = value; } }
+        public List<Comments> CommentList { get { return m_CommentList; } set { m_CommentList = value; } }
 
         //public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
 

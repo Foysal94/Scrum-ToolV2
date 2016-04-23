@@ -14,6 +14,7 @@
                 {
                    @Component.Invoke("Label", label)
                 }
+                
             </ul>
 
     </div>
@@ -38,8 +39,34 @@
         <h3 class="Date">
             Date: @Model.DueDate.Date
         </h3>
-        <label>New date</label>
         <input type="button" value="ChangeDate" class="ChangeDateButton">
     </div>
+
+    <div class="CommentsDiv">
+        
+            <div class="Comment" id="1">
+                <h4 class="CommentName">
+                    Bob:
+                    <span class="CommentContent">
+                        FSADFSASAFMASED AM GOING TO THE SAME FSADFSASAFMASED
+                        AM GOING TO THE SAMEFSADFSASAFMASED
+                        AM GOING TO THE SAMEFSADFSASAFMASED AM GOING TO THE
+                        SAMEFSADFSASAFMASED AM GOING TO THE SAME FSADFSASAFMASED AM GOING TO THE SAME
+                    </span>
+                </h4>
+                <p class="CommentDate">21st Apiril, 10:30AM</p>
+               
+            </div>
+        
+
+
+        <form asp-controller="Comment" asp-action="Create" method='POST'>
+            <textarea class="CommentTextArea"></textarea>
+            <label>Name:</label>
+            <input class="CommentNameInput" type="text">
+            <input type="submit" value="Submit" class="CommentFormSubmit">
+        </form>
+    </div>
+
 </div>
 

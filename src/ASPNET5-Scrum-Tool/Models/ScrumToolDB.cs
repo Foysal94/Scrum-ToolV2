@@ -33,5 +33,8 @@ namespace ASPNET5_Scrum_Tool.Models
         public DbSet<Tasks> Tasks { get; set; }
 
         public DbSet<Labels> Labels { get; set; } 
+        
+        public DbSet<Comments> Comments { get; set; } 
+
     }
 }

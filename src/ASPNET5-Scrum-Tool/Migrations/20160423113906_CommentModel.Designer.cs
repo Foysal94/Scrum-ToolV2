@@ -8,9 +8,10 @@ using ASPNET5_Scrum_Tool.Models;
 namespace ASPNET5ScrumTool.Migrations
 {
     [DbContext(typeof(ScrumToolDB))]
-    partial class ScrumToolDBModelSnapshot : ModelSnapshot
+    [Migration("20160423113906_CommentModel")]
+    partial class CommentModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")

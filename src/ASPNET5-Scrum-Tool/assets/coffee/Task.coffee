@@ -81,6 +81,23 @@ EditTaskClick = () ->
                      alert 'EditTaskCancelClick Method'
                      alert "no good " + JSON.stringify(error);
                      
+AddCommentSubmitButton = () ->
+     $('body').on 'click', '.CommentFormSubmit', () ->       
+            event.preventDefault();
+            taskID = $('.TaskWindow').attr 'id'
+            name = $('.CommentNameInput').html()
+            content = $('.CommentTextArea').html()
+            
+            $.ajax 
+                url: '/Comment/Create'
+                type: 'POST'
+                data { p_TaskID: taskID, p_Name: name, p_Content: content }
+                success: (data) ->
+                    
+                error: (error) ->
+                     alert 'AddCommentSubmitButton Method'
+                     alert "no good " + JSON.stringify(error)
+                     
 ChangeDateButtonClick = () ->
         $('body').on 'click', '.ChangeDateButton', () -> 
             $.datepicker.formatDate( "dd-M-yy", new Date( 2016, 1 - 1, 26 ) );
