@@ -41,22 +41,26 @@
         </h3>
         <input type="button" value="ChangeDate" class="ChangeDateButton">
     </div>
-
+    <h3>Comments</h3>
     <div class="CommentsDiv">
-        
-            <div class="Comment" id="1">
-                <h4 class="CommentName">
-                    Bob:
-                    <span class="CommentContent">
+
+        <div class="Comment" id="1">
+            <h4 class="CommentName">
+                Bob:
+                <span class="CommentContent">
                         FSADFSASAFMASED AM GOING TO THE SAME FSADFSASAFMASED
                         AM GOING TO THE SAMEFSADFSASAFMASED
                         AM GOING TO THE SAMEFSADFSASAFMASED AM GOING TO THE
                         SAMEFSADFSASAFMASED AM GOING TO THE SAME FSADFSASAFMASED AM GOING TO THE SAME
                     </span>
-                </h4>
-                <p class="CommentDate">21st Apiril, 10:30AM</p>
-               
-            </div>
+            </h4>
+            <p class="CommentDate">21st Apiril, 10:30AM</p>
+        </div>
+
+        @foreach (var comment in Model.CommentList)
+        {
+            @Component.Invoke("Comment", comment);
+        }
 
 
 

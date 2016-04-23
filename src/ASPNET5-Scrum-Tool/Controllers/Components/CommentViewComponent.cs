@@ -12,7 +12,7 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 
         public IViewComponentResult Invoke(Comments model)
         {
-            return View("Label", model);
+            return View("Comment", model);
         }
 
         /*

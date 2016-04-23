@@ -56,6 +56,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             var columnList = m_context.Columns.ToList();
             var taskList = m_context.Tasks.ToList();
             var labelList = m_context.Labels.ToList();
+            var commentList = m_context.Comments.ToList();
             foreach (Columns c in columnList)
             {
                 if (c.BoardID == m_Board.ID)
@@ -65,7 +66,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     {
                         if (t.ColumnName == c.Name)
                         {
+                            /*
                             t.LabelList = new List<Labels>();
+                            t.CommentList = new List<Comments>();
                             foreach (Labels label in labelList)
                             {
                                 if (t.ID == label.TaskID)
@@ -73,6 +76,15 @@ namespace ASPNET5_Scrum_Tool.Controllers
                                     t.LabelList.Add(label);
                                 }
                             }
+
+                            foreach (var comment in commentList)
+                            {
+                                if (t.ID == comment.TaskID)
+                                {
+                                    t.CommentList.Add(comment);
+                                }
+                            }
+                            */
 
                             c.TasksList.Add(t);
                         }

@@ -67,8 +67,11 @@ EditTaskClick = () ->
               type: 'POST'
               data: { p_TaskID : taskID, p_NewTaskContent: taskContent }
               success: () ->
+                    column =  $('.ActiveTask').parent().parent()
+                    columnName = $(column).find('.panel-title').html()
                     $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
                     $('.TaskContent').text taskContent
+                    $('.TaskContent').append "<p class='ListName'>in list " + columnName + "</p>"
                     $('.ActiveTask').find('.Task').html taskContent
               error: (error) ->
                      alert 'EditTaskContent Method'
