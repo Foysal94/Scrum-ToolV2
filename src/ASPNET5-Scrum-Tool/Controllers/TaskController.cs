@@ -5,6 +5,8 @@ using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using ASPNET5_Scrum_Tool.Models;
+using Microsoft.Data.Entity;
+
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ASPNET5_Scrum_Tool.Controllers
@@ -26,8 +28,8 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddNewTask(Tasks model)
         {
-            m_Task = new Tasks(model.BoardID, model.ColumnName, model.TaskContent); // Adding one to the ID because the model has the last task ID.
-            m_context.Tasks.Add(m_Task);
+            m_Task = new Tasks(model.BoardID, model.ColumnName, model.TaskContent);
+            m_context.Add(m_Task);
             m_context.SaveChanges();
 
             return ViewComponent("Task", m_Task);

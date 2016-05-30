@@ -10,7 +10,7 @@ namespace Scrum_Tool.UnitTests
     public class ColumnControllerTests : Setup
     {
         private ColumnController m_ColumnController;
-        protected ScrumToolDB m_Context;
+       
         // private DbContextOptionsBuilder<ScrumToolDB> builder;
 
         public ColumnControllerTests()
@@ -34,8 +34,7 @@ namespace Scrum_Tool.UnitTests
             column.Should().NotBeNull();
             column.Name.Should().Be("Test");
         }
-
-        /*
+        
         [Fact]
         public void ColumnAdded()
         {
@@ -50,7 +49,6 @@ namespace Scrum_Tool.UnitTests
 
 
         }
-        */
 
         [Fact]
         public void ColumnDeleted()

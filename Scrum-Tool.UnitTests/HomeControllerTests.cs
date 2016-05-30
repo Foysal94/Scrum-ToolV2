@@ -11,7 +11,7 @@ namespace Scrum_Tool.UnitTests
     public class HomeControllerTests : Setup
     {
         private HomeController m_HomeController;
-        protected ScrumToolDB m_Context;
+       
         //private DbContextOptionsBuilder<ScrumToolDB> builder;
 
         public HomeControllerTests() : base() //Arange
@@ -32,7 +32,7 @@ namespace Scrum_Tool.UnitTests
             // Act
             var actionResult = m_HomeController.SumbitBoardForm(new Boards()) as RedirectToActionResult;
             // Assert
-            Assert.NotNull(actionResult);
+            actionResult.Should().NotBeNull();
             actionResult.Should().BeOfType<RedirectToActionResult>().Which.ActionName.Should().Be("Index");
 
         }
@@ -40,8 +40,11 @@ namespace Scrum_Tool.UnitTests
         [Fact]
         public void RedirectToLoadWhenBoardNameFound()
         {
+            // Act
             var board = m_Context.Boards.First(); // Returns "HelloWorld"
             var actionResult =  m_HomeController.SumbitBoardForm(board) as RedirectToActionResult;
+            
+            // Assert
             board.Should().NotBeNull();
             actionResult.Should().BeOfType<RedirectToActionResult>()
                 .Which.ActionName.Should().Be("Load");

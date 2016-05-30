@@ -17,9 +17,6 @@ namespace Scrum_Tool.UnitTests
     public class BoardControllerTests : Setup
     {
         private BoardController m_BoardController;
-        private ScrumToolDB m_Context;
-       // private DbContextOptionsBuilder<ScrumToolDB> builder;
-
         public BoardControllerTests() 
         {
             var db = new DbContextOptionsBuilder();
