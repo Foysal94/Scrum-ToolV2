@@ -79,18 +79,22 @@ $('.ColourLabel').draggable
                     revert:true;
 
 
-                    
-                    
-
 ActiveTask = () ->
     $('#MainColumn').on 'mouseenter', '.TaskParentDiv', (event) ->
         $(this).addClass 'ActiveTask'
-        $(this).find('.dropdown').removeClass 'Hidden'               
+        $(this).find('.EditTask').removeClass 'Hidden'               
     $('#MainColumn').on 'mouseleave', '.TaskParentDiv', (event) ->
         taskWindowOpen = $('body').find '.TaskWindow'
         $(this).removeClass 'ActiveTask' if taskWindowOpen.length == 0
-        $(this).find('.dropdown').addClass 'Hidden'
-   
+        $(this).find('.EditTask').addClass 'Hidden'
+ 
+EditTaskEnter = () ->
+      $('#MainColumn').on 'mouseenter', '.EditTask', (event) ->
+        task = $('.ActiveTask')
+        $(task).removeClass 'ActiveTask'
+      $('#MainColumn').on 'mouseleave', '.EditTask', (event) ->
+        task = $(this).parent();
+        $(task).addClass 'ActiveTask'
       
 ActiveColumn = () ->
     $('#MainColumn').on 'mouseenter', '.panel-title', (event) ->
@@ -153,7 +157,6 @@ PanelTitleClick = () ->
                $('.PreviousColumnName').val(initalColumnName)
                $('.NewColumnName').val(initalColumnName)
                    
-
 SubmitColumNameChange = () ->
     $('#MainColumn').on 'click', 'input.ColumnTitleSubmit', (event) ->
         event.preventDefault();
@@ -325,5 +328,6 @@ $(document).ready(
     CancelTaskForm() 
     CancelColumnNameChange() 
     CancelColumnForm()
+    EditTaskEnter()
 )
 
