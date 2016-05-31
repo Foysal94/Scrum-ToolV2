@@ -35,13 +35,17 @@
      cursor:pointer;
 }
 
-.caret {
-    display:block;
-    float:right;
-    border-left: 8.5px solid transparent;
-    border-right: 8.5px solid transparent;
-    border-top: 8.5px solid #000000;
+.ColumnOptions {
+    .caret {
+        display:block;
+        float:right;
+        border-left: 8.5px solid transparent;
+        border-right: 8.5px solid transparent;
+        border-top: 8.5px solid #000000;    
+    }
 }
+
+
 
 #MainColumn
 {

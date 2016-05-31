@@ -25,7 +25,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             Comments tempComment = new Comments(p_Name, p_Content, p_TaskID);
             m_context.Comments.Add(tempComment);
             m_context.SaveChanges();
-            return View();
+            return ViewComponent("Comment", tempComment);
         }
     }
 }

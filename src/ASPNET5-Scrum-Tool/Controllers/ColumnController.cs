@@ -27,7 +27,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public void ChangeColumnName(string p_OldColumnName, string p_NewColumnName, int p_BoardID)
         {
             var columns = m_context.Columns.ToList();
-            string query = "from column in m_context.Columns where column.Name.Equals(p_OldBoardName) select column";
+            //string query = "from column in m_context.Columns where column.Name.Equals(p_OldBoardName) select column";
 
             foreach (Columns c in columns)
             {

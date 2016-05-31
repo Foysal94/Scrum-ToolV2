@@ -22,6 +22,7 @@ TaskDropOptions = {
                          
                     drop: (event, ui) ->
                              task = $(this);
+                             $(task).css 'list-style-type', 'none'
                              taskID = $(task).find('.Task').attr 'id'
                              label = $(ui.draggable)
                              labelColour = $(label).attr 'id'
@@ -38,7 +39,10 @@ TaskDropOptions = {
                                     alert "no good "+JSON.stringify(error);
                   }
 
-                                                                                  
+
+TaskSortOptions = { 
+    
+}                                                                                                                                                             
 
 BoardDropOptions = {
                     accept: (element) ->
@@ -53,6 +57,7 @@ BoardDropOptions = {
                     drop: (event, ui) ->
                             column = $(this)
                             selectedTaskDiv = $(ui.draggable)
+                            $(selectedTaskDiv).parent().css 'list-style-type', 'none'
                             newColumnName = $(column).find('.panel-title').text()
                             taskID = $(selectedTaskDiv).find('.Task').attr 'id'
                             currentColumnID = $(selectedTaskDiv).parent().parent().attr 'id'
@@ -97,9 +102,9 @@ EditTaskEnter = () ->
         $(task).addClass 'ActiveTask'
       
 ActiveColumn = () ->
-    $('#MainColumn').on 'mouseenter', '.panel-title', (event) ->
+    $('#MainColumn').on 'mouseenter', '.panel-heading', (event) ->
         $(this).addClass 'ActivePanel'           
-    $('#MainColumn').on 'mouseleave', '.panel-title', (event) ->
+    $('#MainColumn').on 'mouseleave', '.panel-heading', (event) ->
         $(this).removeClass 'ActivePanel'
         #$(this).draggable "disable"
 
@@ -141,7 +146,7 @@ PanelTitleClick = () ->
             return 
 
           selectedColumn = $(this).parent()    
-          initalColumnName =  $(this).text()
+          initalColumnName =  $(this).find('.panel-title').text()
           
           DoesFormExist = $('#MainColumn').find '.AddColumnForm'
           $('.AddColumnForm').replaceWith '<a id="AddColumnButton">Add a List</a>'
@@ -150,15 +155,16 @@ PanelTitleClick = () ->
           if  DoesFormExist.length != 0 #If it does not equal 0, that means the form has been found
                    panelHeading = DoesFormExist.parent() #Get form parent div panel-heading
                    oldBoardName = $('.PreviousColumnName').val()
-                   panelHeading.html("<h3 class='panel-title'></h3>").text(oldBoardName)
+                   $('.ColumnNameForm').replaceWith "<h3 class='panel-title'> </h3>"
+                   panelHeading.find('.panel-title').text(oldBoardName)
           
           $.get '/Board/ColumnNameChangeForm', (data) -> 
-               selectedColumn.find('.panel-title').html(data)
+               selectedColumn.find('.panel-title').replaceWith data
                $('.PreviousColumnName').val(initalColumnName)
                $('.NewColumnName').val(initalColumnName)
                    
 SubmitColumNameChange = () ->
-    $('#MainColumn').on 'click', 'input.ColumnTitleSubmit', (event) ->
+    $('#MainColumn').on 'click', '.ColumnTitleSubmit', (event) ->
         event.preventDefault();
 
         newColumnName = $('.NewColumnName').val().trim()
@@ -176,12 +182,10 @@ SubmitColumNameChange = () ->
             url: '/Column/ChangeColumnName',
             type: 'POST',
             data: {p_OldColumnName : oldColumnName, p_NewColumnName : newColumnName,  p_BoardID: m_BoardID },
-            dataType: 'json',
             success: (data) ->              
-                     alert 'data is' + data
-                     panelHeading = $('.panel-heading').find('.NewColumnName').parent()
-                     $(panelHeading).html("<h3 class='panel-title'> <h3>").text(newColumnName)
-                     
+                     panelHeading = $('.ColumnNameForm').parent();
+                     $('.ColumnNameForm').replaceWith "<h3 class='panel-title'> </h3>"
+                     panelHeading.find('.panel-title').text(newColumnName)
             error : (error) ->
                  alert "SubmitColumnForm Method, error"
                  alert JSON.stringify(error);
@@ -190,13 +194,27 @@ CancelColumnNameChange = () ->
     $('#MainColumn').on 'click', '.ColumnTitleCancel', (event) ->
         event.preventDefault();
         oldColumnName =  $('.PreviousColumnName').val().trim()
-        column = $(this).parentsUntil '.panel-title'
-        $(column).html oldColumnName
+        panelheading = $(this).parents '.panel-heading'
+        $('.ColumnNameForm').replaceWith '<h3 class="panel-title"></h3>'
+        panelheading.find('.panel-title').html oldColumnName
+        
+ColumnNameFormMouseEvents = ()  ->
+    $('#MainColumn').on 'mouseenter', '.ColumnTitleCancel', (event) ->
+        $('.ActivePanel').removeClass 'ActivePanel'
+    $('#MainColumn').on 'mouseleave', '.ColumnTitleCancel', (event) ->
+         panelheading = $('.ColumnTitleCancel').parents '.panel-heading'
+         $( panelheading).addClass 'ActivePanel'
+         
+    $('#MainColumn').on 'mouseenter', '.ColumnTitleSubmit', (event) ->
+        $('.ActivePanel').removeClass 'ActivePanel'
+    $('#MainColumn').on 'mouseleave', '.ColumnTitleSubmit ', (event) ->
+          panelheading = $('.ColumnTitleSubmit').parents '.panel-heading'
+          $(panelheading).addClass 'ActivePanel'
                  
 DeleteColumnLinkClick = () ->
     $('#MainColumn').on 'click', '.DeleteColumnLink', (event) ->
         event.preventDefault()
-        column = $(this).parent().parent().parent().parent().parent()
+        column = $(this).parents '.BoardColumn'
         columnID = $(column).attr 'id'
         $.ajax
             url: '/Column/Delete',
@@ -212,7 +230,7 @@ DeleteColumnLinkClick = () ->
 DeleteTaskLinkClick = () ->
     $('#MainColumn').on 'click', '.DeleteTaskLink', (event) ->
      event.preventDefault()
-     task = $('.ActiveTask').find '.Task'
+     task = $(this).parents('.EditTask').prev()
      taskID = $(task).attr 'id'
      $.ajax
          url: '/Task/Delete',
@@ -266,7 +284,7 @@ SubmitAddColumn = () ->
  CancelColumnForm = () -> 
     $('#MainColumn').on 'click', '.AddColumnCancel', (event) ->
         event.preventDefault()
-        $('AddColumnForm').replaceWith "<a id='AddColumnButton'>Add a List</a>"
+        $('.AddColumnForm').replaceWith "<a id='AddColumnButton'>Add a List</a>"
                 
 AddTaskForm = () ->
     $('#MainColumn').on 'click', '.AddTask', (event) ->
@@ -303,7 +321,7 @@ SubmitTaskForm = () ->
                 $('.AddTaskForm').replaceWith () ->
                     $(data).draggable TaskDragOptions
                     $(data).droppable TaskDropOptions
-                
+                    $(data).css 'list-style-type', 'none'
             error : (error) ->
                  alert 'SubmitTaskForm Error'
                  alert "no good "+JSON.stringify(error);
@@ -329,5 +347,6 @@ $(document).ready(
     CancelColumnNameChange() 
     CancelColumnForm()
     EditTaskEnter()
+    ColumnNameFormMouseEvents()
 )
 
