@@ -27,5 +27,22 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_context.SaveChanges();
             return ViewComponent("Comment", tempComment);
         }
+
+        [Route("[Action]")]
+        [HttpPost]
+        public void Delete(int p_CommentID)
+        {
+            var commentList = m_context.Comments.ToList();
+
+            foreach (Comments c in commentList)
+            {
+                if (c.ID == p_CommentID)
+                {
+                    m_context.Comments.Remove(c);
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
     }
 }

@@ -71,7 +71,7 @@ EditTaskClick = () ->
                     columnName = $(column).find('.panel-title').html()
                     $('.EditTaskForm').replaceWith  '<a class="TaskContent"></a>'
                     $('.TaskContent').text taskContent
-                    $('.TaskContent').append "<p class='ListName'>in list " + columnName + "</p>"
+                    $('.TaskContent').append "<p class='ListName'> in list " + columnName + "</p>"
                     $('.ActiveTask').find('.Task').html taskContent
               error: (error) ->
                      alert 'EditTaskContent Method'
@@ -104,7 +104,8 @@ AddCommentSubmitButton = () ->
                 url: '/Comment/Create'
                 type: 'POST'
                 data: { p_TaskID: taskID, p_Name: name, p_Content: content }
-                success: (data) -> alert 'Success'
+                success: (data) -> 
+                    $('.CommentsDiv').find('.CommentForm').prev data
                 error: (error) ->
                      alert 'AddCommentSubmitButton Method'
                      alert "no good " + JSON.stringify(error)
@@ -128,7 +129,22 @@ ChangeDateButtonClick = () ->
                                        alert 'EditTaskCancelClick Method'
                                        alert "no good " + JSON.stringify(error);
             )   
-           
+            
+DeleteComment = () ->
+     $('body').on 'click', '.DeleteCommentLink', (event) ->
+        event.preventDefault();
+        comment = $(this).parents '.Comment'
+        commentID = $(comment).attr 'id'
+        
+        $.ajax
+            url: '/Comment/Delete',
+            type: 'POST',
+            data: {p_CommentID: commentID},
+            success: (data) ->              
+                     $(comment ).remove()
+            error : (error) ->
+                 alert "DeleteColumn method, error"
+                 alert JSON.stringify(error);
            
                   
 $(document).ready(
@@ -140,4 +156,5 @@ $(document).ready(
     ChangeDateButtonClick()
     AddCommentSubmitButton()
     ActiveComment()
+    DeleteComment()
 )

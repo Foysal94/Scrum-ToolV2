@@ -29,6 +29,7 @@ namespace ASPNET5_Scrum_Tool.Models
             m_Name = p_Name;
             m_Content = p_Content;
             m_TaskID = p_TaskID;
+            m_CreationDate = DateTime.Now;
         }
 
         public Comments() { }
