@@ -59,7 +59,7 @@ namespace ASPNET5_Scrum_Tool
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+            elsez
             {
                 app.UseExceptionHandler("/Home/Error");
             }
@@ -67,7 +67,6 @@ namespace ASPNET5_Scrum_Tool
              
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
-            app.UseIISPlatformHandler();
 
             app.UseStaticFiles();
 
@@ -80,6 +79,17 @@ namespace ASPNET5_Scrum_Tool
         }
 
         // Entry point for the application.
-        public static void Main(string[] args) => Microsoft.AspNet.Hosting.WebApplication.Run<Startup>(args);
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+              .UseKestrel()
+              .UseContentRoot(Directory.GetCurrentDirectory())
+              .UseIISIntegration()
+              .UseStartup<Startup>()
+              .Build();
+
+            host.Run();
+        }
+
     }
 }
