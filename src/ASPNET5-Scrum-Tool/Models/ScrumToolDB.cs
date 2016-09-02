@@ -22,7 +22,8 @@ namespace ASPNET5_Scrum_Tool.Models
         }
         */
 
-        public ScrumToolDB(DbContextOptions options) : base(options)
+        public ScrumToolDB(DbContextOptions<ScrumToolDB> options) 
+            : base(options)
         {
             
         }
