@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASPNET5_Scrum_Tool.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASPNET5_Scrum_Tool.Controllers
 {
