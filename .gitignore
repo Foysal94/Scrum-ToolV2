@@ -29,4 +29,5 @@ bld/
 # DNX
 project.lock.json
 artifacts/
+web.config
 
