@@ -6,16 +6,10 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 {
     public class NavBar_Buttons : ViewComponent 
     {
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+            return View("Default");
         }
-
-        /*
-        public Task<IViewComponentResult> InvokeAsync()
-        {
-            return View();
-        }
-        */
+        
     }
 }
