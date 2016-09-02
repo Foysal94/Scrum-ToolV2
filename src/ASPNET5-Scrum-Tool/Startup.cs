@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,6 @@ namespace ASPNET5_Scrum_Tool
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCaching();
             services.AddSession();
             services.AddMvc();
            
@@ -41,6 +41,7 @@ namespace ASPNET5_Scrum_Tool
                     User ID=Foysal94@foysal94;Password=Flatron94;
                     Encrypt=True;TrustServerCertificate=False;
                     Connection Timeout=30;MultipleActiveResultSets=false;";
+
             services.AddDbContext<ScrumToolDB>(options =>
                  options.UseSqlServer(azureConnection));
         }
@@ -65,9 +66,7 @@ namespace ASPNET5_Scrum_Tool
              
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
-
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

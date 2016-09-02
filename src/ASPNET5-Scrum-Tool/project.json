@@ -2,7 +2,7 @@
 	"version": "1.0.0-*",
 	"buildOptions": {
 		"emitEntryPoint": true,
-		"warningsAsErrors": true,
+		"warningsAsErrors": false,
 		"preserveCompilationContext": true,
 		"embed": "Views/**", // Instead of ".:resource": "Views/**",
 		"compile": {
