@@ -5,7 +5,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
 using ASPNET5_Scrum_Tool.Models;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.Entity;
 
 namespace ASPNET5_Scrum_Tool.Controllers

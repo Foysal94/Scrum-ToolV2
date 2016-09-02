@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using ASPNET5_Scrum_Tool.Models;
 
 namespace ASPNET5_Scrum_Tool.Controllers.Components
