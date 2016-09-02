@@ -7,8 +7,9 @@ node_modules
 *.suo
 *.user
 *.userosscache
-*.sln.docstates
-
+*.sln
+*.docstates
+*.xproj
 
 # Build results
 [Dd]ebug/
