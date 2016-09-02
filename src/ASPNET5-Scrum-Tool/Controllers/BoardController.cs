@@ -49,7 +49,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
             if (m_Board == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
 

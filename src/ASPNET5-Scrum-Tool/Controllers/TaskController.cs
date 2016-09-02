@@ -5,7 +5,7 @@ using System.Security.AccessControl;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNET5_Scrum_Tool.Models;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
