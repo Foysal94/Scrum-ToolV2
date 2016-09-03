@@ -8,29 +8,39 @@ using ASPNET5_Scrum_Tool.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 using FluentAssertions;
 using Xunit;
 using Moq;
 
 namespace Scrum_Tool.UnitTests
 {
-		// Assumptions:
-	public class Bar
+	public interface IUser
 	{
-		// Bar implementation
+
+		int CalculateAge();
+		DateTime DateOfBirth { get; set; }
+		string Name { get; set; }
+	}
+	public class ConsumerOfIUser
+	{
+		public int Consume(IUser user)
+		{
+			return user.CalculateAge() + 10;
+		}
 	}
 
-	public interface IFoo {
-		bool DoSomething();
-		string DoSomethingStringy();
-		bool TryParse();
-		bool Submit();
-		int GetCount();
-		int GetCountThing();
+	public class User : IUser
+	{
+		public DateTime DateOfBirth { get; set; }
+		public string Name { get; set; }
+
+		public int CalculateAge()
+		{
+			return DateTime.Now.Year - DateOfBirth.Year;
+		}
 	}
-	 // This project can output the Class library as a NuGet Package.
-	 // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
+	// This project can output the Class library as a NuGet Package.
+	// To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
 	public class BoardControllerTests
 	{
 
@@ -38,12 +48,12 @@ namespace Scrum_Tool.UnitTests
 		[Fact]
 		public void PassingTest()
 		{
-			Mock mock = new Mock<IFoo>();
-			mock.Setup(foo => foo.DoSomething("ping")).Returns(true);
-			mock.Should().BeTrue();
-			
+			var userMock = new Mock<IUser>();
+			userMock.Setup(u => u.CalculateAge()).Returns(10);
+			var consumer = new ConsumerOfIUser();
+			var result = consumer.Consume(userMock.Object);
 
+			result.Should().BeGreaterOrEqualTo(20);
 		}
 	}
-
 }
