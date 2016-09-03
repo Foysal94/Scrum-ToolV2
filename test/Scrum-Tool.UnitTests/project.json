@@ -1,6 +1,6 @@
-﻿{
+{
   "version": "1.0.0-*",
-  "description": "Scrum-Tool.IntegrationTests Class Library",
+  "description": "Scrum-Tool.UnitTests Class Library",
   "authors": [ "Foysal" ],
   "tags": [ "" ],
   "projectUrl": "",
