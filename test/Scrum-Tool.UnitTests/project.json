@@ -28,7 +28,8 @@
 			"moq.netcore": "4.4.0-beta8",
 			"System.Diagnostics.TraceSource": "4.0.0-rc2-24027",
 			"FluentAssertions": "4.13.1",
-			"GenFu": "1.1.1"
+			"GenFu": "1.1.1",
+			"Microsoft.EntityFrameworkCore.InMemory": "1.0.0"
 		},
 		"imports": [
 			"dotnet5.6",
