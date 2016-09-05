@@ -46,10 +46,14 @@ namespace Scrum_Tool.UnitTests
 			var boardData = CreateBoardData();
 			var columnData = CreateColumnData();
 			var taskData = CreateTaskData();
+			var labelData = CreateLabelData();
+			var commentData = CreateCommentData();
 
 			m_ScrumToolDB.Boards.AddRange(boardData);
 			m_ScrumToolDB.Columns.AddRange(columnData);
 			m_ScrumToolDB.Tasks.AddRange(taskData);
+			m_ScrumToolDB.Labels.AddRange(labelData);
+			m_ScrumToolDB.Comments.AddRange(commentData);
 			m_ScrumToolDB.SaveChanges();
 		}
 		private IQueryable<Boards> CreateBoardData()
@@ -83,8 +87,28 @@ namespace Scrum_Tool.UnitTests
 
 			return tasks.AsQueryable();
 		}
+		private IQueryable<Labels> CreateLabelData()
+		{
+			List<Labels> labels = new List<Labels>()
+			{
+				new Labels(m_FirstTaskID,"Blue"),
+				new Labels(m_FirstTaskID,"Green"),
+				new Labels(m_FirstTaskID,"Purple")
+			};
 
-		
+			return labels.AsQueryable();
+		}
+		private IQueryable<Comments> CreateCommentData()
+		{
+			List<Comments> comments = new List<Comments>()
+			{
+				new Comments("Foysal Ahmed","Comment Content 1", m_FirstTaskID),
+				new Comments("Foysal Ahmed","Comment Content 2", m_FirstTaskID),
+				new Comments("Foysal Ahmed","Comment Content 3", m_FirstTaskID),
+			};
+
+			return comments.AsQueryable();
+		}
 
 
 	}
