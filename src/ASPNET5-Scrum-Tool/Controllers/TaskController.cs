@@ -89,7 +89,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public ViewComponentResult MovedTask(string p_ColumnName, int p_TaskID)
+        public ViewComponentResult MovedTask(string p_NewColumnName, int p_NewColumnID, int p_TaskID)
         {
             var tasks = m_context.Tasks.ToList();
 
@@ -97,10 +97,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
             {
                 if (t.ID == p_TaskID)
                 {
-                    t.ColumnName = p_ColumnName;
+                    t.ColumnName = p_NewColumnName;
+                    t.ColumnID = p_NewColumnID;
                     m_Task = t;
                     m_context.SaveChanges();
-
                     break;
                 }
             }
