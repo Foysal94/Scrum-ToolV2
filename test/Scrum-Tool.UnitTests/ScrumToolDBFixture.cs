@@ -17,7 +17,7 @@ namespace Scrum_Tool.UnitTests
 		public ScrumToolDB ScrumToolDB { get { return m_ScrumToolDB;} }
 		public int FirstBoardID { get {return m_FirstBoardID;} }
 		public int FirstTaskID { get {return m_FirstTaskID;} }
-		public string ColumnName { get {return m_FirstColumnName;} }
+		public string FirstColumnName { get {return m_FirstColumnName;} }
 		
 		public ScrumToolDBFixture() 
 		{
