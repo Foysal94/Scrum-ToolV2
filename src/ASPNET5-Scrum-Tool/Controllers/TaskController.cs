@@ -28,7 +28,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddNewTask(Tasks model)
         {
-            m_Task = new Tasks(model.BoardID, model.ColumnName, model.TaskContent);
+            m_Task = new Tasks(model.BoardID, model.ColumnID, model.ColumnName, model.TaskContent);
             m_context.Add(m_Task);
             m_context.SaveChanges();
 

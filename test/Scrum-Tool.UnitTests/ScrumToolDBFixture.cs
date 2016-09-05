@@ -12,10 +12,12 @@ namespace Scrum_Tool.UnitTests
 	{
 		private ScrumToolDB m_ScrumToolDB;
 		private const int m_FirstBoardID = 1;
+		private const int m_FirstColumnID = 1;
 		private const int m_FirstTaskID = 1;
 		private const string m_FirstColumnName = "TestColumn1";
 		public ScrumToolDB ScrumToolDB { get { return m_ScrumToolDB;} }
 		public int FirstBoardID { get {return m_FirstBoardID;} }
+		public int FirstColumnID { get {return m_FirstColumnID;} }
 		public int FirstTaskID { get {return m_FirstTaskID;} }
 		public string FirstColumnName { get {return m_FirstColumnName;} }
 		
@@ -80,9 +82,9 @@ namespace Scrum_Tool.UnitTests
 		{
 			List<Tasks> tasks = new List<Tasks>()
 			{
-				new Tasks(m_FirstBoardID, m_FirstColumnName, "TaskContent1"),
-				new Tasks(m_FirstBoardID, m_FirstColumnName, "TaskContent2"),
-				new Tasks(m_FirstBoardID, m_FirstColumnName, "TaskContent3"),
+				new Tasks(m_FirstBoardID, m_FirstColumnID, m_FirstColumnName, "TaskContent1"),
+				new Tasks(m_FirstBoardID, m_FirstColumnID, m_FirstColumnName, "TaskContent2"),
+				new Tasks(m_FirstBoardID, m_FirstColumnID, m_FirstColumnName, "TaskContent3"),
 			};
 
 			return tasks.AsQueryable();
