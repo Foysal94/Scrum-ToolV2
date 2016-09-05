@@ -16,18 +16,18 @@ namespace Scrum_Tool.UnitTests
 		private ColumnController m_ColumnController;
 		private ScrumToolDBFixture m_ScrumToolDBFixture;
 		private ScrumToolDB m_ScrumToolDBContext;
-		private int m_BoardID;
+		private int m_ParentBoardID;
 		public ColumnControllerTests(ScrumToolDBFixture p_ScrumToolDBFixture) 
 		{
 			m_ScrumToolDBFixture = p_ScrumToolDBFixture;
 
-			m_BoardID = m_ScrumToolDBFixture.FirstBoardID;
+			m_ParentBoardID = m_ScrumToolDBFixture.FirstBoardID;
 			m_ScrumToolDBContext = m_ScrumToolDBFixture.ScrumToolDB;
 			m_ColumnController = new ColumnController(m_ScrumToolDBContext);
 		}
 
 		[Fact]
-		public void DeleteColumn()
+		public void Delete_Column()
 		{
 			// Arrange
 			Columns testColumn = m_ScrumToolDBContext.Columns.Last();
@@ -41,10 +41,10 @@ namespace Scrum_Tool.UnitTests
 		}
 
 		[Fact]
-		public void AddColumn()
+		public void Add_Column()
 		{
 			// Arrange
-			Columns testColumn = new Columns("Something", m_BoardID);
+			Columns testColumn = new Columns("Something", m_ParentBoardID);
 			int initalColoumnCount = m_ScrumToolDBContext.Columns.Count();
 			//Act
 			m_ColumnController.AddColumn(testColumn);
@@ -56,13 +56,13 @@ namespace Scrum_Tool.UnitTests
 		}
 
 		[Fact]
-		public void ChangeColumnName()
+		public void Change_ColumnName()
 		{
 			// Arrange
 			string newColumnName = "NewName";
 			Columns lastColumn = m_ScrumToolDBContext.Columns.Last();
 			// Act
-			m_ColumnController.ChangeColumnName(lastColumn.Name, newColumnName, m_BoardID);
+			m_ColumnController.ChangeColumnName(lastColumn.Name, newColumnName, m_ParentBoardID);
 			// Assert
 			m_ScrumToolDBContext.Columns.Last().Name.ShouldBeEquivalentTo(newColumnName);
 		}
