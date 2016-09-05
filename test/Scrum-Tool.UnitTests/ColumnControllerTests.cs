@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ASPNET5_Scrum_Tool.Controllers;
 using ASPNET5_Scrum_Tool.Models;
 using FluentAssertions;
@@ -13,47 +13,36 @@ using GenFu;
 namespace Scrum_Tool.UnitTests
 {
 
-    public interface ITestRespository<T> 
-    {
-        void Add(T model);
-        void Remove(T model);
-        void Edit(T model);
-        void Delete(T model);
-        T FindById(int id);
-        T FindObject(T model);
-        void ReturnCount();
-        IQueryable<T> ReturnAll();
-        void Save();
-
-    }
-    
     public class ColumnControllerTests 
     {
-        private const int m_BoardID = 0;
+		  private const int m_BoardID = 0;
 		  private ScrumToolDB m_ScrumToolDB;
 		  private ColumnController m_ColumnController;
-        public ColumnControllerTests() 
-        {
-			  var dbOptions = CreateFakeDatabaseOptions();
-			  m_ScrumToolDB = new ScrumToolDB(dbOptions);
-			  m_ColumnController = new ColumnController(m_ScrumToolDB);
-        }
 
-        private IQueryable<Columns> GenerateMockData() 
-        {
+		  private IQueryable<Columns> GenerateTestData() 
+          {
+            /*
             int id = 0;
             int numberOfColumns = 3;
             string Name = "TestColumn";
-
+            
             A.Configure<Columns>()
-                .Fill(c => c.ID,
-                     () => { return id++; })
-                .Fill(c => c.Name, () => { return $"{Name}{id++}"; })
-                .Fill(c => c.BoardID, m_BoardID);
-
+                .Fill(c => c.ID,() => { return id++; })
+                .Fill(c => c.Name, () => { return $"{Name}{id}"; })
+                .Fill(c => c.BoardID,() => { return m_BoardID; });
             var columns = A.ListOf<Columns>(numberOfColumns);
             return columns.AsQueryable();
-        }
+            */
+
+              List<Columns> columns = new List<Columns>()
+              {
+                  new Columns("TestColumn0", m_BoardID) {ID = 0},
+                  new Columns("TestColumn1", m_BoardID) {ID = 1},
+                  new Columns("TestColumn2", m_BoardID) {ID = 2},
+              };
+
+              return columns.AsQueryable();
+          }
 
         private DbContextOptions<ScrumToolDB> CreateFakeDatabaseOptions() 
 		  {
@@ -71,6 +60,20 @@ namespace Scrum_Tool.UnitTests
 
             return builder.Options;
 		  }
+
+        public ColumnControllerTests() 
+        {
+			  var dbOptions = CreateFakeDatabaseOptions();
+			  var testColumnList = GenerateTestData();
+
+			  m_ScrumToolDB = new ScrumToolDB(dbOptions);
+			  m_ScrumToolDB.Columns.AddRange(testColumnList);
+			  m_ColumnController = new ColumnController(m_ScrumToolDB);
+        }
+
+
+
+
 
     }
 }
