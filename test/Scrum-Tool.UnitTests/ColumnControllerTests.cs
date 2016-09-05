@@ -36,9 +36,9 @@ namespace Scrum_Tool.UnitTests
 
               List<Columns> columns = new List<Columns>()
               {
-                  new Columns("TestColumn0", m_BoardID) {ID = 0},
-                  new Columns("TestColumn1", m_BoardID) {ID = 1},
-                  new Columns("TestColumn2", m_BoardID) {ID = 2},
+                  new Columns("TestColumn0", m_BoardID),
+                  new Columns("TestColumn1", m_BoardID),
+                  new Columns("TestColumn2", m_BoardID), 
               };
 
               return columns.AsQueryable();
@@ -71,7 +71,21 @@ namespace Scrum_Tool.UnitTests
 			  m_ColumnController = new ColumnController(m_ScrumToolDB);
         }
 
+        [Fact]
+        public void AddColumn()
+        {
+            //Act
+            Columns testColumn = new Columns("Something", m_BoardID);
+            //Arrange
+            m_ColumnController.AddColumn(testColumn);
+            //Assert
+            m_ScrumToolDB.Columns.Should().NotBeNullOrEmpty()
+                .And.HaveCount(4, "Number of inital columns created plus one");
 
+            m_ScrumToolDB.Columns.Last().ShouldBeEquivalentTo(testColumn, options =>
+                    options.Excluding(c => c.ID));
+
+        }
 
 
 
