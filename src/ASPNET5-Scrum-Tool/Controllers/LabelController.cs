@@ -38,9 +38,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void Add(int p_TaskID, string p_LabelColour)
+        public void Add(Labels p_Model)
         {
-            m_Label = new Labels(p_TaskID, p_LabelColour);
+            m_Label = p_Model;
             m_context.Labels.Add(m_Label);
             m_context.SaveChanges();
         }
