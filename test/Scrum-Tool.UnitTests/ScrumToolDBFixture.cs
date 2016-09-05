@@ -7,19 +7,24 @@ using Xunit;
 
 namespace Scrum_Tool.UnitTests
 {
+	[Collection("ScrumToolDB Collection")]
 	public class ScrumToolDBFixture
 	{
 		private ScrumToolDB m_ScrumToolDB;
 		private const int m_FirstBoardID = 0;
-		private const int m_FirstColumnID = 0;
 		private const int m_FirstTaskID = 0;
 		private const string m_FirstColumnName = "TestColumn0";
+		public ScrumToolDB ScrumToolDB { get { return m_ScrumToolDB;} }
+		public int FirstBoardID { get {return m_FirstBoardID;} }
+		public int FirstTaskID { get {return m_FirstTaskID;} }
+		public string ColumnName { get {return m_FirstColumnName;} }
+		
 		public ScrumToolDBFixture() 
 		{
 			var dbOptions = CreateFakeDatabaseOptions();
 			m_ScrumToolDB = new ScrumToolDB(dbOptions);
+			AddTestData();
 		}
-
 		private DbContextOptions<ScrumToolDB> CreateFakeDatabaseOptions() 
 		{
 			// Create a fresh service provider, and therefore a fresh 
@@ -36,7 +41,6 @@ namespace Scrum_Tool.UnitTests
 
 			return builder.Options;
 		}
-
 		private void AddTestData()
 		{
 			var boardData = CreateBoardData();
