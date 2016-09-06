@@ -36,14 +36,10 @@ namespace ASPNET5_Scrum_Tool
             services.AddMvc();
            
             //var connection = @"Server=(localdb)\mssqllocaldb;Database=ScrumToolDB;Trusted_Connection=True;MultipleActiveResultSets=false";
-            var azureConnection =
-                @"Server=tcp:foysal94.database.windows.net,1433;Database=ScrumToolDB;
-                    User ID=Foysal94@foysal94;Password=Flatron94;
-                    Encrypt=True;TrustServerCertificate=False;
-                    Connection Timeout=30;MultipleActiveResultSets=false;";
+            
 
-            services.AddDbContext<ScrumToolDB>(options =>
-                 options.UseSqlServer(azureConnection));
+            //services.AddDbContext<ScrumToolDB>(options =>
+                 //options.UseSqlServer(azureConnection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
