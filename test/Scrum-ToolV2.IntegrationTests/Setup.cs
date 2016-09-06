@@ -79,7 +79,7 @@ namespace Scrum_Tool.IntegrationTests
                 .Fill(c => c.Name, () => { return $"{Name}{id++}"; });
 
             A.Configure<Columns>()
-                .Fill(c => c.BoardID, 1);
+                .Fill(c => c.ParentBoardID, 1);
 
             var columns = A.ListOf<Columns>(3);
 
@@ -98,10 +98,10 @@ namespace Scrum_Tool.IntegrationTests
                      () => { return id++; });
 
             A.Configure<Tasks>()
-                .Fill(t => t.BoardID, 1);
+                .Fill(t => t.ParentBoardID, 1);
 
             A.Configure<Tasks>()
-                .Fill(t => t.ColumnName, "Something1");
+                .Fill(t => t.ParentColumnName, "Something1");
 
         }
     }

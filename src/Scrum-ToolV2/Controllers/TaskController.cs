@@ -28,7 +28,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddNewTask(Tasks model)
         {
-            m_Task = new Tasks(model.BoardID, model.ColumnID, model.ColumnName, model.TaskContent);
+            m_Task = new Tasks(model.ParentBoardID, model.ParentColumnID, model.ParentColumnName, model.TaskContent);
             m_context.Add(m_Task);
             m_context.SaveChanges();
 
@@ -97,8 +97,8 @@ namespace ASPNET5_Scrum_Tool.Controllers
             {
                 if (t.ID == p_TaskID)
                 {
-                    t.ColumnName = p_NewColumnName;
-                    t.ColumnID = p_NewColumnID;
+                    t.ParentColumnName = p_NewColumnName;
+                    t.ParentColumnID = p_NewColumnID;
                     m_Task = t;
                     m_context.SaveChanges();
                     break;
@@ -122,7 +122,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     t.LabelList = new List<Labels>();
                     foreach (Labels label in labelList)
                     {
-                        if (t.ID == label.TaskID)
+                        if (t.ID == label.ParentTaskID)
                         {
                             t.LabelList.Add(label);
                         }
@@ -131,7 +131,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     t.CommentList = new List<Comments>();
                     foreach (Comments comment in commentList)
                     {
-                        if (t.ID == comment.TaskID)
+                        if (t.ID == comment.ParentTaskID)
                         {
                             t.CommentList.Add(comment);
                         }

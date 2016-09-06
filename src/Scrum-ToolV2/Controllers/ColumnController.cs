@@ -47,7 +47,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddColumn(Columns model)
         {
-            Columns tempColumn = new Columns(model.Name, model.BoardID); // The model got passed the last column ID
+            Columns tempColumn = new Columns(model.Name, model.ParentBoardID); // The model got passed the last column ID
 
             m_context.Columns.Add(tempColumn);
             m_context.SaveChanges();
@@ -78,13 +78,13 @@ namespace ASPNET5_Scrum_Tool.Controllers
         {
             var columnList = m_context.Columns.ToList();
             string name = "";
-            int boardID = 0;
+            int ParentBoardID = 0;
             foreach (Columns c in columnList)
             {
                 if (c.ID == p_ColumnID)
                 {
                     name = c.Name;
-                    boardID = c.BoardID;
+                    ParentBoardID = c.ParentBoardID;
                 }
             }
 

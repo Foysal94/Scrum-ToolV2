@@ -33,7 +33,7 @@ namespace ASPNET5ScrumTool.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BoardID");
+                    b.Property<int>("ParentBoardID");
 
                     b.Property<int?>("BoardsID");
 
@@ -53,7 +53,7 @@ namespace ASPNET5ScrumTool.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("TaskID");
+                    b.Property<int>("ParentTaskID");
 
                     b.Property<int?>("TasksID");
 
@@ -67,7 +67,7 @@ namespace ASPNET5ScrumTool.Migrations
 
                     b.Property<string>("Colour");
 
-                    b.Property<int>("TaskID");
+                    b.Property<int>("ParentTaskID");
 
                     b.Property<int?>("TasksID");
 
@@ -79,9 +79,9 @@ namespace ASPNET5ScrumTool.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BoardID");
+                    b.Property<int>("ParentBoardID");
 
-                    b.Property<string>("ColumnName");
+                    b.Property<string>("ParentColumnName");
 
                     b.Property<int?>("ColumnsID");
 

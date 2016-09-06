@@ -10,12 +10,12 @@ namespace ASPNET5_Scrum_Tool.Models
         {
             modelBuilder.Entity<Boards>(entity =>
             {
-                entity.HasMany(b => b.ColumnList).WithOne(c => c.ParentBoard).HasForeignKey("BoardID");
+                entity.HasMany(b => b.ColumnList).WithOne(c => c.ParentBoard).HasForeignKey("ParentBoardID");
             });
 
             modelBuilder.Entity<Columns>(entity =>
             {
-                entity.HasMany(c => c.TasksList).WithOne(t => t.ParentColumn).HasForeignKey("ColumnName");
+                entity.HasMany(c => c.TasksList).WithOne(t => t.ParentColumn).HasForeignKey("ParentColumnName");
             });
 
     

@@ -44,7 +44,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             }
             //model.ID = boards.Count + 1;
            // TempData["BoardName"] = tempBoard.Name;
-            //TempData["BoardID"] = model.ID;
+            //TempData["ParentBoardID"] = model.ID;
             return RedirectToAction("Create", "Board", new { p_BoardID = boards.Count + 1} );
         }
         

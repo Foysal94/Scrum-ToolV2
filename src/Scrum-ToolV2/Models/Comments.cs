@@ -16,7 +16,7 @@ namespace ASPNET5_Scrum_Tool.Models
         private DateTime m_CreationDate;
 
         public int ID { get { return m_ID; } set { m_ID = value; } }
-        public int TaskID { get { return m_TaskID; } set { m_TaskID = value; } }
+        public int ParentTaskID { get { return m_TaskID; } set { m_TaskID = value; } }
 
         [DataType(DataType.Date)]
         public DateTime CreationDate { get { return m_CreationDate; } set { m_CreationDate = value; } }

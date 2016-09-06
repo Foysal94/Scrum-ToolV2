@@ -59,19 +59,19 @@ namespace ASPNET5_Scrum_Tool.Controllers
             var commentList = m_context.Comments.ToList();
             foreach (Columns c in columnList)
             {
-                if (c.BoardID == m_Board.ID)
+                if (c.ParentBoardID == m_Board.ID)
                 {
                     c.TasksList = new List<Tasks>();
                     foreach (Tasks t in taskList)
                     {
-                        if (t.ColumnName == c.Name)
+                        if (t.ParentColumnName == c.Name)
                         {
                             /*
                             t.LabelList = new List<Labels>();
                             t.CommentList = new List<Comments>();
                             foreach (Labels label in labelList)
                             {
-                                if (t.ID == label.TaskID)
+                                if (t.ID == label.ParentTaskID)
                                 {
                                     t.LabelList.Add(label);
                                 }
@@ -79,7 +79,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
                             foreach (var comment in commentList)
                             {
-                                if (t.ID == comment.TaskID)
+                                if (t.ID == comment.ParentTaskID)
                                 {
                                     t.CommentList.Add(comment);
                                 }
@@ -110,7 +110,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
             {
                 
             }
-            //int boardID = (int) TempData["BoardID"];
+            //int ParentBoardID = (int) TempData["ParentBoardID"];
             var boards = m_context.Boards.ToList();
             if (boards.Count == p_BoardID)
             {
@@ -128,7 +128,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpGet]
         public IActionResult ColumnNameChangeForm()
         {
-           // ViewData["ColumnName"] = p_InitalColumnName;
+           // ViewData["ParentColumnName"] = p_InitalColumnName;
             return PartialView("_ColumnNameChangeForm");
         }
 
@@ -136,7 +136,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpGet]
         public IActionResult AddColumnForm()
         {
-            // ViewData["ColumnName"] = p_InitalColumnName;
+            // ViewData["ParentColumnName"] = p_InitalColumnName;
             return PartialView("_AddColumnForm");
         }
 
@@ -144,7 +144,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpGet]
         public IActionResult AddTaskForm()
         {
-            // ViewData["ColumnName"] = p_InitalColumnName;
+            // ViewData["ParentColumnName"] = p_InitalColumnName;
             return PartialView("_AddTaskForm");
         }
     }

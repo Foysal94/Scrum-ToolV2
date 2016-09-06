@@ -105,11 +105,11 @@ namespace Scrum_Tool.UnitTests
 		 public void Correct_View_Returned_When_Clicked_For_PopupWindow()
 		 {
 			 //Arrange
-			 int taskID = m_ScrumToolDBFixture.FirstTaskID;
+			 int ParentTaskID = m_ScrumToolDBFixture.FirstTaskID;
 			 int labelListCount = m_ScrumToolDBContext.Tasks.First().LabelList.Count();
 			 int commentListCount = m_ScrumToolDBContext.Tasks.First().CommentList.Count();
 			 //Act
-			 PartialViewResult result = (PartialViewResult) m_TaskController.Information(taskID);
+			 PartialViewResult result = (PartialViewResult) m_TaskController.Information(ParentTaskID);
 			 //Assert
 			 result.Should().NotBeNull()
 			 	.And.BeOfType<PartialViewResult>();

@@ -28,7 +28,7 @@ namespace ASPNET5ScrumTool.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BoardID = table.Column<int>(nullable: false),
+                    ParentBoardID = table.Column<int>(nullable: false),
                     BoardsID = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: false)
                 },
@@ -48,8 +48,8 @@ namespace ASPNET5ScrumTool.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BoardID = table.Column<int>(nullable: false),
-                    ColumnName = table.Column<string>(nullable: false),
+                    ParentBoardID = table.Column<int>(nullable: false),
+                    ParentColumnName = table.Column<string>(nullable: false),
                     ColumnsID = table.Column<int>(nullable: true),
                     DueDate = table.Column<DateTime>(nullable: false),
                     TaskContent = table.Column<string>(nullable: false)
@@ -73,7 +73,7 @@ namespace ASPNET5ScrumTool.Migrations
                     Content = table.Column<string>(nullable: false),
                     CreationDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    TaskID = table.Column<int>(nullable: false),
+                    ParentTaskID = table.Column<int>(nullable: false),
                     TasksID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -93,7 +93,7 @@ namespace ASPNET5ScrumTool.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Colour = table.Column<string>(nullable: false),
-                    TaskID = table.Column<int>(nullable: false),
+                    ParentTaskID = table.Column<int>(nullable: false),
                     TasksID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

@@ -11,9 +11,9 @@ namespace ASPNET5_Scrum_Tool.Models
         private DateTime m_DueDate;
         private string m_TaskContent;
         private int m_ID;
-        private int m_BoardID;
-        private string m_ColumnName;
-        private int m_ColumnID;
+        private int m_ParentBoardID;
+        private string m_ParentColumnName;
+        private int m_ParentColumnID;
         private Columns m_ParentColumn;
         private List<Labels> m_LabelList;
         private List<Comments> m_CommentList;
@@ -21,14 +21,13 @@ namespace ASPNET5_Scrum_Tool.Models
         [Key]
         public int ID { get {return m_ID;} set { m_ID = value; } }
 
-        public int BoardID { get { return m_BoardID; } set { m_BoardID = value; } }
+        public int ParentBoardID { get { return m_ParentBoardID; } set { m_ParentBoardID = value; } }
 
-        public string ColumnName { get {return m_ColumnName; } set { m_ColumnName = value; } }
-        public int ColumnID { get {return m_ColumnID;} set {m_ColumnID = value;} }
+        public string ParentColumnName { get {return m_ParentColumnName; } set { m_ParentColumnName = value; } }
+        public int ParentColumnID { get {return m_ParentColumnID;} set {m_ParentColumnID = value;} }
 
         [DataType(DataType.Date)]
         public DateTime DueDate { get { return m_DueDate; }set { m_DueDate = value; } }
-
         public string TaskContent { get {return m_TaskContent;} set { m_TaskContent = value; } }
         public List<Labels> LabelList { get { return m_LabelList; } set { m_LabelList = value; } }
         public List<Comments> CommentList { get { return m_CommentList; } set { m_CommentList = value; } }
@@ -37,13 +36,13 @@ namespace ASPNET5_Scrum_Tool.Models
 
         public Tasks(int p_BoardID, int p_ColumnID,string p_ColumnName, string p_TaskContent)
         {
-            m_BoardID = p_BoardID;
-            m_ColumnID = p_ColumnID;
-            m_ColumnName = p_ColumnName;
+            m_ParentBoardID = p_BoardID;
+            m_ParentColumnID = p_ColumnID;
+            m_ParentColumnName = p_ColumnName;
             m_TaskContent = p_TaskContent;
             m_DueDate = DateTime.Now.AddDays(1);
 	        m_LabelList = new List<Labels>();
-				m_CommentList = new List<Comments>();
+			m_CommentList = new List<Comments>();
         }
 
         public Tasks()
