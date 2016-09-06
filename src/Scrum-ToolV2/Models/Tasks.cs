@@ -42,6 +42,8 @@ namespace ASPNET5_Scrum_Tool.Models
             m_ColumnName = p_ColumnName;
             m_TaskContent = p_TaskContent;
             m_DueDate = DateTime.Now.AddDays(1);
+	        m_LabelList = new List<Labels>();
+				m_CommentList = new List<Comments>();
         }
 
         public Tasks()

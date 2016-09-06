@@ -32,18 +32,18 @@ namespace ASPNET5_Scrum_Tool.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-            //var query = from board in m_context.Boards where board.Name.Equals(model.Name) select board;
-            var boards = m_context.Boards.ToList();
+				Boards tempBoard = model;
+				//var query = from board in m_context.Boards where board.Name.Equals(model.Name) select board;
+				var boards = m_context.Boards.ToList();
             foreach (var boardModel in boards)
             {
-                if (boardModel.Name == model.Name)
+                if (boardModel.Name == tempBoard.Name)
                 {
                     return RedirectToAction("Load", "Board", new { p_BoardID = boardModel.ID}); // Board Found
                 }
             }
             //model.ID = boards.Count + 1;
-            TempData["BoardName"] = model.Name;
+           // TempData["BoardName"] = tempBoard.Name;
             //TempData["BoardID"] = model.ID;
             return RedirectToAction("Create", "Board", new { p_BoardID = boards.Count + 1} );
         }
