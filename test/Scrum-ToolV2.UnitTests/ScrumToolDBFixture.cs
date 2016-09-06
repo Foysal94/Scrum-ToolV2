@@ -45,17 +45,17 @@ namespace Scrum_Tool.UnitTests
 		}
 		private void AddTestData()
 		{
-			var boardData = CreateBoardData();
-			var columnData = CreateColumnData();
-			var taskData = CreateTaskData();
-			var labelData = CreateLabelData();
-			var commentData = CreateCommentData();
+			var boardList = CreateBoardData();
+			var columnList = CreateColumnData(ref boardList);
+			var taskList = CreateTaskData(ref columnList);
+			var labelList = CreateLabelData(ref taskList);
+			var commentList = CreateCommentData(ref taskList);
 
-			m_ScrumToolDB.Boards.AddRange(boardData);
-			m_ScrumToolDB.Columns.AddRange(columnData);
-			m_ScrumToolDB.Tasks.AddRange(taskData);
-			m_ScrumToolDB.Labels.AddRange(labelData);
-			m_ScrumToolDB.Comments.AddRange(commentData);
+			m_ScrumToolDB.Boards.AddRange(boardList);
+			m_ScrumToolDB.Columns.AddRange(columnList);
+			m_ScrumToolDB.Tasks.AddRange(taskList);
+			m_ScrumToolDB.Labels.AddRange(labelList);
+			m_ScrumToolDB.Comments.AddRange(commentList);
 			m_ScrumToolDB.SaveChanges();
 		}
 		private IQueryable<Boards> CreateBoardData()
@@ -67,7 +67,7 @@ namespace Scrum_Tool.UnitTests
 
 			return board.AsQueryable();
 		}
-		private IQueryable<Columns> CreateColumnData()
+		private IQueryable<Columns> CreateColumnData(ref IQueryable<Boards> p_BoardsList)
 		{
 			List<Columns> columns = new List<Columns>()
 			{
@@ -76,9 +76,15 @@ namespace Scrum_Tool.UnitTests
 				new Columns("TestColumn3", m_FirstBoardID), 
 			};
 
+			foreach(Columns c in columns) 
+			{
+				p_BoardsList.First().ColumnList.Add(c);
+			}
+			
+
 			return columns.AsQueryable();
 		}
-		private IQueryable<Tasks> CreateTaskData()
+		private IQueryable<Tasks> CreateTaskData(ref IQueryable<Columns> p_ColumnsList)
 		{
 			List<Tasks> tasks = new List<Tasks>()
 			{
@@ -87,9 +93,14 @@ namespace Scrum_Tool.UnitTests
 				new Tasks(m_FirstBoardID, m_FirstColumnID, m_FirstColumnName, "TaskContent3"),
 			};
 
+			foreach(Tasks t in tasks) 
+			{
+				p_ColumnsList.First().TasksList.Add(t);
+			}
+
 			return tasks.AsQueryable();
 		}
-		private IQueryable<Labels> CreateLabelData()
+		private IQueryable<Labels> CreateLabelData(ref IQueryable<Tasks> p_TasksList)
 		{
 			List<Labels> labels = new List<Labels>()
 			{
@@ -98,9 +109,14 @@ namespace Scrum_Tool.UnitTests
 				new Labels(m_FirstTaskID,"Purple")
 			};
 
+			foreach(Labels l in labels) 
+			{
+				p_TasksList.First().LabelList.Add(l);
+			}
+
 			return labels.AsQueryable();
 		}
-		private IQueryable<Comments> CreateCommentData()
+		private IQueryable<Comments> CreateCommentData(ref IQueryable<Tasks> p_TasksList)
 		{
 			List<Comments> comments = new List<Comments>()
 			{
@@ -108,6 +124,11 @@ namespace Scrum_Tool.UnitTests
 				new Comments("Foysal Ahmed","Comment Content 2", m_FirstTaskID),
 				new Comments("Foysal Ahmed","Comment Content 3", m_FirstTaskID),
 			};
+
+			foreach(Comments c in comments) 
+			{
+				p_TasksList.First().CommentList.Add(c);
+			}
 
 			return comments.AsQueryable();
 		}
