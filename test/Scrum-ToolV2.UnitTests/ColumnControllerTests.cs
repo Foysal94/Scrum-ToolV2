@@ -32,7 +32,7 @@ namespace Scrum_Tool.UnitTests
 			Columns testColumn = m_ScrumToolDBContext.Columns.Last();
 			int initalColoumnCount = m_ScrumToolDBContext.Columns.Count();
 			// Act
-			m_ColumnController.Delete(testColumn.ID);
+			m_ColumnController.DeleteColumn(testColumn.ID);
 			// Assert
 			m_ScrumToolDBContext.Columns.Should().HaveCount(initalColoumnCount - 1, "Inital column list - 1")
 					.And.NotContain(testColumn);
@@ -55,7 +55,7 @@ namespace Scrum_Tool.UnitTests
 		}
 
 		[Fact]
-		public void Change_ColumnName()
+		public void Change_Column_Name()
 		{
 			// Arrange
 			string newColumnName = "NewName";

@@ -23,10 +23,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_Task = null;
         }
 
-
         [Route("[Action]")]
         [HttpPost]
-        public ViewComponentResult AddNewTask(Tasks model)
+        public ViewComponentResult AddTask(Tasks model)
         {
             m_Task = new Tasks(model.ParentBoardID, model.ParentColumnID, model.ParentColumnName, model.TaskContent);
             m_context.Add(m_Task);
@@ -35,10 +34,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
             return ViewComponent("Task", m_Task);
         }
 
-
         [Route("[Action]")]
         [HttpPost]
-        public void Delete(int p_TaskID)
+        public void DeleteTask(int p_TaskID)
         {
             var taskList = m_context.Tasks.ToList();
 
@@ -55,7 +53,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void UpdateContent(int p_TaskID, string p_NewTaskContent)
+        public void UpdateTaskContent(int p_TaskID, string p_NewTaskContent)
         {
             var tasks = m_context.Tasks.ToList();
 
@@ -89,7 +87,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public ViewComponentResult MovedTask(string p_NewColumnName, int p_NewColumnID, int p_TaskID)
+        public ViewComponentResult MoveTaskToNewColumn(string p_NewColumnName, int p_NewColumnID, int p_TaskID)
         {
             var tasks = m_context.Tasks.ToList();
 
@@ -110,7 +108,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpGet]
-        public IActionResult Information(int p_TaskID)
+        public IActionResult GetTaskInformationWhenClicked(int p_TaskID)
         {
             var taskList = m_context.Tasks.ToList();
             var labelList = m_context.Labels.ToList();
@@ -147,7 +145,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void UpdateDate(int p_TaskID, string p_Date)
+        public void UpdateTaskDate(int p_TaskID, string p_Date)
         {
             var tasks = m_context.Tasks.ToList();
             DateTime dateTime = DateTime.Parse(p_Date);

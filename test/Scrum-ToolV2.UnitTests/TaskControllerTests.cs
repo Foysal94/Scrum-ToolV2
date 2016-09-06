@@ -36,7 +36,7 @@ namespace Scrum_Tool.UnitTests
 			 Tasks testTask = new Tasks(m_ParentBoardID, m_ParentColumnID, m_ColumnName, "New testTask content");
 			 int initalTaskCount = m_ScrumToolDBContext.Tasks.Count();
 			 // Arrange
-			 m_TaskController.AddNewTask(testTask);
+			 m_TaskController.AddTask(testTask);
 			 // Assert
 			 m_ScrumToolDBContext.Tasks.Should().NotBeNullOrEmpty()
 			 		.And.HaveCount(initalTaskCount + 1, "Number of inital coloumns + 1");
@@ -52,7 +52,7 @@ namespace Scrum_Tool.UnitTests
 			Tasks lastTask = m_ScrumToolDBContext.Tasks.Last();
 			int initalTaskCount = m_ScrumToolDBContext.Tasks.Count();
 			//Arrange
-			m_TaskController.Delete(lastTask.ID);
+			m_TaskController.DeleteTask(lastTask.ID);
 			//Assert
 			m_ScrumToolDBContext.Tasks.Should().HaveCount(initalTaskCount - 1, "Number of inital tasks - 1")
 					.And.NotContain(lastTask);
@@ -65,7 +65,7 @@ namespace Scrum_Tool.UnitTests
 			 string newTaskContent = "Content for the test task";
 			 Tasks lastTask = m_ScrumToolDBContext.Tasks.Last();
 			 //Arrange
-			 m_TaskController.UpdateContent(lastTask.ID,newTaskContent);
+			 m_TaskController.UpdateTaskContent(lastTask.ID,newTaskContent);
 			 //Assert
 			 m_ScrumToolDBContext.Tasks.Last().TaskContent.ShouldBeEquivalentTo(newTaskContent);
 		 }
@@ -78,7 +78,7 @@ namespace Scrum_Tool.UnitTests
           string originalDate = lastTask.DueDate.ToString();
 			 string newDate = System.DateTime.Now.AddHours(3).ToString();
 			 //Act
-			 m_TaskController.UpdateDate(lastTask.ID, newDate);
+			 m_TaskController.UpdateTaskDate(lastTask.ID, newDate);
 			 //Assert
 			 m_ScrumToolDBContext.Tasks.Last().DueDate.ToString().Should().NotBe(originalDate);
 		 }
@@ -93,7 +93,7 @@ namespace Scrum_Tool.UnitTests
 			 string originalColumnName = lastTask.ParentColumnName;
 			 string newColumnName = "New Column For task";
 			 //Act
-			 m_TaskController.MovedTask(newColumnName, newColumnID, lastTask.ID);
+			 m_TaskController.MoveTaskToNewColumn(newColumnName, newColumnID, lastTask.ID);
 			 //Assert
 			 m_ScrumToolDBContext.Tasks.Last().ParentColumnID.ShouldBeEquivalentTo(newColumnID);
 			 m_ScrumToolDBContext.Tasks.Last().ParentColumnName.ShouldBeEquivalentTo(newColumnName);
@@ -109,7 +109,7 @@ namespace Scrum_Tool.UnitTests
 			 int labelListCount = m_ScrumToolDBContext.Tasks.First().LabelList.Count();
 			 int commentListCount = m_ScrumToolDBContext.Tasks.First().CommentList.Count();
 			 //Act
-			 PartialViewResult result = (PartialViewResult) m_TaskController.Information(ParentTaskID);
+			 PartialViewResult result = (PartialViewResult) m_TaskController.GetTaskInformationWhenClicked(ParentTaskID);
 			 //Assert
 			 result.Should().NotBeNull()
 			 	.And.BeOfType<PartialViewResult>();

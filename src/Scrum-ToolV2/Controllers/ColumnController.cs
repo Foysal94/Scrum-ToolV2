@@ -24,27 +24,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void ChangeColumnName(string p_OldColumnName, string p_NewColumnName, int p_BoardID)
-        {
-            var columns = m_context.Columns.ToList();
-            //string query = "from column in m_context.Columns where column.Name.Equals(p_OldBoardName) select column";
-
-            foreach (Columns c in columns)
-            {
-                if (c.Name == p_OldColumnName)
-                {
-                    //m_context.Columns.Update(c)
-                    c.Name = p_NewColumnName;
-                    m_context.SaveChanges();
-                    break;
-                }
-            }
-
-
-        }
-
-        [Route("[Action]")]
-        [HttpPost]
         public ViewComponentResult AddColumn(Columns model)
         {
             Columns tempColumn = new Columns(model.Name, model.ParentBoardID); // The model got passed the last column ID
@@ -57,7 +36,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void Delete(int p_ColumnID)
+        public void DeleteColumn(int p_ColumnID)
         {
             var columnList = m_context.Columns.ToList();
 
@@ -66,6 +45,25 @@ namespace ASPNET5_Scrum_Tool.Controllers
                 if (c.ID == p_ColumnID)
                 {
                     m_context.Columns.Remove(c);
+                    m_context.SaveChanges();
+                    break;
+                }
+            }
+        }
+
+        [Route("[Action]")]
+        [HttpPost]
+        public void ChangeColumnName(string p_OldColumnName, string p_NewColumnName, int p_BoardID)
+        {
+            var columns = m_context.Columns.ToList();
+            //string query = "from column in m_context.Columns where column.Name.Equals(p_OldBoardName) select column";
+
+            foreach (Columns c in columns)
+            {
+                if (c.Name == p_OldColumnName)
+                {
+                    //m_context.Columns.Update(c)
+                    c.Name = p_NewColumnName;
                     m_context.SaveChanges();
                     break;
                 }
@@ -87,8 +85,6 @@ namespace ASPNET5_Scrum_Tool.Controllers
                     ParentBoardID = c.ParentBoardID;
                 }
             }
-
-
             return "";
         }
 

@@ -33,7 +33,7 @@ namespace Scrum_Tool.UnitTests
 			 Comments testComment = new Comments("TestComment", "Comment to add for testing", m_ParentTaskID);
 			 int initalCommentCount = m_ScrumToolDBContext.Comments.Count();
 			 //Arrange
-			 m_CommentController.Create(testComment);
+			 m_CommentController.AddComment(testComment);
 			 //Assert
 			 m_ScrumToolDBContext.Comments.Should().NotBeNullOrEmpty()
 			 		.And.HaveCount(initalCommentCount + 1, "Inital Comment Count + 1");
@@ -48,7 +48,7 @@ namespace Scrum_Tool.UnitTests
 			 Comments lastComment = m_ScrumToolDBContext.Comments.Last();
 			 int initalCommentCount = m_ScrumToolDBContext.Comments.Count();
 			 //Arrange
-			 m_CommentController.Delete(lastComment.ID);
+			 m_CommentController.DeleteComment(lastComment.ID);
 			 //Assert
 			 m_ScrumToolDBContext.Comments.Should().HaveCount(initalCommentCount - 1, "Number of inital Comment - 1")
 			 		.And.NotContain(lastComment);

@@ -33,7 +33,7 @@ namespace Scrum_Tool.UnitTests
 			 Labels testLabel = new Labels(m_ParentTaskID,"Green");
 			 int initalLabelCount = m_ScrumToolDBContext.Labels.Count();
 			 //Arrange
-			 m_LabelController.Add(testLabel);
+			 m_LabelController.AddLabel(testLabel);
 			 //Assert
 			 m_ScrumToolDBContext.Labels.Should().NotBeNullOrEmpty()
 			 		.And.HaveCount(initalLabelCount + 1, "Inital Label Count + 1");
@@ -48,7 +48,7 @@ namespace Scrum_Tool.UnitTests
 			 Labels lastLabel = m_ScrumToolDBContext.Labels.Last();
 			 int initalLabelCount = m_ScrumToolDBContext.Labels.Count();
 			 //Arrange
-			 m_LabelController.Delete(lastLabel.ID);
+			 m_LabelController.DeleteLabel(lastLabel.ID);
 			 //Assert
 			 m_ScrumToolDBContext.Labels.Should().HaveCount(initalLabelCount - 1, "Number of inital labels - 1")
 			 		.And.NotContain(lastLabel);
@@ -62,7 +62,7 @@ namespace Scrum_Tool.UnitTests
 			 Labels testLabel = new Labels(m_ParentTaskID,"Purple");
 			 int initalLabelCount = m_ScrumToolDBContext.Labels.Count();
 			 //Arrange
-			 m_LabelController.Add(testLabel);
+			 m_LabelController.AddLabelFromTaskWindow(testLabel);
 			 //Assert
 			 m_ScrumToolDBContext.Labels.Should().NotBeNullOrEmpty()
 			 		.And.HaveCount(initalLabelCount + 1, "Inital Label Count + 1");

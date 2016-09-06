@@ -17,10 +17,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
             m_context = p_context;
         }
 
-
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult Create(Comments p_Model)
+        public IActionResult AddComment(Comments p_Model)
         {
             Comments tempComment = p_Model;
             m_context.Comments.Add(tempComment);
@@ -30,7 +29,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void Delete(int p_CommentID)
+        public void DeleteComment(int p_CommentID)
         {
             var commentList = m_context.Comments.ToList();
 

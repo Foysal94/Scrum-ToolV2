@@ -21,7 +21,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void Delete(int p_LabelID)
+        public void DeleteLabel(int p_LabelID)
         {
             var labelList = m_context.Labels.ToList();
 
@@ -38,7 +38,7 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public void Add(Labels p_Model)
+        public void AddLabel(Labels p_Model)
         {
             m_Label = p_Model;
             m_context.Labels.Add(m_Label);
@@ -47,9 +47,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public ViewComponentResult TaskAddLabel(int p_TaskID, string p_LabelColour)
+        public ViewComponentResult AddLabelFromTaskWindow(Labels p_Model)
         {
-            m_Label = new Labels(p_TaskID, p_LabelColour);
+            m_Label = p_Model;
             m_context.Labels.Add(m_Label);
             m_context.SaveChanges();
             return ViewComponent("Label", m_Label);
