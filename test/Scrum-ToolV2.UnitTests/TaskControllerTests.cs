@@ -88,15 +88,15 @@ namespace Scrum_Tool.UnitTests
 		 {
 			 //Arrange
 			 Tasks lastTask = m_ScrumToolDBContext.Tasks.Last(); 
-			 int originalColumnID = lastTask.ColumnID;
+			 int originalColumnID = lastTask.ParentColumnID;
 			 int newColumnID = 100;
-			 string originalColumnName = lastTask.ColumnName;
+			 string originalColumnName = lastTask.ParentColumnName;
 			 string newColumnName = "New Column For task";
 			 //Act
 			 m_TaskController.MovedTask(newColumnName, newColumnID, lastTask.ID);
 			 //Assert
-			 m_ScrumToolDBContext.Tasks.Last().ColumnID.ShouldBeEquivalentTo(newColumnID);
-			 m_ScrumToolDBContext.Tasks.Last().ColumnName.ShouldBeEquivalentTo(newColumnName);
+			 m_ScrumToolDBContext.Tasks.Last().ParentColumnID.ShouldBeEquivalentTo(newColumnID);
+			 m_ScrumToolDBContext.Tasks.Last().ParentColumnName.ShouldBeEquivalentTo(newColumnName);
 			 		
 
 		 }
