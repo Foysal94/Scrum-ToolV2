@@ -107,6 +107,7 @@ namespace Scrum_Tool.UnitTests
 			 //Arrange
 			 int taskID = m_ScrumToolDBFixture.FirstTaskID;
 			 int labelListCount = m_ScrumToolDBContext.Tasks.First().LabelList.Count();
+			 int commentListCount = m_ScrumToolDBContext.Tasks.First().CommentList.Count();
 			 //Act
 			 PartialViewResult result = (PartialViewResult) m_TaskController.Information(taskID);
 			 //Assert
@@ -114,9 +115,7 @@ namespace Scrum_Tool.UnitTests
 			 	.And.BeOfType<PartialViewResult>();
 			 result.ViewName.Should().Be("_Information");
 			 result.ViewData.Model.Should().BeOfType<Tasks>()
-			 	.Which.LabelList.Count.ShouldBeEquivalentTo(labelListCount);
-
-
+				 .Which.LabelList.Should().NotBeNullOrEmpty();
 		 }
 
 	 }

@@ -13,10 +13,10 @@ namespace Scrum_Tool.UnitTests
     {
         HomeController m_HomeController;
         private ScrumToolDBFixture m_ScrumToolDBFixture;
-		private ScrumToolDB m_ScrumToolDBContext;
+		  private ScrumToolDB m_ScrumToolDBContext;
 
         public HomeControllerTests(ScrumToolDBFixture p_ScrumToolDBFixture)
-		{
+		  {
 			m_ScrumToolDBFixture = p_ScrumToolDBFixture;
 			m_ScrumToolDBContext = m_ScrumToolDBFixture.ScrumToolDB;
             m_HomeController = new HomeController(m_ScrumToolDBContext);
@@ -33,7 +33,7 @@ namespace Scrum_Tool.UnitTests
 
             //Assert
             result.Should().NotBeNull();
-            result.ActionName.Should().Be("Load");
+            result.ActionName.Should().Be("Create");
             result.ControllerName.Should().Be("Board");
                 
         }
