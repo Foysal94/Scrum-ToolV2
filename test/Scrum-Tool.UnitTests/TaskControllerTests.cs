@@ -23,7 +23,6 @@ namespace Scrum_Tool.UnitTests
 		 public TaskControllerTests(ScrumToolDBFixture p_ScrumToolDBFixture) 
 		 {
 			 m_ScrumToolDBFixture = p_ScrumToolDBFixture;
-
 			 m_ColumnName = m_ScrumToolDBFixture.FirstColumnName;
 			 m_ParentBoardID = m_ScrumToolDBFixture.FirstBoardID;
 			 m_ScrumToolDBContext = m_ScrumToolDBFixture.ScrumToolDB;
@@ -40,10 +39,10 @@ namespace Scrum_Tool.UnitTests
 			 m_TaskController.AddNewTask(testTask);
 			 // Assert
 			 m_ScrumToolDBContext.Tasks.Should().NotBeNullOrEmpty()
-			 		.And.HaveCount(initalTaskCount + 1, "Number of inital coloumns plus one");
+			 		.And.HaveCount(initalTaskCount + 1, "Number of inital coloumns + 1");
 			 m_ScrumToolDBContext.Tasks.Last().ShouldBeEquivalentTo(testTask, options =>
 					options.Excluding(t => t.ID)
-							 .Excluding(t=> t.DueDate));
+							 .Excluding(t=> t.DueDate), "The last Task object in the table should be the testTask");
 		 }
 
 		 [Fact]
@@ -55,7 +54,7 @@ namespace Scrum_Tool.UnitTests
 			//Arrange
 			m_TaskController.Delete(lastTask.ID);
 			//Assert
-			m_ScrumToolDBContext.Tasks.Should().HaveCount(initalTaskCount - 1, "Number of inital tasks minus one")
+			m_ScrumToolDBContext.Tasks.Should().HaveCount(initalTaskCount - 1, "Number of inital tasks - 1")
 					.And.NotContain(lastTask);
 		 }
 

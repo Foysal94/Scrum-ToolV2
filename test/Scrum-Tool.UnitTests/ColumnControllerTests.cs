@@ -20,7 +20,6 @@ namespace Scrum_Tool.UnitTests
 		public ColumnControllerTests(ScrumToolDBFixture p_ScrumToolDBFixture) 
 		{
 			m_ScrumToolDBFixture = p_ScrumToolDBFixture;
-
 			m_ParentBoardID = m_ScrumToolDBFixture.FirstBoardID;
 			m_ScrumToolDBContext = m_ScrumToolDBFixture.ScrumToolDB;
 			m_ColumnController = new ColumnController(m_ScrumToolDBContext);
@@ -35,7 +34,7 @@ namespace Scrum_Tool.UnitTests
 			// Act
 			m_ColumnController.Delete(testColumn.ID);
 			// Assert
-			m_ScrumToolDBContext.Columns.Should().HaveCount(initalColoumnCount - 1, "Inital column list count is 3, and deleted one")
+			m_ScrumToolDBContext.Columns.Should().HaveCount(initalColoumnCount - 1, "Inital column list - 1")
 					.And.NotContain(testColumn);
 					 
 		}
@@ -50,9 +49,9 @@ namespace Scrum_Tool.UnitTests
 			m_ColumnController.AddColumn(testColumn);
 			// Assert
 			m_ScrumToolDBContext.Columns.Should().NotBeNullOrEmpty()
-					.And.HaveCount(initalColoumnCount + 1, "Number of inital columns created plus one");
+					.And.HaveCount(initalColoumnCount + 1, "Number of inital columns created + 1");
 			m_ScrumToolDBContext.Columns.Last().ShouldBeEquivalentTo(testColumn, options =>
-					options.Excluding(c => c.ID));
+					options.Excluding(c => c.ID), "The last Column object in the table should be the testColumn");
 		}
 
 		[Fact]

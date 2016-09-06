@@ -20,9 +20,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
 
         [Route("[Action]")]
         [HttpPost]
-        public IActionResult Create(int p_TaskID, string p_Name, string p_Content)
+        public IActionResult Create(Comments p_Model)
         {
-            Comments tempComment = new Comments(p_Name, p_Content, p_TaskID);
+            Comments tempComment = p_Model;
             m_context.Comments.Add(tempComment);
             m_context.SaveChanges();
             return ViewComponent("Comment", tempComment);
