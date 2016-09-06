@@ -18,9 +18,9 @@ namespace ASPNET5_Scrum_Tool.Models
 
         public string Colour { get { return m_Colour;} set { m_Colour = value; } }
 
-        public Labels(int p_TaskID, string p_Colour)
+        public Labels(int p_ParentTaskID, string p_Colour)
         {
-            m_ParentTaskID = p_TaskID;
+            m_ParentTaskID = p_ParentTaskID;
             m_Colour = p_Colour;
         }
 

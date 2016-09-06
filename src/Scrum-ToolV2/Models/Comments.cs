@@ -11,12 +11,12 @@ namespace ASPNET5_Scrum_Tool.Models
     {
         private int m_ID;
         private string m_Name;
-        private int m_TaskID;
+        private int m_ParentTaskID;
         private string m_Content;
         private DateTime m_CreationDate;
 
         public int ID { get { return m_ID; } set { m_ID = value; } }
-        public int ParentTaskID { get { return m_TaskID; } set { m_TaskID = value; } }
+        public int ParentTaskID { get { return m_ParentTaskID; } set { m_ParentTaskID = value; } }
 
         [DataType(DataType.Date)]
         public DateTime CreationDate { get { return m_CreationDate; } set { m_CreationDate = value; } }
@@ -28,7 +28,7 @@ namespace ASPNET5_Scrum_Tool.Models
         {
             m_Name = p_Name;
             m_Content = p_Content;
-            m_TaskID = p_TaskID;
+            m_ParentTaskID = p_TaskID;
             m_CreationDate = DateTime.Now;
         }
 

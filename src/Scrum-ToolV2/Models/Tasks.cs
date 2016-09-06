@@ -34,11 +34,11 @@ namespace ASPNET5_Scrum_Tool.Models
 
         //public Columns ParentColumn { get {return m_ParentColumn;} set { m_ParentColumn = value; } }
 
-        public Tasks(int p_BoardID, int p_ColumnID,string p_ColumnName, string p_TaskContent)
+        public Tasks(int p_ParentBoardID, int p_ParentColumnID,string p_ParentColumnName, string p_TaskContent)
         {
-            m_ParentBoardID = p_BoardID;
-            m_ParentColumnID = p_ColumnID;
-            m_ParentColumnName = p_ColumnName;
+            m_ParentBoardID = p_ParentBoardID;
+            m_ParentColumnID = p_ParentColumnID;
+            m_ParentColumnName = p_ParentColumnName;
             m_TaskContent = p_TaskContent;
             m_DueDate = DateTime.Now.AddDays(1);
 	        m_LabelList = new List<Labels>();
