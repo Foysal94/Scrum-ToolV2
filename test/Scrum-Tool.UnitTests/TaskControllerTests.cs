@@ -106,10 +106,16 @@ namespace Scrum_Tool.UnitTests
 		 {
 			 //Arrange
 			 int taskID = m_ScrumToolDBFixture.FirstTaskID;
-			 //Assert
+			 int labelListCount = m_ScrumToolDBContext.Tasks.First().LabelList.Count();
+			 //Act
 			 PartialViewResult result = (PartialViewResult) m_TaskController.Information(taskID);
-			 result.Should().BeOfType<PartialViewResult>();
+			 //Assert
+			 result.Should().NotBeNull()
+			 	.And.BeOfType<PartialViewResult>();
 			 result.ViewName.Should().Be("_Information");
+			 result.ViewData.Model.Should().BeOfType<Tasks>()
+			 	.Which.LabelList.Count.ShouldBeEquivalentTo(labelListCount);
+
 
 		 }
 
