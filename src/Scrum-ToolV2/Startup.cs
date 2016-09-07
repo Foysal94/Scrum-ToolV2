@@ -23,6 +23,7 @@ namespace ASPNET5_Scrum_Tool
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -34,12 +35,9 @@ namespace ASPNET5_Scrum_Tool
         {
             services.AddSession();
             services.AddMvc();
-           
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=ScrumToolDB;Trusted_Connection=True;MultipleActiveResultSets=false";
-            
-
-            //services.AddDbContext<ScrumToolDB>(options =>
-                 //options.UseSqlServer(azureConnection));
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ScrumToolDB>(options =>
+                 options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,18 +47,16 @@ namespace ASPNET5_Scrum_Tool
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             
-            /*
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            elsez
+            else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            */
-             
-            app.UseDeveloperExceptionPage();
+            
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvc(routes =>
