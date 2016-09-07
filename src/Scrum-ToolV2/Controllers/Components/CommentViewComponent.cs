@@ -9,17 +9,9 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 {
     public class CommentViewComponent : ViewComponent
     {
-
-        public IViewComponentResult Invoke(Comments model)
+        public async Task<IViewComponentResult> InvokeAsync(Comments p_Model)
         {
-            return View("Comment", model);
+            return View("Comment", p_Model);
         }
-
-        /*
-        public Task<IViewComponentResult> InvokeAsync()
-        {
-            return View();
-        }
-        */
     }
 }

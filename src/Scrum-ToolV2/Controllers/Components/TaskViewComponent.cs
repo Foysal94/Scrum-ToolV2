@@ -9,19 +9,9 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
 {
     public class TaskViewComponent : ViewComponent
     {
-       
-        public IViewComponentResult Invoke(Tasks model)
+        public async Task<IViewComponentResult> InvokeAsync(Tasks p_Model)
         {
-            return View(model);
+            return View("Task", p_Model);
         }
-
-        /*
-        public Task<IViewComponentResult> InvokeAsync()
-        {
-            return View();
-        }
-        */
-
-
     }
 }

@@ -21,15 +21,11 @@
 
     <div class="panel-body">
         @if (Model.TasksList.Count != 0)
-        {
-            
-                @foreach (var t in @Model.TasksList)
-                {
-
-                    @Component.Invoke("Task", t)
-
-                }
-         
+        { 
+            @foreach (var t in @Model.TasksList)
+            {
+               @await Component.InvokeAsync("Task", new { p_Model = t} )
+            }
         }
         <a class="AddTask"> Add a task.... </a>
 

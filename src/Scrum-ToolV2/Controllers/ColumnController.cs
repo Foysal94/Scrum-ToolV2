@@ -27,11 +27,9 @@ namespace ASPNET5_Scrum_Tool.Controllers
         public ViewComponentResult AddColumn(Columns model)
         {
             Columns tempColumn = new Columns(model.Name, model.ParentBoardID); // The model got passed the last column ID
-
             m_context.Columns.Add(tempColumn);
             m_context.SaveChanges();
-            tempColumn.TasksList = new List<Tasks>();
-            return ViewComponent("Panel_Lists", tempColumn);
+            return ViewComponent("Column", tempColumn);
         }
 
         [Route("[Action]")]

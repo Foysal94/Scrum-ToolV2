@@ -8,20 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASPNET5_Scrum_Tool.Controllers.Components
 {
     public class LabelViewComponent : ViewComponent
-    {
-
-        public IViewComponentResult Invoke(Labels model)
+    {   
+        public async Task<IViewComponentResult> InvokeAsync(Labels p_Model)
         {
-            return View("Label", model);
+            return View("Label", p_Model);
         }
-
-        /*
-        public Task<IViewComponentResult> InvokeAsync()
-        {
-            return View();
-        }
-        */
-
 
     }
 }

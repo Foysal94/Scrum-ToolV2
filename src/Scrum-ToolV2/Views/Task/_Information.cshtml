@@ -12,7 +12,7 @@
             <ul class="TaskLabelList">
                 @foreach (var label in Model.LabelList)
                 {
-                   @Component.Invoke("Label", label)
+                   @await Component.InvokeAsync("Label", new { p_Model = label })
                 }
                 
             </ul>
@@ -61,7 +61,7 @@
 
         @foreach (var comment in Model.CommentList)
         {
-            @Component.Invoke("Comment", comment);
+            @await Component.InvokeAsync("Comment", new { p_Model = comment} );
         }
 
 
