@@ -4,6 +4,7 @@ wwwroot/**/*
 
 #Include 
 !wwwroot/lib/
+wwwroot
 
 # User-specific files
 *.suo
