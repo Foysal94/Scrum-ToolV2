@@ -31,17 +31,14 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public void DeleteComment(int p_CommentID)
         {
-            var commentList = m_context.Comments.ToList();
+            var commentList = m_context.Comments.Where(c => c.ID == p_CommentID);
 
             foreach (Comments c in commentList)
             {
-                if (c.ID == p_CommentID)
-                {
-                    m_context.Comments.Remove(c);
-                    m_context.SaveChanges();
-                    break;
-                }
+                m_context.Comments.Remove(c);        
             }
+            m_context.SaveChanges();       
+
         }
     }
 }
