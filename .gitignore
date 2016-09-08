@@ -1,7 +1,9 @@
 .DS_Store
-wwwroot
 node_modules
+wwwroot/**/*
 
+#Include 
+!wwwroot/lib/
 
 # User-specific files
 *.suo
