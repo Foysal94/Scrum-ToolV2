@@ -14,9 +14,8 @@ namespace ASPNET5_Scrum_Tool.Controllers
     [Route("[Controller]")]
     public class ColumnController : Controller
     {
-        private ScrumToolDB m_context;
-        private int m_ColumnNameIncrement;
-
+        private readonly ScrumToolDB m_context;
+		
         public ColumnController(ScrumToolDB p_context)
         {
             m_context = p_context;
@@ -26,46 +25,36 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddColumn(Columns model)
         {
-            Columns tempColumn = new Columns(model.Name, model.ParentBoardID); // The model got passed the last column ID
-            m_context.Columns.Add(tempColumn);
-            m_context.SaveChanges();
-            return ViewComponent("Column", tempColumn);
+           Columns tempColumn = new Columns(model.Name, model.ParentBoardID); // The model got passed the last column ID
+           m_context.Columns.Add(tempColumn);
+           m_context.SaveChanges();
+           return ViewComponent("Column", tempColumn);
         }
 
         [Route("[Action]")]
         [HttpPost]
         public void DeleteColumn(int p_ColumnID)
-        {
-            var columnList = m_context.Columns.ToList();
+		  {
+			  var columnsList = m_context.Columns.Where(c => c.ID == p_ColumnID);
+              foreach(Columns c in columnsList)
+              {
+                 m_context.Columns.Remove(c);
+              }
 
-            foreach (Columns c in columnList)
-            {
-                if (c.ID == p_ColumnID)
-                {
-                    m_context.Columns.Remove(c);
-                    m_context.SaveChanges();
-                    break;
-                }
-            }
-        }
+			  m_context.SaveChanges();
+		  }
 
         [Route("[Action]")]
         [HttpPost]
-        public void ChangeColumnName(string p_OldColumnName, string p_NewColumnName, int p_BoardID)
+        public void ChangeColumnName(string p_OldColumnName, string p_NewColumnName, int p_OldID, int p_BoardID)
         {
-            var columns = m_context.Columns.ToList();
-            //string query = "from column in m_context.Columns where column.Name.Equals(p_OldBoardName) select column";
-
-            foreach (Columns c in columns)
+            var columnsList = m_context.Columns.Where(c => c.Name == p_OldColumnName && c.ID == p_OldID);
+            foreach (Columns c in columnsList)
             {
-                if (c.Name == p_OldColumnName)
-                {
-                    //m_context.Columns.Update(c)
-                    c.Name = p_NewColumnName;
-                    m_context.SaveChanges();
-                    break;
-                }
+                c.Name = p_NewColumnName;
+                              
             }
+            m_context.SaveChanges(); 
         }
 
         [Route("[Action]")]

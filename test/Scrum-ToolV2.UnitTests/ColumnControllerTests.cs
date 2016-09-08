@@ -60,8 +60,10 @@ namespace Scrum_Tool.UnitTests
 			// Arrange
 			string newColumnName = "NewName";
 			Columns lastColumn = m_ScrumToolDBContext.Columns.Last();
+			string oldName = lastColumn.Name;
+			int oldID = lastColumn.ID;
 			// Act
-			m_ColumnController.ChangeColumnName(lastColumn.Name, newColumnName, m_ParentBoardID);
+			m_ColumnController.ChangeColumnName(oldName, newColumnName, oldID, m_ParentBoardID);
 			// Assert
 			m_ScrumToolDBContext.Columns.Last().Name.ShouldBeEquivalentTo(newColumnName);
 		}
