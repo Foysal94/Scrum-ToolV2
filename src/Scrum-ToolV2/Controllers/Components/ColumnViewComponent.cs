@@ -14,9 +14,9 @@ namespace ASPNET5_Scrum_Tool.Controllers.Components
             m_context = p_context;
         }
 
-        public Task<IViewComponentResult> InvokeAsync(Columns model)
+        public async Task<IViewComponentResult> InvokeAsync(Columns p_Model)
         {
-            return View("Column",model);
+            return View("Column", p_Model);
         }
 
     }
