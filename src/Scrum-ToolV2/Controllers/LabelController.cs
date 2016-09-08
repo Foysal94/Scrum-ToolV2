@@ -12,36 +12,31 @@ namespace ASPNET5_Scrum_Tool.Controllers
     public class LabelController : Controller
     {
         private ScrumToolDB m_context;
-        private Labels m_Label;
         public LabelController(ScrumToolDB p_context)
         {
             m_context = p_context;
-            m_Label = null;
         }
 
         [Route("[Action]")]
         [HttpPost]
         public void DeleteLabel(int p_LabelID)
         {
-            var labelList = m_context.Labels.ToList();
+            var labelList = m_context.Labels.Where(l => l.ID == p_LabelID);
 
             foreach (Labels label in labelList)
             {
-                if (label.ID == p_LabelID)
-                {
-                    m_context.Labels.Remove(label);
-                    m_context.SaveChanges();
-                    break;
-                }
+                m_context.Labels.Remove(label);
+                
             }
+            m_context.SaveChanges();
         }
 
         [Route("[Action]")]
         [HttpPost]
         public void AddLabel(Labels p_Model)
         {
-            m_Label = p_Model;
-            m_context.Labels.Add(m_Label);
+            Labels tempLabel = p_Model;
+            m_context.Labels.Add(tempLabel);
             m_context.SaveChanges();
         }
 
@@ -49,10 +44,10 @@ namespace ASPNET5_Scrum_Tool.Controllers
         [HttpPost]
         public ViewComponentResult AddLabelFromTaskWindow(Labels p_Model)
         {
-            m_Label = p_Model;
-            m_context.Labels.Add(m_Label);
+            Labels tempLabel = p_Model;
+            m_context.Labels.Add(tempLabel);
             m_context.SaveChanges();
-            return ViewComponent("Label", m_Label);
+            return ViewComponent("Label", tempLabel);
         }
 
     }
