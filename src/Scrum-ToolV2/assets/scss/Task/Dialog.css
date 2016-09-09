@@ -1,4 +1,4 @@
-﻿@import '../Shared/base';
+﻿@import '../Shared/_base.css';
 
 .ui-dialog-title, .ui-dialog-titlebar {
     background-color: $panel-body-color;

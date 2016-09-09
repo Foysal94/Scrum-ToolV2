@@ -1,5 +1,5 @@
-﻿@import '../Shared/base';
-@import 'Dialog.scss';
+﻿@import '../Shared/_base.css';
+@import 'Dialog.css';
 
  .TaskWindow {
       margin-left:20px;

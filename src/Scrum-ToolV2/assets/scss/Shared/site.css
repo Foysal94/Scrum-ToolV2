@@ -1,7 +1,7 @@
 //@import url("http://fonts.googleapis.com/css?family=Coming+Soon");
 
 @import 'NavBar_Buttons.scss';
-@import 'base';
+@import '_base.css';
 
 
 // Site CSS

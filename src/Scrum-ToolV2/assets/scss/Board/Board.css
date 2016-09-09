@@ -1,7 +1,7 @@
 @import '../Shared/base';
-@import 'Panels.scss';
-@import 'Forms.scss';
-@import 'SideMenu.scss';
+@import 'Column.css';
+@import 'Form.scss';
+@import 'SideMenu.css';
 
 .row {
     margin-top: 1%;
