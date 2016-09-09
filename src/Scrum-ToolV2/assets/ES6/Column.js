@@ -187,13 +187,13 @@ const cancelColumnForm = function() {
 
 
 $(document).ready(
-	 activeColumn(),
-	 columnTitleClick(), 
-	 submitColumNameChange(), 
-	 cancelColumnNameChange(), 
-	 columnNameFormMouseEvents(),
-	 deleteColumnLinkClick(),
-	 addColumnButtonClick(),
-	 submitAddColumn(),
-	 cancelColumnForm()
+   activeColumn(),
+   columnTitleClick(),
+   submitColumNameChange(),
+   cancelColumnNameChange(),
+   columnNameFormMouseEvents(),
+   deleteColumnLinkClick(),
+   addColumnButtonClick(),
+   submitAddColumn(),
+   cancelColumnForm()
 )

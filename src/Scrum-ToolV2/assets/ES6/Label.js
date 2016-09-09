@@ -11,5 +11,5 @@ $('.ColourLabel').draggable({
 });
 
 $(document).ready(
-	loadLabels()
+   loadLabels()
 )

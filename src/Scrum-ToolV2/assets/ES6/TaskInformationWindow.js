@@ -203,13 +203,13 @@ const deleteComment = function() {
 };
 
 $(document).ready(
-	deleteLabelLink(), 
-	addLabelClick(), 
-	editTaskClick(), 
-	editTaskContent(), 
-	editTaskCancelClick(), 
-	changeDateButtonClick(), 
-	addCommentSubmitButton(), 
-	activeComment(), 
-	deleteComment()
+   deleteLabelLink(),
+   addLabelClick(),
+   editTaskClick(),
+   editTaskContent(),
+   editTaskCancelClick(),
+   changeDateButtonClick(),
+   addCommentSubmitButton(),
+   activeComment(),
+   deleteComment()
 );

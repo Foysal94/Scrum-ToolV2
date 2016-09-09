@@ -11,29 +11,29 @@ const taskDropOptions = {
     return false;
   },
   drop: function(event, ui) {
-		let task = $(this);
-		$(task).css('list-style-type', 'none');
-		let taskID = $(task).find('.Task').attr('id');
-		let label = $(ui.draggable);
-		let labelColour = $(label).attr('id');
-		let colour = labelColour.slice(0, -5);
+    let task = $(this);
+    $(task).css('list-style-type', 'none');
+    let taskID = $(task).find('.Task').attr('id');
+    let label = $(ui.draggable);
+    let labelColour = $(label).attr('id');
+    let colour = labelColour.slice(0, -5);
 
-		return $.ajax({
-			url: '/Label/AddLabel',
-			type: 'POST',
-			data: {
-				p_TaskID: taskID,
-				p_LabelColour: colour
-			},
-			success: function(data) {
-				return alert('Label was added successfully');
-			},
-			error: function(error) {
-				alert('Error dropping label, TaskDropOptions');
-				return alert("no good " + JSON.stringify(error));
-			}
-    	});
-   }
+    return $.ajax({
+      url: '/Label/AddLabel',
+      type: 'POST',
+      data: {
+        p_TaskID: taskID,
+        p_LabelColour: colour
+      },
+      success: function(data) {
+        return alert('Label was added successfully');
+      },
+      error: function(error) {
+        alert('Error dropping label, TaskDropOptions');
+        return alert("no good " + JSON.stringify(error));
+      }
+    });
+  }
 }
 
 const activeTask = function() {
@@ -127,7 +127,7 @@ const submitTaskForm = function() {
     event.preventDefault();
     const selectedColumnName = $('.AddTaskForm').parent().parent().find('.panel-title').text();
     const taskContent = $('.BoardTaskContentInput').val().trim();
-	 const boardID = $('.BoardNameHeading').attr('id');
+    const boardID = $('.BoardNameHeading').attr('id');
     return $.ajax({
       url: '/Task/AddTask',
       type: 'POST',
@@ -188,11 +188,11 @@ $('.TaskParentDiv').droppable(taskDropOptions);
 
 
 $(document).ready(
-	activeTask(),
-	editTaskEnter(),
-	activeTaskClick(),
-	addTaskForm(),
-	submitTaskForm(),
-	deleteTaskLinkClick(),
-	cancelAddTaskForm()
+   activeTask(),
+   editTaskEnter(),
+   activeTaskClick(),
+   addTaskForm(),
+   submitTaskForm(),
+   deleteTaskLinkClick(),
+   cancelAddTaskForm()
 )
