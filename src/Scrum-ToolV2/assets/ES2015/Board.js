@@ -1,4 +1,4 @@
-const BoardName = $('.BoardNameHeading').text();
+const m_BoardName = $('.BoardNameHeading').text();
 const m_BoardID = $('.BoardNameHeading').attr('id');
 
 const boardDropOptions = {
@@ -42,9 +42,12 @@ const boardDropOptions = {
    }
 };
 
-$('.BoardColumn').droppable(boardDropOptions);
 
+const boardJS = function() {
+	$(document).ready(function() {
+		$('.BoardColumn').droppable(boardDropOptions);
+	});
+}
 
-$(document).ready(function() {
+export default boardJS;
 
-});

@@ -202,14 +202,18 @@ const deleteComment = function() {
   });
 };
 
-$(document).ready(
-   deleteLabelLink(),
-   addLabelClick(),
-   editTaskClick(),
-   editTaskContent(),
-   editTaskCancelClick(),
-   changeDateButtonClick(),
-   addCommentSubmitButton(),
-   activeComment(),
-   deleteComment()
-);
+const taskInformationWindowJS = function() {
+  $(document).ready(
+	   deleteLabelLink(),
+     addLabelClick(),
+     editTaskClick(),
+     editTaskContent(),
+     editTaskCancelClick(),
+     changeDateButtonClick(),
+     addCommentSubmitButton(),
+     activeComment(),
+     deleteComment()
+  )
+}
+
+export default taskInformationWindowJS;

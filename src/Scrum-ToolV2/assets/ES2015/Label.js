@@ -6,10 +6,15 @@ const loadLabels = function() {
   });
 };
 
-$('.ColourLabel').draggable({
-  revert: true
-});
+const labelDragOptions = {
+	revert: true
+}
 
-$(document).ready(
-   loadLabels()
-)
+const labelJS = function() {
+  $(document).ready(
+	  loadLabels(),
+	  $('.ColourLabel').draggable(labelDragOptions)
+  )
+}
+
+export default labelJS;

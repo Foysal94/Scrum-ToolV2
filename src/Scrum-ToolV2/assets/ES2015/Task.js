@@ -182,17 +182,21 @@ const cancelAddTaskForm = function() {
   });
 };
 
-$('.TaskParentDiv').draggable(taskDragOptions);
-
-$('.TaskParentDiv').droppable(taskDropOptions);
 
 
-$(document).ready(
-   activeTask(),
-   editTaskEnter(),
-   activeTaskClick(),
-   addTaskForm(),
-   submitTaskForm(),
-   deleteTaskLinkClick(),
-   cancelAddTaskForm()
-)
+
+const taskJS = function() {
+  $(document).ready(
+	  $('.TaskParentDiv').draggable(taskDragOptions),
+     $('.TaskParentDiv').droppable(taskDropOptions),
+     activeTask(),
+     editTaskEnter(),
+     activeTaskClick(),
+     addTaskForm(),
+     submitTaskForm(),
+     deleteTaskLinkClick(),
+     cancelAddTaskForm()
+  )
+}
+
+export default taskJS;

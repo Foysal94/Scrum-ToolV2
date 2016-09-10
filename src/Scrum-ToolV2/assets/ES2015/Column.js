@@ -186,14 +186,18 @@ const cancelColumnForm = function() {
 };
 
 
-$(document).ready(
-   activeColumn(),
-   columnTitleClick(),
-   submitColumNameChange(),
-   cancelColumnNameChange(),
-   columnNameFormMouseEvents(),
-   deleteColumnLinkClick(),
-   addColumnButtonClick(),
-   submitAddColumn(),
-   cancelColumnForm()
-)
+const columnJS = function() {
+  $(document).ready(
+    activeColumn(),
+    columnTitleClick(),
+    submitColumNameChange(),
+    cancelColumnNameChange(),
+    columnNameFormMouseEvents(),
+    deleteColumnLinkClick(),
+    addColumnButtonClick(),
+    submitAddColumn(),
+    cancelColumnForm()
+  )
+}
+
+export default columnJS;
