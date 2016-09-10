@@ -1,18 +1,14 @@
-﻿@import '../Shared/base';
+﻿@import '../Shared/base.css';
 
 #MenuColumn{
     float:right;
     display:inline-block;
     border-left: 3px solid $logo-color;
     height:100%;
-
     .btn {
         width:100%;
     }
-
-    @include ListStyleNone;
-
-   
+    @mixin ListStyleNone;
 }
 
 .ColourLabel {

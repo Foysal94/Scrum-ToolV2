@@ -1,7 +1,7 @@
-@import '../Shared/base';
-@import 'Column.css';
-@import 'Form.scss';
-@import 'SideMenu.css';
+@import '../Shared/base.css';
+@import './Column.css';
+@import './Forms.css';
+@import './SideMenu.css';
 
 .row {
     margin-top: 1%;
@@ -30,7 +30,8 @@
 }
 
 .EditTask {
-     margin: -50px 0 0 270px; //Change these numbers to move the pen about in the corner, top,right,bottom,left
+    /*Change these numbers to move the pen about in the corner, top,right,bottom,left*/
+     margin: -50px 0 0 270px; 
      position:absolute;
      cursor:pointer;
 }

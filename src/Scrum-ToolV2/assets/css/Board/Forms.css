@@ -1,6 +1,6 @@
-﻿@import '../Shared/base';
-// CSS to change the form for when changing the panel name;
- @mixin CustomButton {
+﻿@import '../Shared/base.css';
+/* CSS to change the form for when changing the panel name;*/
+@define-mixin CustomButton {
      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
@@ -40,48 +40,48 @@
 }
 
  .AddColumnSubmit {
-    @include CustomButton;
+    @mixin CustomButton;
     padding: 10px 10px 10px ;
 }
 
 .AddColumnCancel {
-    @include CustomButton;
+    @mixin CustomButton;
     display:inline-block;
     padding: 10px 10px 10px ;
     
 }
 
 .ColumnTitleSubmit {
-    @include CustomButton;
+    @mixin CustomButton;
     padding: 10px 10px 10px ;
 }
 
 .ColumnTitleCancel {
-    @include CustomButton;
+    @mixin CustomButton;
     display:inline-block;
     padding: 10px 10px 10px ;
 }
 
 .TaskFormSubmit {
-    @include CustomButton;
+    @mixin CustomButton;
     padding: 10px 10px 10px ;
 }
 
 .TaskFormCancel {
-    @include CustomButton;
+    @mixin CustomButton;
     display:inline-block;
     padding: 10px 10px 10px ;
 }
 
 
 .EditTaskSubmit {
-    @include CustomButton;
+    @mixin CustomButton;
     padding: 10px 10px 10px ;
 }
 
 
 .EditTaskCancel {
-    @include CustomButton;
+    @mixin CustomButton;
     display:inline-block;
     padding: 10px 10px 10px ;
 }
