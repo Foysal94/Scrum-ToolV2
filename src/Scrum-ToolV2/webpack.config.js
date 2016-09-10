@@ -6,6 +6,7 @@ var autoprefixer = require('autoprefixer');
 var postcssSimpleVars = require("postcss-simple-vars")
 var postcssNested = require("postcss-nested")
 var postcssImport = require("postcss-import")
+var postcssMixins = require('postcss-mixins')
 var stylelint = require('stylelint')
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -80,7 +81,7 @@ var config = {
             path: paths,
             addDependencyTo: webpack
          }),
-
+			postcssMixins,
          postcssSimpleVars,
          postcssNested
       ]
