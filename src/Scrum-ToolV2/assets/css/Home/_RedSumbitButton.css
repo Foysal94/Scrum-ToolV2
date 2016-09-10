@@ -1,4 +1,4 @@
-// GOT FROM http://codepen.io/daviddarnes/pen/VLXxMa 
+/* GOT FROM http://codepen.io/daviddarnes/pen/VLXxMa */
 
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 @import url("http://fonts.googleapis.com/css?family=Droid+Serif:400,700");
@@ -9,7 +9,7 @@ $regular-text: #333;
 $button-tint: fadeout(#000, 90%);
 $background: #303036;
 
-// Red Sumbit Button CSS
+/* Red Sumbit Button */
 
 * {
 	box-sizing: border-box;

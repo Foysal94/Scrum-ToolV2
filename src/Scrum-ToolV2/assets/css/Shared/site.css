@@ -1,15 +1,13 @@
-//@import url("http://fonts.googleapis.com/css?family=Coming+Soon");
+@import url("http://fonts.googleapis.com/css?family=Coming+Soon");
+@import './NavBar_Buttons.css';
+@import './_base.css';
 
-@import 'NavBar_Buttons.scss';
-@import '_base.css';
-
-
-// Site CSS
+/* Site CSS */
 body {
     padding-top: 50px;
     padding-bottom: 20px;
     background: $background-color;
-    //font-family: "Coming Soon"
+    /*font-family: "Coming Soon"*/
     color: white;
 }
 
@@ -28,7 +26,7 @@ input, select {
 /* Carousel */
 .carousel-caption {
     z-index: 10 !important;
-    
+
     p {
         font-size: 20px;
         line-height: 1.4;

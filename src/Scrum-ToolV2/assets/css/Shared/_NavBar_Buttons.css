@@ -1,12 +1,12 @@
-// GOT FROM http://codepen.io/fwpolice/pen/yNNNJG
+/* GOT FROM http://codepen.io/fwpolice/pen/yNNNJG */
 
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
-@import '_base.css';
+@import './base.css';
 
-// NavBar_Buttons CSS
+/* NavBar_Buttons CSS */
 
-// My Own
+/* My Own */
 #navbar-Buttons {
     margin-left: 750px !important;
     margin-top: 18px !important;
@@ -17,7 +17,6 @@
     
     width:100%;
 }
-
 
 .navbar, .navbar-inverse, .navbar-fixed-top
 {
@@ -39,8 +38,6 @@
     }
 
 }
-
-
 
 /* Global Button Styles */
 a.animated-button:link, a.animated-button:visited {
