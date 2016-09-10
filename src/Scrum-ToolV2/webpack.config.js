@@ -5,13 +5,14 @@ var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var postcssSimpleVars = require("postcss-simple-vars")
 var postcssNested = require("postcss-nested")
-var postcssImport = require("postcss-import")
+var postcssEasyImport = require("postcss-easy-import")
 var postcssMixins = require('postcss-mixins')
 var stylelint = require('stylelint')
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var PATHS = {
-   app:  glob.sync("./assets/ES2015/*.js"),
+   app:  path.join(__dirname, 'assets'),
    build: path.join(__dirname, 'wwwroot')
 };
 
@@ -37,6 +38,7 @@ var config = {
          {
             test: /(scss|css)$/,
             loaders: ['postcss'],
+				include: PATHS.app
          },
          /*
          {
@@ -54,13 +56,13 @@ var config = {
             loader: "babel-loader"
          },
          {
-            test: /(scss|css)$/,
-            loaders: [
+            test: /(scss|css)$/, 
+            loader: ExtractTextPlugin.extract(
                'style',
-               'css-loader?modules=true&sourceMap=true&localIdentName=[name]__[local]___[hash:base64:5]',
+               'css-loader?sourceMap=true',
                'postcss'
-
-            ],
+				),
+				include:PATHS.app
          },
          {
             test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
@@ -77,9 +79,10 @@ var config = {
             browsers: ['last 2 versions']
          }),
 
-         postcssImport ({
+         postcssEasyImport ({
             path: paths,
-            addDependencyTo: webpack
+            addDependencyTo: webpack,
+				prefix: "_"
          }),
 			postcssMixins,
          postcssSimpleVars,
@@ -96,7 +99,7 @@ var config = {
             ]
       ),
       // Output extracted CSS to a file
-      new ExtractTextPlugin('[name].css', {
+      new ExtractTextPlugin('bundle.css', {
          allChunks: true
       })
 	]
