@@ -16,7 +16,6 @@ var PATHS = {
    build: path.join(__dirname, 'wwwroot')
 };
 
-
 var config = {
    entry: {
       app: PATHS.app
