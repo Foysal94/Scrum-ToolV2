@@ -39,13 +39,13 @@ var config = {
             loaders: ['postcss'],
 				include: PATHS.app
          },
-         /*
+         
          {
              test: /\.jsx?$/,
              loaders: ['eslint'],
              include: PATHS.app
          }
-         */
+         
       ],
 
       loaders: [

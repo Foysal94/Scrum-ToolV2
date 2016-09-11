@@ -1,20 +1,26 @@
 {
   "globals": {
     "require": true,
-    "exports": true
+    "exports": true,
+	 "alert" : true,
+	 "document" : true
+  },
+
+  "env" : {
+	  "jquery" : true
   },
 
   "plugins": [
-    "react"
   ],
 
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ],
 
-  parser: "babel-eslint",
+  "parser": "babel-eslint",
 
   "rules": {
+
   }
+
 }
