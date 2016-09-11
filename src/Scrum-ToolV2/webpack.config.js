@@ -10,6 +10,7 @@ var postcssMixins = require('postcss-mixins')
 var stylelint = require('stylelint')
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 var PATHS = {
    app:  path.join(__dirname, 'assets'),
@@ -100,7 +101,14 @@ var config = {
       // Output extracted CSS to a file
       new ExtractTextPlugin('bundle.css', {
          allChunks: true
-      })
+      }),
+		new StyleLintPlugin({
+			configFile: '.stylelintrc',
+			context: 'assets',
+			files: '**/*.css',
+			failOnError: true,
+			quiet: false,
+		})
 	]
 
 
