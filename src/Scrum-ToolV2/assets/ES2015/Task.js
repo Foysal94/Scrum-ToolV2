@@ -1,3 +1,4 @@
+/* global loadLabels */
 const taskDragOptions = {
   delay: 300,
   revert: true
@@ -25,7 +26,7 @@ const taskDropOptions = {
         p_TaskID: taskID,
         p_LabelColour: colour
       },
-      success: function(data) {
+      success: function() {
         return alert('Label was added successfully');
       },
       error: function(error) {
@@ -37,11 +38,11 @@ const taskDropOptions = {
 }
 
 const activeTask = function() {
-  $('#MainColumn').on('mouseenter', '.TaskParentDiv', function(event) {
+  $('#MainColumn').on('mouseenter', '.TaskParentDiv', function() {
     $(this).addClass('ActiveTask');
     return $(this).find('.EditTask').removeClass('Hidden');
   });
-  return $('#MainColumn').on('mouseleave', '.TaskParentDiv', function(event) {
+  return $('#MainColumn').on('mouseleave', '.TaskParentDiv', function() {
     let taskWindowOpen = $('body').find('.TaskWindow');
     if (taskWindowOpen.length === 0) {
       $(this).removeClass('ActiveTask');
@@ -51,11 +52,11 @@ const activeTask = function() {
 };
 
 const editTaskEnter = function() {
-  $('#MainColumn').on('mouseenter', '.EditTask', function(event) {
+  $('#MainColumn').on('mouseenter', '.EditTask', function() {
     const task = $('.ActiveTask');
     return $(task).removeClass('ActiveTask');
   });
-  return $('#MainColumn').on('mouseleave', '.EditTask', function(event) {
+  return $('#MainColumn').on('mouseleave', '.EditTask', function() {
     const task = $(this).parent();
     return $(task).addClass('ActiveTask');
   });
@@ -74,22 +75,21 @@ const activeTaskClick = function() {
         p_TaskID: taskID
       },
       success: function(data) {
-        let dialog = data;
         $(data).dialog({
           height: 700,
           width: 900,
           modal: true,
           resizable: false,
-          open: function(event, ui) {
-            return $('.ui-widget-overlay').bind('click', function(event, ui) {
+          open: function() {
+            return $('.ui-widget-overlay').bind('click', function() {
               return $(data).dialog('close');
             });
           },
-          close: function(event, ui) {
+          close: function() {
             return $('.ActiveTask').removeClass('ActiveTask');
           }
         }).siblings('.ui-dialog-titlebar').removeClass('ui-widget-header');
-        return LoadLabels();
+        return loadLabels();
       },
 
       error: function(error) {
@@ -102,17 +102,17 @@ const activeTaskClick = function() {
 };
 
 const addTaskForm = function() {
-  return $('#MainColumn').on('click', '.AddTask', function(event) {
+  return $('#MainColumn').on('click', '.AddTask', function() {
     const selectedColumn = $(this).parent().parent();
     const preventFormReload = $(selectedColumn).find('.AddTaskForm');
     if (preventFormReload.length !== 0) {
       return;
     }
-    const selectedColumnID = $(selectedColumn).attr('id');
-    const prevTask = $(this).prev();
+    //const selectedColumnID = $(selectedColumn).attr('id');
+    //const prevTask = $(this).prev();
     const doesFormExist = $('#MainColumn').find('.AddTaskForm');
     if (doesFormExist.length !== 0) {
-      let column = DoesFormExist.parent();
+      let column = doesFormExist.parent();
       column.find('.AddTaskForm').replaceWith("<a class='AddTask'> Add a task.... </a>");
       column.find('.TaskFormSubmit').remove();
     }
@@ -139,8 +139,8 @@ const submitTaskForm = function() {
       success: function(data) {
         $('.AddTaskForm').after('<a class="AddTask"> Add a task.... </a>');
         return $('.AddTaskForm').replaceWith(function() {
-          $(data).draggable(TaskDragOptions);
-          $(data).droppable(TaskDropOptions);
+          $(data).draggable(taskDragOptions);
+          $(data).droppable(taskDropOptions);
           return $(data).css('list-style-type', 'none');
         });
       },
@@ -164,7 +164,7 @@ const deleteTaskLinkClick = function() {
       data: {
         p_TaskID: taskID
       },
-      success: function(data) {
+      success: function() {
         return $(task).parent().remove();
       },
       error: function(error) {
@@ -187,7 +187,7 @@ const cancelAddTaskForm = function() {
 
 const taskJS = function() {
   $(document).ready(
-	  $('.TaskParentDiv').draggable(taskDragOptions),
+     $('.TaskParentDiv').draggable(taskDragOptions),
      $('.TaskParentDiv').droppable(taskDropOptions),
      activeTask(),
      editTaskEnter(),

@@ -1,8 +1,10 @@
+/* global m_BoardID, boardDropOptions */
+
 const activeColumn = function() {
-  $('#MainColumn').on('mouseenter', '.panel-heading', function(event) {
+  $('#MainColumn').on('mouseenter', '.panel-heading', function() {
     return $(this).addClass('ActivePanel');
   });
-  return $('#MainColumn').on('mouseleave', '.panel-heading', function(event) {
+  return $('#MainColumn').on('mouseleave', '.panel-heading', function() {
     return $(this).removeClass('ActivePanel');
   });
 };
@@ -62,7 +64,7 @@ const submitColumNameChange = function() {
         p_NewColumnName: newColumnName,
         p_BoardID: m_BoardID
       },
-      success: function(data) {
+      success: function() {
         let panelHeading = $('.ColumnNameForm').parent();
         $('.ColumnNameForm').replaceWith("<h3 class='panel-title'> </h3>");
         return panelHeading.find('.panel-title').text(newColumnName);
@@ -86,17 +88,17 @@ const cancelColumnNameChange = function() {
 };
 
 const columnNameFormMouseEvents = function() {
-  $('#MainColumn').on('mouseenter', '.ColumnTitleCancel', function(event) {
+  $('#MainColumn').on('mouseenter', '.ColumnTitleCancel', function() {
     return $('.ActivePanel').removeClass('ActivePanel');
   });
-  $('#MainColumn').on('mouseleave', '.ColumnTitleCancel', function(event) {
+  $('#MainColumn').on('mouseleave', '.ColumnTitleCancel', function() {
     let panelheading = $('.ColumnTitleCancel').parents('.panel-heading');
     return $(panelheading).addClass('ActivePanel');
   });
-  $('#MainColumn').on('mouseenter', '.ColumnTitleSubmit', function(event) {
+  $('#MainColumn').on('mouseenter', '.ColumnTitleSubmit', function() {
     return $('.ActivePanel').removeClass('ActivePanel');
   });
-  return $('#MainColumn').on('mouseleave', '.ColumnTitleSubmit ', function(event) {
+  return $('#MainColumn').on('mouseleave', '.ColumnTitleSubmit ', function() {
     let panelheading = $('.ColumnTitleSubmit').parents('.panel-heading');
     return $(panelheading).addClass('ActivePanel');
   });
@@ -113,7 +115,7 @@ const deleteColumnLinkClick = function() {
       data: {
         p_ColumnID: columnID
       },
-      success: function(data) {
+      success: function() {
         return $(column).remove();
       },
       error: function(error) {
@@ -167,7 +169,7 @@ const submitAddColumn = function() {
       success: function(data) {
         $('.AddColumnForm').after('<a id="AddColumnButton">Add a List</a>');
         return $('.AddColumnForm').replaceWith(function() {
-          return $(data).droppable(BoardDropOptions);
+          return $(data).droppable(boardDropOptions);
         });
       },
       error: function(error) {
@@ -188,15 +190,15 @@ const cancelColumnForm = function() {
 
 const columnJS = function() {
   $(document).ready(
-    activeColumn(),
-    columnTitleClick(),
-    submitColumNameChange(),
-    cancelColumnNameChange(),
-    columnNameFormMouseEvents(),
-    deleteColumnLinkClick(),
-    addColumnButtonClick(),
-    submitAddColumn(),
-    cancelColumnForm()
+     activeColumn(),
+     columnTitleClick(),
+     submitColumNameChange(),
+     cancelColumnNameChange(),
+     columnNameFormMouseEvents(),
+     deleteColumnLinkClick(),
+     addColumnButtonClick(),
+     submitAddColumn(),
+     cancelColumnForm()
   )
 }
 

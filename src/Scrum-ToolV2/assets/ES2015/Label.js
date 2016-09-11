@@ -7,13 +7,13 @@ const loadLabels = function() {
 };
 
 const labelDragOptions = {
-	revert: true
+  revert: true
 }
 
 const labelJS = function() {
   $(document).ready(
-	  loadLabels(),
-	  $('.ColourLabel').draggable(labelDragOptions)
+     loadLabels(),
+     $('.ColourLabel').draggable(labelDragOptions)
   )
 }
 

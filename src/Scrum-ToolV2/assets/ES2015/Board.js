@@ -1,10 +1,13 @@
+/* global taskDragOptions */
+
+/* eslint-disable no-unused-vars */
 const m_BoardName = $('.BoardNameHeading').text();
 const m_BoardID = $('.BoardNameHeading').attr('id');
+/* eslint-enable no-unused-vars */
 
 const boardDropOptions = {
    accept: function(element) {
       if (element.hasClass('ActiveTask')) {
-         const task = $(element);
          const newColumnID = $(this).attr('id');
          const currentColumnID = $(element).parent().parent().attr('id');
          if (newColumnID === currentColumnID) {
@@ -21,7 +24,7 @@ const boardDropOptions = {
       const column = $(this);
       const newColumnName = $(column).find('.panel-title').text();
       const taskID = $(selectedTaskDiv).find('.Task').attr('id');
-      const currentColumnID = $(selectedTaskDiv).parent().parent().attr('id');
+      //const currentColumnID = $(selectedTaskDiv).parent().parent().attr('id');
       return $.ajax({
          url: '/Task/MoveTaskToNewColumn',
          type: 'POST',
@@ -32,7 +35,7 @@ const boardDropOptions = {
          success: function(data) {
             $(selectedTaskDiv).remove();
             return $(column).find('.AddTask').before(function() {
-               return $(data).draggable(TaskDragOptions);
+               return $(data).draggable(taskDragOptions);
             });
          },
          error: function(error) {
@@ -44,9 +47,9 @@ const boardDropOptions = {
 
 
 const boardJS = function() {
-	$(document).ready(function() {
-		$('.BoardColumn').droppable(boardDropOptions);
-	});
+   $(document).ready(function() {
+      $('.BoardColumn').droppable(boardDropOptions);
+   });
 }
 
 export default boardJS;

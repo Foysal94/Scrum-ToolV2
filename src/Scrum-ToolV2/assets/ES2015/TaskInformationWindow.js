@@ -1,9 +1,9 @@
 const activeComment = function() {
-  $('body').on('mouseenter', '.Comment', function(event) {
+  $('body').on('mouseenter', '.Comment', function() {
     $(this).addClass('ActiveComment');
     return $(this).find('.dropdown').removeClass('Hidden');
   });
-  return $('body').on('mouseleave', '.Comment', function(event) {
+  return $('body').on('mouseleave', '.Comment', function() {
     $(this).removeClass('ActiveComment');
     return $(this).find('.dropdown').addClass('Hidden');
   });
@@ -20,7 +20,7 @@ const deleteLabelLink = function() {
       data: {
         p_LabelID: labelID
       },
-      success: function(data) {
+      success: function() {
         alert('Label was added successfully');
         return labelParent_li.remove();
       },
@@ -91,9 +91,9 @@ const editTaskContent = function() {
         const column = $('.ActiveTask').parent().parent();
         const columnName = $(column).find('.panel-title').html();
         $('.EditTaskForm').replaceWith('<a class="TaskContent"></a>');
-        $('.TaskContent').text(taskContent);
+        $('.TaskContent').text(newTaskContent);
         $('.TaskContent').append("<p class='ListName'> in list " + columnName + "</p>");
-        return $('.ActiveTask').find('.Task').html(taskContent);
+        return $('.ActiveTask').find('.Task').html(newTaskContent);
       },
       error: function(error) {
         alert('EditTaskContent Method');
@@ -157,7 +157,7 @@ const changeDateButtonClick = function() {
     $.datepicker.formatDate("dd-M-yy", new Date(2016, 1 - 1, 26));
     return $('.ChangeDateButton').datepicker({
       minDate: new Date(),
-      onSelect: function(dateText, inst) {
+      onSelect: function(dateText) {
         const dateAsString = dateText;
         const taskID = $('.TaskWindow').attr('id');
         return $.ajax({
@@ -167,7 +167,7 @@ const changeDateButtonClick = function() {
             p_TaskID: taskID,
             p_Date: dateAsString
           },
-          success: function(data) {
+          success: function() {
             return $('.Date').html("Date: " + dateAsString);
           },
           error: function(error) {
@@ -191,7 +191,7 @@ const deleteComment = function() {
       data: {
         p_CommentID: commentID
       },
-      success: function(data) {
+      success: function() {
         return $(comment).remove();
       },
       error: function(error) {
@@ -204,7 +204,7 @@ const deleteComment = function() {
 
 const taskInformationWindowJS = function() {
   $(document).ready(
-	   deleteLabelLink(),
+     deleteLabelLink(),
      addLabelClick(),
      editTaskClick(),
      editTaskContent(),
