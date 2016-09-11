@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test:eslint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache; exit 0",
+    "test:eslint": "eslint . --ext .js  --cache; exit 0",
     "test:stylelint": "stylelint .css --ignore-path .gitignore --cache; exit 0 ",
     "build": "webpack",
     "start": "webpack-dev-server --content-base ./build/"

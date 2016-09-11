@@ -2,6 +2,7 @@
 node_modules
 wwwroot/**/*
 .idea
+.eslintcache
 
 #Include 
 !wwwroot/lib/
