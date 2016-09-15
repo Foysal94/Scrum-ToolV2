@@ -4,52 +4,49 @@
 @import './SideMenu.css';
 
 .row {
-    margin-top: 1%;
-    width: 100%;
-    height:100%;
-    border-top: 3px solid $logo-color;
+	margin-top: 1%;
+	width: 100%;
+	height: 100%;
+	border-top: 3px solid $logo-color;
 }
 
 .BoardColumn {
-  /*border-right: 3px solid #f00*/
-  float:left;
-  width: 20%;
-  
+	/* border-right: 3px solid #f00 */
+	float: left;
+	width: 20%;
 }
 
 #AddColumnButton {
-    font-size: 20px;
-    cursor:pointer;
-    color: $logo-color;
-    display:inline-block;
-    margin-top:1%;
-    &:hover, &:visited{
-        text-decoration:none;
-        color: $logo-color;
-    }
+	font-size: 20px;
+	cursor: pointer;
+	color: $logo-color;
+	display: inline-block;
+	margin-top: 1%;
+
+	&:hover, &:visited {
+		text-decoration: none;
+		color: $logo-color;
+	}
 }
 
 .EditTask {
-    /*Change these numbers to move the pen about in the corner, top,right,bottom,left*/
-     margin: -50px 0 0 270px; 
-     position:absolute;
-     cursor:pointer;
+	/* Change these numbers to move the pen about in the corner, top,right,bottom,left */
+	margin: -50px 0 0 270px;
+	position: absolute;
+	cursor: pointer;
 }
 
 .ColumnOptions {
-    .caret {
-        display:block;
-        float:right;
-        border-left: 8.5px solid transparent;
-        border-right: 8.5px solid transparent;
-        border-top: 8.5px solid #000000;    
-    }
+	.caret {
+		display: block;
+		float: right;
+		border-left: 8.5px solid transparent;
+		border-right: 8.5px solid transparent;
+		border-top: 8.5px solid #000000;
+	}
 }
 
-
-
-#MainColumn
-{
-    margin-top:15px;
+#MainColumn {
+	margin-top: 15px;
 }
 

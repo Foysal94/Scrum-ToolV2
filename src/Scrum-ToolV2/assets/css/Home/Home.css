@@ -2,35 +2,33 @@
 @import '../Shared/base.css';
 
 /* Home.css CSS  */
+
 /* My Own */
-#InitalButton{
-    position: relative; 
-    margin-top: 10%;
+#InitalButton {
+	position: relative;
+	margin-top: 10%;
 }
 
 #titleScreen {
 	text-align: center;
-   font-size: 30px;
-   color: #ff6666;
-    
-    h1 {
-        font-size: 100px;
-        margin-bottom: 50px;
-    }
-    
- }
- 
-#boardName {
+	font-size: 30px;
+	color: #FF6666;
 
-  border-bottom-color: #ff6666;
-  border-bottom-width:3px;
-  border-style:none none dashed;
-  background: $background-color;
-  margin-top:30px;
-  
- }
- 
- #boardFormSubmit {
-     margin-top:35px;
- }
- 
+	h1 {
+		font-size: 100px;
+		margin-bottom: 50px;
+	}
+}
+
+#boardName {
+	border-bottom-color: #FF6666;
+	border-bottom-width: 3px;
+	border-style: none none dashed;
+	background: $background-color;
+	margin-top: 30px;
+}
+
+#boardFormSubmit {
+	margin-top: 35px;
+}
+

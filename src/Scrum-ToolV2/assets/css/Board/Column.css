@@ -1,66 +1,60 @@
 ﻿@import '../Shared/base.css';
 
 .panel-default {
+	margin-right: 20px;
 
-    margin-right:20px;
+	.panel-heading {
+		cursor: pointer;
+		background-color: $logo-color;
+		text-align: center;
 
-   .panel-heading {
-       cursor:pointer;
-       background-color: $logo-color;
-       text-align: center;
-
-       .panel-title {
-           position:relative;
-       }
-   }
-    
-  .panel-body {
-      background-color: $panel-body-color;
-      min-height: 30%;
-      ul {
-            margin:0;
-            padding:0;
-          li {
-              list-style-type: none;
-          }
-      }
-
-  }
-    
+		.panel-title {
+			position: relative;
+		}
+	}
 }
 
-.ui-draggable-dragging
-{
-    cursor: grabbing !important;
+.panel-body {
+	background-color: $panel-body-color;
+	min-height: 30%;
+
+	ul {
+		margin: 0;
+		padding: 0;
+
+		li {
+			list-style-type: none;
+		}
+	}
 }
 
- .Task {
-    @mixin TaskCSS;
- }
+.ui-draggable-dragging {
+	cursor: grabbing !important;
+}
 
- .AddTask {
-     color: $logo-color;
-      &:hover, &:visited, &:link{
-       text-decoration: none;
-       cursor:pointer;
-       color: $logo-color;
-      }
- }
+.Task {
+	@mixin TaskCSS;
+}
 
+.AddTask {
+	color: $logo-color;
+
+	&:hover, &:visited, &:link {
+		text-decoration: none;
+		cursor: pointer;
+		color: $logo-color;
+	}
+}
 
 .ActiveTask {
+	a:hover, a:visited, a:link {
+		text-decoration: none;
+		color: $task-font-color;
+		position: relative;
+	}
 
-    a:hover, a:visited, a:link {
-       text-decoration: none;
-       color: $task-font-color;
-       position:relative;
-     }
-
-    a:hover {
-        background-color: #a3c2c2 !important;
-        cursor:pointer;
-    }
+	a:hover {
+		background-color: #A3C2C2 !important;
+		cursor: pointer;
+	}
 }
-
-
-

@@ -4,10 +4,26 @@
    ],
 
    "rules" : {
-        "selector-list-comma-newline-after" : "never-multi-line",
-        "rule-nested-empty-line-before" : "always",
-        "max-nesting-depth" : 2
-
+		"selector-list-comma-newline-after": "never-multi-line",
+      "rule-nested-empty-line-before": [ "always", {
+         "except": [ "first-nested"],
+         "ignore": [ "after-comment"]
+      }],
+      "max-nesting-depth": 2,
+      "indentation":  "tab",
+		"color-hex-length": "long",
+      "declaration-empty-line-before": [ "never", {
+         "ignore": [ "after-comment", "inside-single-line-block"]
+      }],
+      "at-rule-empty-line-before": [ "always", {
+         "except": [ "all-nested", "blockless-after-same-name-blockless"],
+         "ignore": [ "blockless-group", "after-comment"]
+      }],
+      "color-hex-case": "upper",
+      "comment-empty-line-before": [ "always",  {
+         "except": [ "first-nested"],
+         "ignore": [ "between-comments", "stylelint-commands"]
+      }]
+      
    }
-
 }

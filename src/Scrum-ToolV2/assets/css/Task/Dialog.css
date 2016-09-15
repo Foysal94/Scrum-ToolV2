@@ -1,16 +1,13 @@
 ﻿@import '../Shared/_base.css';
 
 .ui-dialog-title, .ui-dialog-titlebar {
-    background-color: $panel-body-color;
+	background-color: $panel-body-color;
 }
-
 
 .ui-dialog {
-    background-color: $panel-body-color;
+	background-color: $panel-body-color;
 }
 
-.ui-dialog,.ui-dialog,.ui-widget, .ui-widget-content, .ui-corner-all, 
-.ui-resizable  {
-    background: $panel-body-color;
-
+.ui-dialog,.ui-dialog,.ui-widget, .ui-widget-content, .ui-corner-all,.ui-resizable {
+	background: $panel-body-color;
 }

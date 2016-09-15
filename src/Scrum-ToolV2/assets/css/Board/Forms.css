@@ -1,87 +1,86 @@
 ﻿@import '../Shared/base.css';
-/* CSS to change the form for when changing the panel name;*/
+
+/* CSS to change the form for when changing the panel name; */
 @define-mixin CustomButton {
-     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-     border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-     border: 1px solid $form-button-color;
-     cursor: pointer;
-     color: #fff !important;
-     background-color:$form-button-color;
-     text-shadow: 1px 1px $form-button-color;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid $form-button-color;
+	cursor: pointer;
+	color: #FFFFFF !important;
+	background-color: $form-button-color;
+	text-shadow: 1px 1px $form-button-color;
 }
 
 .NewColumnName {
-    width:100%;
-    color: $task-font-color;
+	width: 100%;
+	color: $task-font-color;
 }
 
 .BoardTaskContentInput {
-    width:100%;
-    height:15%;
-    color:  $task-font-color;
+	width: 100%;
+	height: 15%;
+	color: $task-font-color;
 }
 
 .FormButtons {
-    margin-top:10px;
-    a:hover, a:visited, a:link {
-       text-decoration: none;
-       color: #fff;
-       position:relative;
-     }
+	margin-top: 10px;
 
-    a:hover {
-        background-color: #a3c2c2 !important;
-        cursor:pointer;
-    }
+	a:hover, a:visited, a:link {
+		text-decoration: none;
+		color: #FFFFFF;
+		position: relative;
+	}
+
+	a:hover {
+		background-color: #A3C2C2 !important;
+		cursor: pointer;
+	}
 }
 
- .AddColumnSubmit {
-    @mixin CustomButton;
-    padding: 10px 10px 10px ;
+.AddColumnSubmit {
+	@mixin CustomButton;
+	padding: 10px;
 }
 
 .AddColumnCancel {
-    @mixin CustomButton;
-    display:inline-block;
-    padding: 10px 10px 10px ;
-    
+	@mixin CustomButton;
+	display: inline-block;
+	padding: 10px;
 }
 
 .ColumnTitleSubmit {
-    @mixin CustomButton;
-    padding: 10px 10px 10px ;
+	@mixin CustomButton;
+	padding: 10px;
 }
 
 .ColumnTitleCancel {
-    @mixin CustomButton;
-    display:inline-block;
-    padding: 10px 10px 10px ;
+	@mixin CustomButton;
+	display: inline-block;
+	padding: 10px;
 }
 
 .TaskFormSubmit {
-    @mixin CustomButton;
-    padding: 10px 10px 10px ;
+	@mixin CustomButton;
+	padding: 10px;
 }
 
 .TaskFormCancel {
-    @mixin CustomButton;
-    display:inline-block;
-    padding: 10px 10px 10px ;
+	@mixin CustomButton;
+	display: inline-block;
+	padding: 10px;
 }
-
 
 .EditTaskSubmit {
-    @mixin CustomButton;
-    padding: 10px 10px 10px ;
+	@mixin CustomButton;
+	padding: 10px;
 }
 
-
 .EditTaskCancel {
-    @mixin CustomButton;
-    display:inline-block;
-    padding: 10px 10px 10px ;
+	@mixin CustomButton;
+	display: inline-block;
+	padding: 10px;
 }

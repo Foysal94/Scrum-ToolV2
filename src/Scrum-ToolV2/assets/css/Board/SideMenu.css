@@ -1,76 +1,85 @@
 ﻿@import '../Shared/base.css';
 
-#MenuColumn{
-    float:right;
-    display:inline-block;
-    border-left: 3px solid $logo-color;
-    height:100%;
-    .btn {
-        width:100%;
-    }
-    @mixin ListStyleNone;
+#MenuColumn {
+	float: right;
+	display: inline-block;
+	border-left: 3px solid $logo-color;
+	height: 100%;
+
+	.btn {
+		width: 100%;
+	}
+	@mixin ListStyleNone;
 }
 
 .ColourLabel {
-    text-align:center;
-    a{
-        color:black !important;
-    }
+	text-align: center;
+
+	a {
+		color: black !important;
+	}
 }
 
-
 #BlueLabel {
-    background-color:blue;
-    a {
-        color: blue;
-    }
+	background-color: blue;
+
+	a {
+		color: blue;
+	}
 }
 
 #PurpleLabel {
-    background-color:purple;
-    a {
-        color: purple;
-    }
+	background-color: purple;
+
+	a {
+		color: purple;
+	}
 }
 
 #GreenLabel {
-    background-color:green;
-    a {
-       color: green;
-    }
+	background-color: green;
+
+	a {
+		color: green;
+	}
 }
 
 #RedLabel {
-    background-color:red;
-    a {
-      color: red;
-    }
+	background-color: red;
+
+	a {
+		color: red;
+	}
 }
 
 #YellowLabel {
-    background-color:yellow;
-    a {
-        color: yellow;
-    }
+	background-color: yellow;
+
+	a {
+		color: yellow;
+	}
 }
 
 #OrangeLabel {
-    background-color:orange;
-    a {
-    color: orange;
-    }
+	background-color: orange;
+
+	a {
+		color: orange;
+	}
 }
 
 #LightBlueLabel {
-    background-color:LightBlue;
-    a {
-        color: LightBlue;
-    }
+	background-color: LightBlue;
+
+	a {
+		color: LightBlue;
+	}
 }
 
 #PinkLabel {
-    background-color:Pink;
-    a {
-        color: Pink;
-    }
+	background-color: Pink;
+
+	a {
+		color: Pink;
+	}
 }
