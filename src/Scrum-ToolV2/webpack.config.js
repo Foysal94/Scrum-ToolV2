@@ -24,7 +24,7 @@ var config = {
 
    output: {
       path: PATHS.build,
-      filename: '[name].bundle.js',
+      filename: 'bundle.js',
    },
 
    resolve: {
@@ -92,16 +92,14 @@ var config = {
    },
 	
 	plugins: [
-		new CleanWebpackPlugin(
-            [
-                './wwwroot/js/',
-                './wwwroot/css/'
-            ]
-      ),
-      // Output extracted CSS to a file
+		new CleanWebpackPlugin( [ './wwwroot/bundle.css', './wwwroot/bundle.min.css', './wwwroot/bundle.js', './wwwroot/bundle.min.js' ], {
+			"verbose": true // Write logs to console
+		}),
+
       new ExtractTextPlugin('bundle.css', {
          allChunks: true
       }),
+
 		new StyleLintPlugin({
 			configFile: '.stylelintrc',
 			context: 'assets',
