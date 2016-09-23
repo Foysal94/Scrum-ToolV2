@@ -15,7 +15,9 @@ wwwroot
 *.sln
 *.docstates
 *.xproj
-*appsettings.production.json
+npm-debug.log
+appsettings.production.json
+
 
 # Build results
 [Dd]ebug/
