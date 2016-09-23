@@ -18,6 +18,9 @@ var PATHS = {
 };
 
 var config = {
+	
+	watch: true,
+
    entry: {
       app: PATHS.app
    },
@@ -104,7 +107,7 @@ var config = {
 			configFile: '.stylelintrc',
 			context: 'assets',
 			files: '**/*.css',
-			failOnError: true,
+			failOnError: false,
 			quiet: false,
 		})
 	]
